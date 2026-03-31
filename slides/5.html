@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Primary Objectives</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #0f172a; /* Slate 900 */
+        }
+        .slide-container {
+             width: 100vw; 
+    height: 90vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            background-color: #0f172a;
+            color: white;
+            overflow: hidden;
+            padding: 40px 60px;
+            box-sizing: border-box;
+        }
+
+        /* Background Elements */
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            opacity: 0.15;
+        }
+        .bg-orb-1 {
+            width: 400px;
+            height: 400px;
+            background-color: #10b981; /* Emerald 500 */
+            top: -100px;
+            right: -100px;
+        }
+        .bg-orb-2 {
+            width: 300px;
+            height: 300px;
+            background-color: #3b82f6; /* Blue 500 */
+            bottom: -50px;
+            left: -50px;
+        }
+
+        /* Header Styles */
+        .header {
+            position: relative;
+            z-index: 10;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+            padding-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .slide-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .slide-title::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 36px;
+            background-color: #10b981; /* Emerald 500 for Objectives */
+            margin-right: 20px;
+            border-radius: 3px;
+        }
+
+        .header-logo {
+            font-size: 18px;
+            font-weight: 600;
+            color: #94a3b8;
+            margin: 0;
+        }
+
+        /* Content Layout */
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            flex: 1;
+            display: flex;
+            gap: 40px;
+        }
+
+        .column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Objective Card Styles */
+        .obj-card {
+            background-color: rgba(30, 41, 59, 0.4); /* Slate 800 */
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .obj-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: transparent;
+            transition: background-color 0.3s;
+        }
+
+        /* Alternating accent colors for variety */
+        .col-left .obj-card:nth-child(1)::before { background-color: #34d399; } /* Emerald */
+        .col-left .obj-card:nth-child(2)::before { background-color: #2dd4bf; } /* Teal */
+        .col-left .obj-card:nth-child(3)::before { background-color: #38bdf8; } /* Sky */
+        .col-left .obj-card:nth-child(4)::before { background-color: #60a5fa; } /* Blue */
+
+        .col-right .obj-card:nth-child(1)::before { background-color: #818cf8; } /* Indigo */
+        .col-right .obj-card:nth-child(2)::before { background-color: #a78bfa; } /* Violet */
+        .col-right .obj-card:nth-child(3)::before { background-color: #c084fc; } /* Purple */
+        .col-right .obj-card:nth-child(4)::before { background-color: #f472b6; } /* Pink */
+
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background-color: rgba(15, 23, 42, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .obj-icon {
+            font-size: 20px;
+            color: #e2e8f0;
+        }
+
+        /* Icon colors matching accents */
+        .col-left .obj-card:nth-child(1) .obj-icon { color: #34d399; }
+        .col-left .obj-card:nth-child(2) .obj-icon { color: #2dd4bf; }
+        .col-left .obj-card:nth-child(3) .obj-icon { color: #38bdf8; }
+        .col-left .obj-card:nth-child(4) .obj-icon { color: #60a5fa; }
+
+        .col-right .obj-card:nth-child(1) .obj-icon { color: #818cf8; }
+        .col-right .obj-card:nth-child(2) .obj-icon { color: #a78bfa; }
+        .col-right .obj-card:nth-child(3) .obj-icon { color: #c084fc; }
+        .col-right .obj-card:nth-child(4) .obj-icon { color: #f472b6; }
+
+        .text-content {
+            flex: 1;
+        }
+
+        .obj-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .obj-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+        }
+
+        .obj-number {
+            font-size: 12px;
+            font-weight: 800;
+            color: #475569;
+            font-family: 'Inter', monospace;
+        }
+
+        .obj-desc {
+            font-size: 14px;
+            color: #cbd5e1;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Background Orbs -->
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="header">
+<h1 class="slide-title">Primary Objectives</h1>
+<p class="header-logo">aeos365 Project Proposal</p>
+</div>
+<div class="content-wrapper">
+<!-- Left Column: 1-4 -->
+<div class="column col-left">
+<!-- Obj 1 -->
+<div class="obj-card">
+<div class="icon-box">
+<i class="fas fa-layer-group obj-icon"></i>
+</div>
+<div class="text-content">
+<div class="obj-header">
+<h3 class="obj-title">Unified Business Platform</h3>
+<span class="obj-number">01</span>
+</div>
+<p class="obj-desc">Consolidate multiple functional modules under a single authentication framework to eliminate data silos and consistent UX.</p>
+</div>
+</div>
+<!-- Obj 2 -->
+<div class="obj-card">
+<div class="icon-box">
+<i class="fas fa-server obj-icon"></i>
+</div>
+<div class="text-content">
+<div class="obj-header">
+<h3 class="obj-title">Dual-Deployment Architecture</h3>
+<span class="obj-number">02</span>
+</div>
+<p class="obj-desc">Support both multi-tenant SaaS hosting and standalone single-tenant distribution from the same monorepo codebase.</p>
+</div>
+</div>
+<!-- Obj 3 -->
+<div class="obj-card">
+<div class="icon-box">
+<i class="fas fa-box-open obj-icon"></i>
+</div>
+<div class="text-content">
+<div class="obj-header">
+<h3 class="obj-title">Product-Based Distribution</h3>
+<span class="obj-number">03</span>
+</div>
+<p class="obj-desc">Package modules into marketable standalone products (Aero HRM, Aero CRM) with tiered pricing and upgrade paths.</p>
+</div>
+</div>
+<!-- Obj 4 -->
+<div class="obj-card">
+<div class="icon-box">
+<i class="fas fa-database obj-icon"></i>
+</div>
+<div class="text-content">
+<div class="obj-header">
+<h3 class="obj-title">Multi-Tenant Isolation</h3>
+<span class="obj-number">04</span>
+</div>
+<p class="obj-desc">Implement secure tenant isolation using subdomain identification and dedicated database instances per tenant.</p>
+</div>
+</div>
+</div>
+<!-- Right Column: 5-8 -->
+<div class="column col-right">
+<!-- Obj 5 -->
+<div class="obj-card">
+<div class="icon-box">
+<i class="fas fa-credit-card obj-icon"></i>
+</div>
+<div class="text-content">
+<div class="obj-header">
+<h3 class="obj-title">Modular Subscription Model</h3>
+<span class="obj-number">05</span>
+</div>
+<p class="obj-desc">Develop a flexible billing system allowing tenants to subscribe to specific modules and optional add-ons on demand.</p>
+</div>
+</div>
+<!-- Obj 6 -->
+<div class="obj-card">
+<div class="icon-box">
+<i class="fas fa-shield-alt obj-icon"></i>
+</div>
+<div class="text-content">
+<div class="obj-header">
+<h3 class="obj-title">Four-Level RBAC System</h3>
+<span class="obj-number">06</span>
+</div>
+<p class="obj-desc">Implement granular access control hierarchy: Module → SubModule → Component → Action for precise permission policies.</p>
+</div>
+</div>
+<!-- Obj 7 -->
+<div class="obj-card">
+<div class="icon-box">
+<i class="fas fa-robot obj-icon"></i>
+</div>
+<div class="text-content">
+<div class="obj-header">
+<h3 class="obj-title">AI-Powered Assistance</h3>
+<span class="obj-number">07</span>
+</div>
+<p class="obj-desc">Integrate an intelligent assistant trained on documentation to provide contextual help and automate common workflows.</p>
+</div>
+</div>
+<!-- Obj 8 -->
+<div class="obj-card">
+<div class="icon-box">
+<i class="fas fa-desktop obj-icon"></i>
+</div>
+<div class="text-content">
+<div class="obj-header">
+<h3 class="obj-title">Modern User Experience</h3>
+<span class="obj-number">08</span>
+</div>
+<p class="obj-desc">Deliver a responsive, intuitive user interface with consistent design patterns supporting both desktop and mobile access.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

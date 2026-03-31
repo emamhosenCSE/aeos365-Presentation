@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>aeos365: A Modular Enterprise Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #1a1a1a; color: white; margin: 0; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+        
+        /* Header */
+        nav { background-color: #2d2d2d; height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 32px; border-bottom: 1px solid #3d3d3d; flex-shrink: 0; z-index: 50; }
+        
+        .play-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); padding: 10px 24px; border-radius: 6px; font-size: 13px; font-weight: 600; transition: 0.2s; display: flex; align-items: center; gap: 10px; cursor: pointer; }
+        .play-btn:hover { background: rgba(255,255,255,0.1); border-color: #3b82f6; }
+
+        /* Gallery List */
+        main { flex-grow: 1; overflow-y: auto; padding: 80px 0; display: flex; flex-direction: column; align-items: center; gap: 100px; scroll-behavior: smooth; }
+
+        .slide-wrapper {
+            width: 90vw;
+            max-width: 1200px;
+            aspect-ratio: 16 / 9;
+            position: relative;
+            background: #000;
+            border-radius: 12px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+            border: 1px solid #334155;
+        }
+
+        .slide-label { position: absolute; top: -35px; left: 0; color: #94a3b8; font-size: 14px; font-weight: 500; }
+
+        .iframe-container { width: 100%; height: 100%; overflow: hidden; border-radius: 11px; }
+
+        /* Working Thumbnail Styling */
+        .thumb-iframe { width: 1280px; height: 720px; border: none; pointer-events: none; transform-origin: 0 0; }
+
+        /* --- BASIC FULLSCREEN RENDERING --- */
+        #fs-overlay { 
+            display: none; 
+            position: fixed; 
+            inset: 0; 
+            background: #000; 
+            z-index: 9999; 
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* The container keeps the slide centered and contained without overflow */
+        .fs-slide-area {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        #fs-iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            display: block;
+            /* object-fit equivalent for iframes: ensure it scales within bounds */
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .fs-controls { 
+            position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); 
+            display: flex; align-items: center; gap: 24px; 
+            background: rgba(15, 23, 42, 0.95); padding: 12px 30px; 
+            border-radius: 50px; border: 1px solid rgba(255, 255, 255, 0.1); 
+            backdrop-filter: blur(15px);
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="flex flex-col">
+        <span class="text-sm font-bold tracking-tight">aeos365: A Modular Enterprise Platform</span>
+        <span class="text-xs text-gray-500">22 Slides Total • Final Year Project</span>
+    </div>
+    <button class="play-btn" onclick="startPlay()">
+        <i class="fas fa-play text-[10px]"></i> Play
+    </button>
+</nav>
+
+<main id="gallery-root"></main>
+
+<div id="fs-overlay">
+    <div class="fs-slide-area">
+        <iframe id="fs-iframe"></iframe>
+    </div>
+    <div class="fs-controls">
+        <button onclick="nav(-1)"><i class="fas fa-chevron-left"></i></button>
+        <span id="counter" class="text-sm font-mono text-blue-400">01 / 22</span>
+        <button onclick="nav(1)"><i class="fas fa-chevron-right"></i></button>
+        <button onclick="exit()"><i class="fas fa-times"></i></button>
+    </div>
+</div>
+
+<script>
+    const TOTAL = 22;
+    const root = document.getElementById('gallery-root');
+    let current = 1;
+
+    // Build the Gallery (Keeping your working logic)
+    for(let i=1; i<=TOTAL; i++) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'slide-wrapper';
+        wrapper.innerHTML = `
+            <span class="slide-label">${i} / ${TOTAL}</span>
+            <div class="iframe-container">
+                <iframe id="slide-${i}" class="thumb-iframe" src="slides/${i}.html" scrolling="no"></iframe>
+            </div>
+        `;
+        root.appendChild(wrapper);
+    }
+
+    function applyScaling() {
+        const frames = document.querySelectorAll('.iframe-container');
+        frames.forEach(container => {
+            const iframe = container.querySelector('iframe');
+            if (iframe) {
+                const containerWidth = container.offsetWidth;
+                const scale = containerWidth / 1280;
+                iframe.style.transform = `scale(${scale})`;
+            }
+        });
+    }
+
+    window.onload = applyScaling;
+    window.onresize = applyScaling;
+
+    // --- SIMPLIFIED FULLSCREEN LOGIC ---
+    function startPlay() {
+        current = 1;
+        const overlay = document.getElementById('fs-overlay');
+        overlay.style.display = 'flex'; // Use flex to center the area
+        updateFS();
+        
+        if (document.documentElement.requestFullscreen) {
+            document.documentElement.requestFullscreen();
+        }
+    }
+
+    function nav(step) {
+        current += step;
+        if(current < 1) current = 1;
+        if (current > TOTAL) current = TOTAL;
+        updateFS();
+    }
+
+    function updateFS() {
+        const fsIframe = document.getElementById('fs-iframe');
+        // Simple source update - browser handles sizing via CSS
+        fsIframe.src = `slides/${current}.html`;
+        document.getElementById('counter').innerText = `${String(current).padStart(2,'0')} / ${TOTAL}`;
+    }
+
+    function exit() {
+        document.getElementById('fs-overlay').style.display = 'none';
+        if (document.fullscreenElement) {
+            document.exitFullscreen();
+        }
+    }
+
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+        if (document.getElementById('fs-overlay').style.display === 'flex') {
+            if (e.key === "ArrowRight") nav(1);
+            if (e.key === "ArrowLeft") nav(-1);
+            if (e.key === "Escape") exit();
+        }
+    });
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"7ae68a70a20c4f81a1fabbef55932999","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>

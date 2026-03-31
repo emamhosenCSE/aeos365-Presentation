@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>System Architecture Overview</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #0f172a; /* Slate 900 */
+        }
+        .slide-container {
+             width: 100vw; 
+    height: 90vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            background-color: #0f172a;
+            color: white;
+            overflow: hidden;
+            padding: 40px 60px;
+            box-sizing: border-box;
+        }
+
+        /* Background Elements */
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            opacity: 0.1;
+        }
+        .bg-orb-1 {
+            width: 500px;
+            height: 500px;
+            background-color: #3b82f6; /* Blue */
+            top: -200px;
+            right: -100px;
+        }
+        .bg-orb-2 {
+            width: 400px;
+            height: 400px;
+            background-color: #8b5cf6; /* Violet */
+            bottom: -100px;
+            left: -100px;
+        }
+
+        /* Header Styles */
+        .header {
+            position: relative;
+            z-index: 10;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+            padding-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .slide-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .slide-title::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 36px;
+            background-color: #8b5cf6; /* Violet 500 */
+            margin-right: 20px;
+            border-radius: 3px;
+        }
+
+        .header-logo {
+            font-size: 18px;
+            font-weight: 600;
+            color: #94a3b8;
+            margin: 0;
+        }
+
+        /* Architecture Diagram Container */
+        .arch-container {
+            position: relative;
+            z-index: 10;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 0 40px;
+        }
+
+        /* Layer Common Styles */
+        .arch-layer {
+            display: flex;
+            align-items: stretch;
+            border-radius: 12px;
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+
+        .layer-label {
+            width: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 24px;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            flex-shrink: 0;
+        }
+
+        .layer-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0 0 4px 0;
+            color: #ffffff;
+        }
+
+        .layer-desc {
+            font-size: 12px;
+            color: #cbd5e1;
+            margin: 0;
+        }
+
+        .layer-content {
+            flex: 1;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* Specific Layer Styles */
+        /* Layer 1: Presentation */
+        .layer-presentation {
+            background-color: rgba(59, 130, 246, 0.1); /* Blue tint */
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-left: 4px solid #3b82f6;
+            height: 100px;
+        }
+        .layer-presentation .layer-title { color: #93c5fd; }
+
+        /* Layer 2: Application */
+        .layer-application {
+            background-color: rgba(139, 92, 246, 0.1); /* Violet tint */
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-left: 4px solid #8b5cf6;
+            height: 100px;
+        }
+        .layer-application .layer-title { color: #c4b5fd; }
+
+        /* Layer 3: Domain */
+        .layer-domain {
+            background-color: rgba(16, 185, 129, 0.1); /* Emerald tint */
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-left: 4px solid #10b981;
+            height: 100px;
+        }
+        .layer-domain .layer-title { color: #6ee7b7; }
+
+        /* Layer 4: Infrastructure */
+        .layer-infra {
+            background-color: rgba(71, 85, 105, 0.3); /* Slate tint */
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            border-left: 4px solid #94a3b8;
+            height: 100px;
+        }
+        .layer-infra .layer-title { color: #cbd5e1; }
+
+        /* Tech Items (Cards inside layers) */
+        .tech-card {
+            background-color: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 140px;
+            flex: 1;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .tech-icon {
+            font-size: 20px;
+        }
+
+        .tech-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #f1f5f9;
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        /* Connecting Lines */
+        .connector-line {
+            height: 16px;
+            width: 2px;
+            background-color: rgba(148, 163, 184, 0.3);
+            margin: -8px auto; /* Pull up to connect */
+            position: relative;
+            z-index: 5;
+        }
+        
+        .arrow-down {
+            width: 0; 
+            height: 0; 
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid rgba(148, 163, 184, 0.3);
+            margin: 0 auto -4px auto;
+        }
+
+        /* Specific Icon Colors */
+        .icon-react { color: #61dafb; }
+        .icon-laravel { color: #ff2d20; }
+        .icon-db { color: #f59e0b; }
+        .icon-redis { color: #dc2626; }
+        .icon-modules { color: #10b981; }
+        .icon-ui { color: #3b82f6; }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Background Elements -->
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="header">
+<h1 class="slide-title">System Architecture Overview</h1>
+<p class="header-logo">aeos365 Project Proposal</p>
+</div>
+<div class="arch-container">
+<!-- Layer 1: Presentation -->
+<div class="arch-layer layer-presentation">
+<div class="layer-label">
+<h2 class="layer-title">Presentation</h2>
+<p class="layer-desc">Client-side rendering &amp; UI Components</p>
+</div>
+<div class="layer-content">
+<div class="tech-card">
+<i class="fab fa-react tech-icon icon-react"></i>
+<p class="tech-name">React 18</p>
+</div>
+<div class="tech-card">
+<i class="fas fa-layer-group tech-icon icon-ui"></i>
+<p class="tech-name">HeroUI</p>
+</div>
+<div class="tech-card">
+<i class="fab fa-css3-alt tech-icon text-blue-400"></i>
+<p class="tech-name">Tailwind CSS 4</p>
+</div>
+<div class="tech-card">
+<i class="fas fa-bolt tech-icon text-purple-400"></i>
+<p class="tech-name">Inertia.js v2</p>
+</div>
+</div>
+</div>
+<!-- Connector -->
+<div class="connector-line"></div>
+<div class="arrow-down"></div>
+<!-- Layer 2: Application -->
+<div class="arch-layer layer-application">
+<div class="layer-label">
+<h2 class="layer-title">Application</h2>
+<p class="layer-desc">Server-side logic &amp; API orchestration</p>
+</div>
+<div class="layer-content">
+<div class="tech-card">
+<i class="fab fa-laravel tech-icon icon-laravel"></i>
+<p class="tech-name">Laravel 11</p>
+</div>
+<div class="tech-card">
+<i class="fas fa-route tech-icon text-indigo-400"></i>
+<p class="tech-name">Router / MVC</p>
+</div>
+<div class="tech-card">
+<i class="fas fa-shield-alt tech-icon text-green-400"></i>
+<p class="tech-name">Middleware</p>
+</div>
+<div class="tech-card">
+<i class="fas fa-code tech-icon text-gray-400"></i>
+<p class="tech-name">API Resources</p>
+</div>
+</div>
+</div>
+<!-- Connector -->
+<div class="connector-line"></div>
+<div class="arrow-down"></div>
+<!-- Layer 3: Domain -->
+<div class="arch-layer layer-domain">
+<div class="layer-label">
+<h2 class="layer-title">Domain</h2>
+<p class="layer-desc">Business modules &amp; Packages</p>
+</div>
+<div class="layer-content">
+<div class="tech-card">
+<i class="fas fa-cubes tech-icon icon-modules"></i>
+<p class="tech-name">Module Discovery</p>
+</div>
+<div class="tech-card">
+<i class="fas fa-box tech-icon icon-modules"></i>
+<p class="tech-name">aero-hrm</p>
+</div>
+<div class="tech-card">
+<i class="fas fa-box tech-icon icon-modules"></i>
+<p class="tech-name">aero-crm</p>
+</div>
+<div class="tech-card">
+<i class="fas fa-box tech-icon icon-modules"></i>
+<p class="tech-name">aero-finance</p>
+</div>
+<div class="tech-card" style="border-style: dashed; opacity: 0.7;">
+<i class="fas fa-plus tech-icon icon-modules"></i>
+<p class="tech-name">More...</p>
+</div>
+</div>
+</div>
+<!-- Connector -->
+<div class="connector-line"></div>
+<div class="arrow-down"></div>
+<!-- Layer 4: Infrastructure -->
+<div class="arch-layer layer-infra">
+<div class="layer-label">
+<h2 class="layer-title">Infrastructure</h2>
+<p class="layer-desc">Data persistence &amp; Services</p>
+</div>
+<div class="layer-content">
+<div class="tech-card">
+<i class="fas fa-database tech-icon icon-db"></i>
+<p class="tech-name">MySQL 8</p>
+</div>
+<div class="tech-card">
+<i class="fas fa-memory tech-icon icon-redis"></i>
+<p class="tech-name">Redis</p>
+</div>
+<div class="tech-card">
+<i class="fas fa-tasks tech-icon text-yellow-500"></i>
+<p class="tech-name">Queues</p>
+</div>
+<div class="tech-card">
+<i class="fas fa-broadcast-tower tech-icon text-pink-500"></i>
+<p class="tech-name">WebSockets</p>
+</div>
+<div class="tech-card">
+<i class="fas fa-folder-open tech-icon text-blue-300"></i>
+<p class="tech-name">Storage</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

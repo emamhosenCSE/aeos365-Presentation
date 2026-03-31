@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Multi-Tenancy Architecture</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #0f172a; /* Slate 900 */
+        }
+        .slide-container {
+             width: 100vw; 
+    height: 90vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            background-color: #0f172a;
+            color: white;
+            overflow: hidden;
+            padding: 40px 60px;
+            box-sizing: border-box;
+        }
+
+        /* Header Styles */
+        .header {
+            position: relative;
+            z-index: 10;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+            padding-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .slide-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .slide-title::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 36px;
+            background-color: #10b981; /* Emerald 500 */
+            margin-right: 20px;
+            border-radius: 3px;
+        }
+
+        .header-logo {
+            font-size: 18px;
+            font-weight: 600;
+            color: #94a3b8;
+            margin: 0;
+        }
+
+        /* Main Content Layout */
+        .main-content {
+            display: flex;
+            flex: 1;
+            gap: 50px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Left Column: Visual Diagram */
+        .diagram-col {
+            flex: 1.3;
+            background-color: rgba(30, 41, 59, 0.3);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Diagram Elements */
+        .tenant-layer, .app-layer, .db-layer {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .app-layer {
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        .node-card {
+            background-color: #1e293b;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 12px;
+            padding: 15px;
+            width: 160px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+
+        .node-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .node-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #f1f5f9;
+        }
+
+        .node-sub {
+            font-size: 11px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        /* App Core Box */
+        .app-core {
+            width: 80%;
+            height: 80px;
+            background-color: #334155;
+            border: 2px solid #475569;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .app-label {
+            font-weight: 700;
+            color: #e2e8f0;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Specific Node Styles */
+        .tenant-a { border-top: 4px solid #3b82f6; }
+        .tenant-a .node-icon { color: #3b82f6; }
+        
+        .tenant-b { border-top: 4px solid #8b5cf6; }
+        .tenant-b .node-icon { color: #8b5cf6; }
+
+        .db-a { border-bottom: 4px solid #3b82f6; }
+        .db-a .node-icon { color: #3b82f6; }
+
+        .db-b { border-bottom: 4px solid #8b5cf6; }
+        .db-b .node-icon { color: #8b5cf6; }
+
+        /* Connection Lines */
+        .flow-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        /* Simulating lines with divs */
+        .line-vertical {
+            position: absolute;
+            width: 2px;
+            background-color: #475569;
+            opacity: 0.5;
+        }
+
+        /* Right Column: Benefits */
+        .benefits-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .section-header {
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0 0 6px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-desc {
+            font-size: 14px;
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+
+        .benefit-card {
+            background-color: rgba(30, 41, 59, 0.4);
+            border-radius: 10px;
+            padding: 16px;
+            display: flex;
+            gap: 16px;
+            border-left: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-icon-box {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background-color: rgba(15, 23, 42, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .benefit-content h4 {
+            margin: 0 0 4px 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: #e2e8f0;
+        }
+
+        .benefit-content p {
+            margin: 0;
+            font-size: 13px;
+            color: #cbd5e1;
+            line-height: 1.4;
+        }
+
+        /* Color Themes for Benefits */
+        .benefit-security { border-color: #f43f5e; }
+        .benefit-security .benefit-icon-box { color: #f43f5e; }
+
+        .benefit-perf { border-color: #3b82f6; }
+        .benefit-perf .benefit-icon-box { color: #3b82f6; }
+
+        .benefit-backup { border-color: #f59e0b; }
+        .benefit-backup .benefit-icon-box { color: #f59e0b; }
+
+        .benefit-custom { border-color: #10b981; }
+        .benefit-custom .benefit-icon-box { color: #10b981; }
+
+        /* Standalone Note */
+        .standalone-note {
+            margin-top: auto;
+            background-color: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 10px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .standalone-icon {
+            font-size: 24px;
+            color: #10b981;
+        }
+
+        .standalone-text h4 {
+            color: #10b981;
+            font-size: 15px;
+            font-weight: 700;
+            margin: 0 0 2px 0;
+        }
+
+        .standalone-text p {
+            color: #d1fae5;
+            font-size: 12px;
+            margin: 0;
+        }
+        
+        /* Connecting lines strictly using CSS borders/divs */
+        .conn-line {
+            position: absolute;
+            background-color: #64748b;
+            opacity: 0.4;
+            z-index: 1;
+        }
+        
+        /* Tenant A path */
+        .line-ta-app { top: 125px; left: 25%; height: 55px; width: 2px; }
+        .line-app-dba { top: 260px; left: 25%; height: 55px; width: 2px; }
+        
+        /* Tenant B path */
+        .line-tb-app { top: 125px; left: 75%; height: 55px; width: 2px; }
+        .line-app-dbb { top: 260px; left: 75%; height: 55px; width: 2px; }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="header">
+<h1 class="slide-title">Multi-Tenancy Architecture</h1>
+<p class="header-logo">aeos365 Project Proposal</p>
+</div>
+<div class="main-content">
+<!-- Visual Diagram -->
+<div class="diagram-col">
+<!-- Tenant Layer -->
+<div class="tenant-layer">
+<div class="node-card tenant-a">
+<i class="fas fa-building node-icon"></i>
+<div class="node-title">Tenant A</div>
+<div class="node-sub">acme.aeos365.com</div>
+</div>
+<div class="node-card tenant-b">
+<i class="fas fa-building node-icon"></i>
+<div class="node-title">Tenant B</div>
+<div class="node-sub">globex.aeos365.com</div>
+</div>
+</div>
+<!-- Application Layer -->
+<div class="app-layer">
+<div class="app-core">
+<div class="app-label">
+<i class="fas fa-layer-group text-blue-400"></i>
+                        Application Core (Middleware &amp; Logic)
+                    </div>
+</div>
+</div>
+<!-- Database Layer -->
+<div class="db-layer">
+<div class="node-card db-a">
+<i class="fas fa-database node-icon"></i>
+<div class="node-title">DB: tenant_acme</div>
+<div class="node-sub">Isolated Data</div>
+</div>
+<div class="node-card db-b">
+<i class="fas fa-database node-icon"></i>
+<div class="node-title">DB: tenant_globex</div>
+<div class="node-sub">Isolated Data</div>
+</div>
+</div>
+<!-- Connecting Lines -->
+<div class="flow-lines">
+<!-- Lines are positioned absolutely based on the container size estimation -->
+<div class="conn-line line-ta-app"></div>
+<div class="conn-line line-tb-app"></div>
+<div class="conn-line line-app-dba"></div>
+<div class="conn-line line-app-dbb"></div>
+</div>
+</div>
+<!-- Benefits Column -->
+<div class="benefits-col">
+<div>
+<div class="section-header">
+<h2 class="section-title">
+<i class="fas fa-sitemap text-indigo-400"></i>
+                        Strategy: Database-per-Tenant
+                    </h2>
+<p class="section-desc">
+                        SaaS deployment utilizes complete database isolation to ensure maximum security and flexibility for enterprise clients.
+                    </p>
+</div>
+</div>
+<!-- Benefit List -->
+<div style="display: flex; flex-direction: column; gap: 12px; flex: 1;">
+<div class="benefit-card benefit-security">
+<div class="benefit-icon-box">
+<i class="fas fa-shield-alt"></i>
+</div>
+<div class="benefit-content">
+<h4>Data Sovereignty &amp; Security</h4>
+<p>Complete data isolation. One tenant's data is physically separated from others, mitigating cross-contamination risks.</p>
+</div>
+</div>
+<div class="benefit-card benefit-perf">
+<div class="benefit-icon-box">
+<i class="fas fa-tachometer-alt"></i>
+</div>
+<div class="benefit-content">
+<h4>Performance Isolation</h4>
+<p>Heavy workloads from one tenant do not directly impact query performance of other tenants' databases.</p>
+</div>
+</div>
+<div class="benefit-card benefit-backup">
+<div class="benefit-icon-box">
+<i class="fas fa-history"></i>
+</div>
+<div class="benefit-content">
+<h4>Backup &amp; Restore Flexibility</h4>
+<p>Granular backups allow restoring a single tenant's data to a specific point in time without affecting the entire platform.</p>
+</div>
+</div>
+<div class="benefit-card benefit-custom">
+<div class="benefit-icon-box">
+<i class="fas fa-sliders-h"></i>
+</div>
+<div class="benefit-content">
+<h4>Customization Potential</h4>
+<p>Enables schema modifications or specific extensions for premium enterprise tenants if required.</p>
+</div>
+</div>
+</div>
+<!-- Standalone Note -->
+<div class="standalone-note">
+<i class="fas fa-server standalone-icon"></i>
+<div class="standalone-text">
+<h4>Standalone Mode Note</h4>
+<p>Self-hosted installations use a single database with no multi-tenancy overhead, simplifying on-premise maintenance.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

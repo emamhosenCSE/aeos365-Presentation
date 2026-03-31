@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Problem Statement: Deployment &amp; Product Challenges</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #0f172a; /* Slate 900 */
+        }
+        .slide-container {
+            width: 100vw; 
+    height: 90vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            background-color: #0f172a;
+            color: white;
+            overflow: hidden;
+            padding: 40px 60px;
+            box-sizing: border-box;
+        }
+
+        /* Header Styles */
+        .header {
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+            padding-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .slide-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .slide-title::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 36px;
+            background-color: #ef4444; /* Red 500 for Problem Context */
+            margin-right: 20px;
+            border-radius: 3px;
+        }
+
+        .header-logo {
+            font-size: 18px;
+            font-weight: 600;
+            color: #94a3b8;
+            margin: 0;
+        }
+
+        /* Main Content Layout */
+        .content-grid {
+            display: flex;
+            gap: 40px;
+            flex: 1;
+            height: 100%;
+        }
+
+        /* Left Column: Structural Challenges */
+        .col-left {
+            width: 35%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .left-card {
+            background-color: rgba(30, 41, 59, 0.4); /* Slate 800 */
+            border: 1px solid rgba(239, 68, 68, 0.2); /* Red tint border */
+            border-left: 4px solid #ef4444; /* Red 500 */
+            border-radius: 12px;
+            padding: 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-header-left {
+            font-size: 22px;
+            font-weight: 700;
+            color: #fca5a5; /* Red 300 */
+            margin: 0 0 24px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .challenge-item {
+            margin-bottom: 24px;
+        }
+
+        .challenge-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .challenge-desc {
+            font-size: 15px;
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin: 0;
+            padding-left: 28px;
+        }
+
+        /* Right Column: Market & Cost Impact */
+        .col-right {
+            width: 65%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .right-card {
+            background-color: rgba(30, 41, 59, 0.4); /* Slate 800 */
+            border: 1px solid rgba(245, 158, 11, 0.2); /* Amber tint border */
+            border-left: 4px solid #f59e0b; /* Amber 500 */
+            border-radius: 12px;
+            padding: 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-header-right {
+            font-size: 22px;
+            font-weight: 700;
+            color: #fcd34d; /* Amber 300 */
+            margin: 0 0 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .impact-box {
+            background-color: rgba(15, 23, 42, 0.5); /* Slate 900 */
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .impact-icon-wrapper {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(245, 158, 11, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+
+        .impact-icon {
+            color: #f59e0b;
+            font-size: 20px;
+        }
+
+        .impact-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin: 0 0 8px 0;
+        }
+
+        .impact-stat {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0 0 4px 0;
+        }
+
+        .impact-sub {
+            font-size: 13px;
+            color: #94a3b8;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .lock-in-box {
+            grid-column: 1 / -1;
+            background-color: rgba(15, 23, 42, 0.5);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .lock-icon-large {
+            font-size: 32px;
+            color: #f87171; /* Red 400 */
+            padding: 0 10px;
+        }
+
+        .lock-content h4 {
+            margin: 0 0 4px 0;
+            color: #e2e8f0;
+            font-size: 18px;
+        }
+
+        .lock-content p {
+            margin: 0;
+            color: #94a3b8;
+            font-size: 15px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="header">
+<h1 class="slide-title">Deployment &amp; Product Challenges</h1>
+<p class="header-logo">aeos365 Project Proposal</p>
+</div>
+<div class="content-grid">
+<!-- Left Column: Structural Challenges -->
+<div class="col-left">
+<div class="left-card">
+<h2 class="section-header-left">
+<i class="fas fa-cogs"></i> Structural Inflexibility
+</h2>
+<div class="challenge-item">
+<div class="challenge-title">
+<i class="fas fa-random text-red-500 text-sm"></i>
+                        Deployment Rigidity
+                    </div>
+<p class="challenge-desc">
+                        Vendors force a binary choice between SaaS-only or On-Premises-only. Organizations are trapped in a single model with no clear migration path as needs evolve.
+                    </p>
+</div>
+<div class="challenge-item">
+<div class="challenge-title">
+<i class="fas fa-box-open text-red-500 text-sm"></i>
+                        Monolithic Bundling
+                    </div>
+<p class="challenge-desc">
+                        Organizations are forced to purchase entire ERP suites even when needing only specific modules, leading to bloatware and paying for unused functionality.
+                    </p>
+</div>
+</div>
+</div>
+<!-- Right Column: Market & Cost Impact -->
+<div class="col-right">
+<div class="right-card">
+<h2 class="section-header-right">
+<i class="fas fa-chart-line"></i> Market &amp; Financial Impact
+</h2>
+<div class="impact-grid">
+<!-- High Costs -->
+<div class="impact-box">
+<div class="impact-icon-wrapper">
+<i class="fas fa-coins impact-icon"></i>
+</div>
+<h3 class="impact-title">High Implementation Costs</h3>
+<p class="impact-stat">$100K - $5M+</p>
+<p class="impact-sub">Substantial upfront investment for licenses &amp; infrastructure, often prohibitive for SMEs.</p>
+</div>
+<!-- Long Timelines -->
+<div class="impact-box">
+<div class="impact-icon-wrapper">
+<i class="fas fa-calendar-times impact-icon"></i>
+</div>
+<h3 class="impact-title">Extended Timelines</h3>
+<p class="impact-stat">14 - 25 Months</p>
+<p class="impact-sub">Average duration for deployment delays business benefits and drains internal resources.</p>
+</div>
+<!-- Vendor Lock-in -->
+<div class="lock-in-box">
+<i class="fas fa-lock lock-icon-large"></i>
+<div class="lock-content">
+<h4>Vendor Lock-in Risk</h4>
+<p>Proprietary systems and data formats limit portability, making migration to modern platforms costly and technically difficult.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

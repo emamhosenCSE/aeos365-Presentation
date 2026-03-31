@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Expected Outcomes &amp; Significance</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #0f172a; /* Slate 900 */
+        }
+        .slide-container {
+             width: 100vw; 
+    height: 90vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            background-color: #0f172a;
+            color: white;
+            overflow: hidden;
+            padding: 40px 60px;
+            box-sizing: border-box;
+        }
+
+        /* Background Pattern */
+        .bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        /* Header Styles */
+        .header {
+            position: relative;
+            z-index: 10;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+            padding-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .slide-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .slide-title::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 36px;
+            background-color: #3b82f6; /* Blue 500 */
+            margin-right: 20px;
+            border-radius: 3px;
+        }
+
+        .header-logo {
+            font-size: 18px;
+            font-weight: 600;
+            color: #94a3b8;
+            margin: 0;
+        }
+
+        /* Main Content Layout */
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            gap: 40px;
+            height: 100%;
+            flex: 1;
+        }
+
+        /* Columns */
+        .col-outcomes {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .col-significance {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Section Headers */
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-badge {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+        
+        .badge-outcomes { background-color: rgba(16, 185, 129, 0.2); color: #34d399; }
+        .badge-impact { background-color: rgba(99, 102, 241, 0.2); color: #818cf8; }
+
+        /* Outcome Checklist Items */
+        .outcome-card {
+            background-color: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 12px;
+            padding: 18px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .outcome-card:hover {
+            background-color: rgba(30, 41, 59, 0.7);
+            transform: translateX(5px);
+            border-color: rgba(52, 211, 153, 0.3);
+        }
+
+        .check-circle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background-color: rgba(16, 185, 129, 0.2);
+            color: #34d399;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .outcome-content h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #f1f5f9;
+            margin: 0 0 4px 0;
+        }
+
+        .outcome-content p {
+            font-size: 14px;
+            color: #94a3b8;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /* Significance Cards */
+        .sig-card {
+            background-color: rgba(30, 41, 59, 0.4);
+            border-radius: 12px;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            border-left: 4px solid transparent;
+            position: relative;
+        }
+
+        .sig-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sig-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .sig-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #f8fafc;
+            margin: 0;
+        }
+
+        .sig-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sig-item {
+            font-size: 14px;
+            color: #cbd5e1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sig-item::before {
+            content: '•';
+            font-size: 18px;
+            line-height: 0;
+        }
+
+        /* Significance Themes */
+        /* Academic - Blue */
+        .sig-academic { border-left-color: #3b82f6; background-color: rgba(59, 130, 246, 0.05); }
+        .sig-academic .sig-icon { background-color: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+        .sig-academic .sig-item::before { color: #60a5fa; }
+
+        /* Industry - Purple */
+        .sig-industry { border-left-color: #a855f7; background-color: rgba(168, 85, 247, 0.05); }
+        .sig-industry .sig-icon { background-color: rgba(168, 85, 247, 0.2); color: #c084fc; }
+        .sig-industry .sig-item::before { color: #c084fc; }
+
+        /* Social - Pink */
+        .sig-social { border-left-color: #ec4899; background-color: rgba(236, 72, 153, 0.05); }
+        .sig-social .sig-icon { background-color: rgba(236, 72, 153, 0.2); color: #f472b6; }
+        .sig-social .sig-item::before { color: #f472b6; }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="bg-pattern"></div>
+<div class="header">
+<h1 class="slide-title">Expected Outcomes &amp; Significance</h1>
+<p class="header-logo">aeos365 Project Proposal</p>
+</div>
+<div class="content-wrapper">
+<!-- Left Column: Outcomes -->
+<div class="col-outcomes">
+<div class="section-title">
+<span class="section-badge badge-outcomes">Deliverables</span>
+                    Project Outcomes
+                </div>
+<!-- Item 1 -->
+<div class="outcome-card">
+<div class="check-circle"><i class="fas fa-check"></i></div>
+<div class="outcome-content">
+<h3>Functional Platform</h3>
+<p>Fully operational system with Core HRM &amp; CRM modules, plus selected extended modules deployed in both SaaS and standalone modes.</p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="outcome-card">
+<div class="check-circle"><i class="fas fa-code"></i></div>
+<div class="outcome-content">
+<h3>Technical Deliverables</h3>
+<p>Complete source code repository, unit &amp; feature tests, comprehensive API endpoints, and infrastructure configuration scripts.</p>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="outcome-card">
+<div class="check-circle"><i class="fas fa-book"></i></div>
+<div class="outcome-content">
+<h3>Documentation</h3>
+<p>Detailed artifacts including User Guides, Developer Documentation (API refs), and Deployment Guides for system administrators.</p>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="outcome-card">
+<div class="check-circle"><i class="fas fa-laptop-code"></i></div>
+<div class="outcome-content">
+<h3>Demonstration</h3>
+<p>End-to-end workflow showcase demonstrating multi-tenant onboarding, role-based access enforcement, and data isolation.</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Significance -->
+<div class="col-significance">
+<div class="section-title">
+<span class="section-badge badge-impact">Impact</span>
+                    Project Significance
+                </div>
+<!-- Academic -->
+<div class="sig-card sig-academic">
+<div class="sig-header">
+<div class="sig-icon"><i class="fas fa-graduation-cap"></i></div>
+<h3 class="sig-title">Academic Significance</h3>
+</div>
+<ul class="sig-list">
+<li class="sig-item">Implementation of modular package-based architecture</li>
+<li class="sig-item">Innovation in four-level Role-Based Access Control (RBAC)</li>
+<li class="sig-item">Practical application of multi-tenancy database isolation patterns</li>
+</ul>
+</div>
+<!-- Industry -->
+<div class="sig-card sig-industry">
+<div class="sig-header">
+<div class="sig-icon"><i class="fas fa-industry"></i></div>
+<h3 class="sig-title">Industry Significance</h3>
+</div>
+<ul class="sig-list">
+<li class="sig-item">Flexible dual-deployment (SaaS + On-prem) from one codebase</li>
+<li class="sig-item">SME-friendly pricing structure with modular adoption path</li>
+<li class="sig-item">Adherence to open standards reducing vendor lock-in</li>
+</ul>
+</div>
+<!-- Social -->
+<div class="sig-card sig-social">
+<div class="sig-header">
+<div class="sig-icon"><i class="fas fa-users"></i></div>
+<h3 class="sig-title">Social Significance</h3>
+</div>
+<ul class="sig-list">
+<li class="sig-item">Accelerating digital transformation for local enterprises</li>
+<li class="sig-item">Lowering barriers to entry for advanced business software</li>
+<li class="sig-item">Fostering technical skill development in modern cloud stacks</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

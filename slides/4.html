@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Problem Statement: Operational &amp; UX Challenges</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #0f172a; /* Slate 900 */
+        }
+        .slide-container {
+            width: 100vw; 
+    height: 90vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            background-color: #0f172a;
+            color: white;
+            overflow: hidden;
+            padding: 40px 60px;
+            box-sizing: border-box;
+        }
+
+        /* Header Styles */
+        .header {
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+            padding-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .slide-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .slide-title::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 36px;
+            background-color: #ec4899; /* Pink 500 for this section */
+            margin-right: 20px;
+            border-radius: 3px;
+        }
+
+        .header-logo {
+            font-size: 18px;
+            font-weight: 600;
+            color: #94a3b8;
+            margin: 0;
+        }
+
+        /* Main Content Layout */
+        .content-grid {
+            display: flex;
+            gap: 40px;
+            flex: 1;
+            height: 100%;
+        }
+
+        /* Left Column: Problem Context */
+        .col-left {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .problem-card {
+            background-color: rgba(30, 41, 59, 0.4); /* Slate 800 */
+            border: 1px solid rgba(244, 63, 94, 0.2); /* Rose tint border */
+            border-left: 4px solid #f43f5e; /* Rose 500 */
+            border-radius: 12px;
+            padding: 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-header-problem {
+            font-size: 22px;
+            font-weight: 700;
+            color: #fda4af; /* Rose 300 */
+            margin: 0 0 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .problem-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .problem-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .problem-icon-wrapper {
+            background-color: rgba(244, 63, 94, 0.1);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .problem-icon {
+            color: #f43f5e;
+            font-size: 16px;
+        }
+
+        .problem-content {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .problem-title {
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .problem-desc {
+            margin: 0;
+            font-size: 15px;
+            color: #cbd5e1; /* Slate 300 */
+            line-height: 1.4;
+        }
+
+        /* Right Column: Visual/Details */
+        .col-right {
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .impact-card {
+            background-color: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 12px;
+            padding: 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .stat-box {
+            background-color: rgba(15, 23, 42, 0.6);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 3px solid #64748b;
+        }
+        
+        .stat-box.red-border { border-left-color: #ef4444; }
+        .stat-box.orange-border { border-left-color: #f97316; }
+        .stat-box.yellow-border { border-left-color: #eab308; }
+        .stat-box.purple-border { border-left-color: #a855f7; }
+
+        .stat-icon {
+            font-size: 24px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .stat-title {
+            color: #e2e8f0;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 8px 0;
+        }
+
+        .stat-desc {
+            color: #94a3b8;
+            font-size: 14px;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .quote-box {
+            margin-top: 24px;
+            padding: 16px;
+            background-color: rgba(236, 72, 153, 0.1);
+            border-radius: 8px;
+            border-left: 4px solid #ec4899;
+        }
+
+        .quote-text {
+            color: #fbcfe8;
+            font-size: 16px;
+            font-style: italic;
+            margin: 0;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="header">
+<h1 class="slide-title">Operational &amp; UX Challenges</h1>
+<p class="header-logo">aeos365 Project Proposal</p>
+</div>
+<div class="content-grid">
+<!-- Left Column: Detailed Problems -->
+<div class="col-left">
+<div class="problem-card">
+<h2 class="section-header-problem">
+<i class="fas fa-sliders-h"></i> Operational Friction
+</h2>
+<div class="problem-list">
+<div class="problem-item">
+<div class="problem-icon-wrapper">
+<i class="fas fa-puzzle-piece problem-icon"></i>
+</div>
+<div class="problem-content">
+<h3 class="problem-title">Fragmented Point Solutions</h3>
+<p class="problem-desc">Multiple isolated tools create data silos, requiring complex integrations and causing inconsistent data across departments.</p>
+</div>
+</div>
+<div class="problem-item">
+<div class="problem-icon-wrapper">
+<i class="fas fa-user-lock problem-icon"></i>
+</div>
+<div class="problem-content">
+<h3 class="problem-title">Limited Access Control</h3>
+<p class="problem-desc">Basic 2-3 level RBAC is insufficient for complex organizations, leading to security risks or productivity bottlenecks.</p>
+</div>
+</div>
+<div class="problem-item">
+<div class="problem-icon-wrapper">
+<i class="fas fa-life-ring problem-icon"></i>
+</div>
+<div class="problem-content">
+<h3 class="problem-title">Lack of Intelligent Assistance</h3>
+<p class="problem-desc">Steep learning curves with minimal help. Users struggle to discover features without extensive training or support.</p>
+</div>
+</div>
+<div class="problem-item">
+<div class="problem-icon-wrapper">
+<i class="fas fa-store-slash problem-icon"></i>
+</div>
+<div class="problem-content">
+<h3 class="problem-title">SME Accessibility Gap</h3>
+<p class="problem-desc">Enterprise software is too expensive/complex, while small business tools lack necessary functionality for growth.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Impact Visualization -->
+<div class="col-right">
+<div class="impact-card">
+<h2 style="font-size: 20px; font-weight: 700; color: #e2e8f0; margin: 0 0 20px 0;">Impact on Business Operations</h2>
+<div class="stat-grid">
+<div class="stat-box red-border">
+<i class="fas fa-sync-alt stat-icon" style="color: #ef4444;"></i>
+<h3 class="stat-title">Integration Overhead</h3>
+<p class="stat-desc">Enterprises spend 30-40% of IT budgets just making different systems talk to each other.</p>
+</div>
+<div class="stat-box orange-border">
+<i class="fas fa-users-slash stat-icon" style="color: #f97316;"></i>
+<h3 class="stat-title">Productivity Loss</h3>
+<p class="stat-desc">Inconsistent UI/UX across different applications increases training time and user error rates.</p>
+</div>
+<div class="stat-box yellow-border">
+<i class="fas fa-shield-alt stat-icon" style="color: #eab308;"></i>
+<h3 class="stat-title">Security Gaps</h3>
+<p class="stat-desc">Coarse-grained permissions often force admins to grant "all-or-nothing" access.</p>
+</div>
+<div class="stat-box purple-border">
+<i class="fas fa-chart-line stat-icon" style="color: #a855f7;"></i>
+<h3 class="stat-title">Growth Ceiling</h3>
+<p class="stat-desc">SMEs hit a wall when basic tools can't scale, but enterprise ERPs remain unaffordable.</p>
+</div>
+</div>
+<div class="quote-box">
+<p class="quote-text">
+                        "The gap between simple SME tools and complex Enterprise ERPs leaves a significant market segment underserved."
+                    </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

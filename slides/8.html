@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" style="" data-qb-installed="true"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Dual Deployment Modes</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #0f172a; /* Slate 900 */
+        }
+        .slide-container {
+             width: 100vw; 
+    height: 90vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            background-color: #0f172a;
+            color: white;
+            overflow: hidden;
+            padding: 40px 60px;
+            box-sizing: border-box;
+        }
+
+        /* Decorative Background */
+        .bg-element {
+            position: absolute;
+            z-index: 0;
+            opacity: 0.05;
+            pointer-events: none;
+        }
+        .bg-grid {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, #ffffff 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.03;
+        }
+
+        /* Header Styles */
+        .header {
+            position: relative;
+            z-index: 10;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+            padding-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .slide-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .slide-title::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 36px;
+            background-color: #8b5cf6; /* Violet 500 */
+            margin-right: 20px;
+            border-radius: 3px;
+        }
+
+        .header-logo {
+            font-size: 18px;
+            font-weight: 600;
+            color: #94a3b8;
+            margin: 0;
+        }
+
+        /* Main Content Grid */
+        .content-grid {
+            position: relative;
+            z-index: 10;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            flex: 1;
+        }
+
+        /* Column Styles */
+        .col-card {
+            background-color: rgba(30, 41, 59, 0.3);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        /* SaaS Specifics */
+        .col-saas {
+            border-top: 4px solid #3b82f6; /* Blue 500 */
+        }
+        .col-saas .col-header {
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+        .col-saas .icon-wrapper {
+            background-color: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+        }
+
+        /* Standalone Specifics */
+        .col-standalone {
+            border-top: 4px solid #10b981; /* Emerald 500 */
+        }
+        .col-standalone .col-header {
+            background-color: rgba(16, 185, 129, 0.1);
+        }
+        .col-standalone .icon-wrapper {
+            background-color: rgba(16, 185, 129, 0.2);
+            color: #34d399;
+        }
+
+        /* Column Header */
+        .col-header {
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .icon-wrapper {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .header-text h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+        }
+        .header-text p {
+            font-size: 14px;
+            color: #94a3b8;
+            margin: 4px 0 0 0;
+        }
+
+        /* Comparison List */
+        .comparison-list {
+            padding: 20px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .comparison-row {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background-color: rgba(15, 23, 42, 0.4);
+            border-radius: 8px;
+            border: 1px solid rgba(148, 163, 184, 0.05);
+            min-height: 50px; /* Ensure alignment */
+        }
+
+        .row-icon {
+            width: 32px;
+            text-align: center;
+            font-size: 16px;
+            color: #94a3b8;
+            margin-right: 16px;
+        }
+
+        .row-content {
+            flex: 1;
+        }
+
+        .row-label {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #64748b;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .row-value {
+            display: block;
+            font-size: 15px;
+            color: #f1f5f9;
+            font-weight: 500;
+        }
+
+        /* Unified Badge */
+        .unified-badge {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #1e293b;
+            border: 1px solid #475569;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #cbd5e1;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .bottom-bar {
+            margin-top: 20px;
+            background-color: rgba(30, 41, 59, 0.3);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            border: 1px dashed rgba(148, 163, 184, 0.3);
+        }
+        .bottom-text {
+            color: #94a3b8;
+            font-size: 14px;
+            margin: 0;
+        }
+        .highlight {
+            color: #8b5cf6;
+            font-weight: 600;
+        }
+
+    </style>
+</head>
+<body style="">
+<div class="slide-container">
+<!-- Background -->
+<div class="bg-grid"></div>
+<div class="header">
+<h1 class="slide-title">Dual Deployment Modes</h1>
+<p class="header-logo">aeos365 Project Proposal</p>
+</div>
+<!-- Central Connector Badge -->
+<div class="unified-badge">
+<i class="fas fa-code-branch"></i>
+        Shared Codebase
+    </div>
+<div class="content-grid">
+<!-- SaaS Column -->
+<div class="col-card col-saas">
+<div class="col-header">
+<div class="icon-wrapper">
+<i class="fas fa-cloud"></i>
+</div>
+<div class="header-text">
+<h2>SaaS Platform</h2>
+<p>aeos365 Cloud (Multi-Tenant)</p>
+</div>
+</div>
+<div class="comparison-list">
+<!-- Tenancy -->
+<div class="comparison-row">
+<div class="row-icon"><i class="fas fa-building"></i></div>
+<div class="row-content">
+<span class="row-label">Tenancy Model</span>
+<span class="row-value">Multi-tenant (Subdomain ID)</span>
+</div>
+</div>
+<!-- Database -->
+<div class="comparison-row">
+<div class="row-icon"><i class="fas fa-database"></i></div>
+<div class="row-content">
+<span class="row-label">Database Strategy</span>
+<span class="row-value">Separate DB per Tenant</span>
+</div>
+</div>
+<!-- Hosting -->
+<div class="comparison-row">
+<div class="row-icon"><i class="fas fa-server"></i></div>
+<div class="row-content">
+<span class="row-label">Infrastructure</span>
+<span class="row-value">Vendor-Managed (Auto-Scaling)</span>
+</div>
+</div>
+<!-- Updates -->
+<div class="comparison-row">
+<div class="row-icon"><i class="fas fa-sync-alt"></i></div>
+<div class="row-content">
+<span class="row-label">Updates &amp; Maintenance</span>
+<span class="row-value">Automatic / Continuous</span>
+</div>
+</div>
+<!-- Billing -->
+<div class="comparison-row">
+<div class="row-icon"><i class="fas fa-credit-card"></i></div>
+<div class="row-content">
+<span class="row-label">Billing Model</span>
+<span class="row-value">Integrated Subscription (Stripe)</span>
+</div>
+</div>
+<!-- Domain -->
+<div class="comparison-row">
+<div class="row-icon"><i class="fas fa-globe"></i></div>
+<div class="row-content">
+<span class="row-label">Access Domain</span>
+<span class="row-value">tenant.aeos365.com</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Standalone Column -->
+<div class="col-card col-standalone">
+<div class="col-header">
+<div class="icon-wrapper">
+<i class="fas fa-server"></i>
+</div>
+<div class="header-text">
+<h2>Standalone Product</h2>
+<p>Self-Hosted (Single-Tenant)</p>
+</div>
+</div>
+<div class="comparison-list">
+<!-- Tenancy -->
+<div class="comparison-row">
+<div class="row-icon"><i class="fas fa-building"></i></div>
+<div class="row-content">
+<span class="row-label">Tenancy Model</span>
+<span class="row-value">Single-tenant (Dedicated)</span>
+</div>
+</div>
+<!-- Database -->
+<div class="comparison-row">
+<div class="row-icon"><i class="fas fa-database"></i></div>
+<div class="row-content">
+<span class="row-label">Database Strategy</span>
+<span class="row-value">Single Isolated Database</span>
+</div>
+</div>
+<!-- Hosting -->
+<div class="comparison-row">
+<div class="row-icon"><i class="fas fa-server"></i></div>
+<div class="row-content">
+<span class="row-label">Infrastructure</span>
+<span class="row-value">Customer-Managed (On-Prem/VPS)</span>
+</div>
+</div>
+<!-- Updates -->
+<div class="comparison-row">
+<div class="row-icon"><i class="fas fa-wrench"></i></div>
+<div class="row-content">
+<span class="row-label">Updates &amp; Maintenance</span>
+<span class="row-value">Manual / Package Manager</span>
+</div>
+</div>
+<!-- Billing -->
+<div class="comparison-row">
+<div class="row-icon"><i class="fas fa-file-invoice"></i></div>
+<div class="row-content">
+<span class="row-label">Billing Model</span>
+<span class="row-value">License Key / External Invoice</span>
+</div>
+</div>
+<!-- Domain -->
+<div class="comparison-row">
+<div class="row-icon"><i class="fas fa-globe"></i></div>
+<div class="row-content">
+<span class="row-label">Access Domain</span>
+<span class="row-value">hrm.customer-domain.com</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bottom-bar">
+<p class="bottom-text">
+            Both deployment modes are built from the same <span class="highlight">monorepo codebase</span>, ensuring feature parity and seamless migration.
+        </p>
+</div>
+</div>
+
+</body></html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Technology Stack</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #0f172a; /* Slate 900 */
+        }
+        .slide-container {
+            width: 100vw; 
+    height: 90vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            background-color: #0f172a;
+            color: white;
+            overflow: hidden;
+            padding: 40px 60px;
+            box-sizing: border-box;
+        }
+
+        /* Background Pattern */
+        .bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        /* Header Styles */
+        .header {
+            position: relative;
+            z-index: 10;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+            padding-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .slide-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .slide-title::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 36px;
+            background-color: #10b981; /* Emerald 500 */
+            margin-right: 20px;
+            border-radius: 3px;
+        }
+
+        .header-logo {
+            font-size: 18px;
+            font-weight: 600;
+            color: #94a3b8;
+            margin: 0;
+        }
+
+        /* Main Grid Layout */
+        .tech-matrix {
+            position: relative;
+            z-index: 10;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 24px;
+            flex: 1;
+        }
+
+        /* Category Card */
+        .category-card {
+            background-color: rgba(30, 41, 59, 0.4); /* Slate 800 */
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .category-card:hover {
+            background-color: rgba(30, 41, 59, 0.6);
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Category Header */
+        .cat-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 4px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .cat-icon {
+            font-size: 16px;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            background-color: rgba(15, 23, 42, 0.5);
+        }
+
+        .cat-title {
+            font-size: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 0;
+        }
+
+        /* Tech List (Badges) */
+        .tech-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .tech-badge {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+        }
+        
+        .tech-badge:hover {
+            background-color: rgba(15, 23, 42, 0.9);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .tech-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0;
+        }
+
+        .tech-ver {
+            font-size: 11px;
+            font-family: 'Inter', monospace;
+            color: #94a3b8;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        /* Specific Colors for Categories */
+        /* Backend - Red */
+        .cat-backend .cat-icon { color: #f87171; background-color: rgba(248, 113, 113, 0.1); }
+        .cat-backend .cat-title { color: #f87171; }
+        .cat-backend { border-top: 3px solid #f87171; }
+
+        /* Frontend - Blue */
+        .cat-frontend .cat-icon { color: #60a5fa; background-color: rgba(96, 165, 250, 0.1); }
+        .cat-frontend .cat-title { color: #60a5fa; }
+        .cat-frontend { border-top: 3px solid #60a5fa; }
+
+        /* Data - Amber */
+        .cat-data .cat-icon { color: #fbbf24; background-color: rgba(251, 191, 36, 0.1); }
+        .cat-data .cat-title { color: #fbbf24; }
+        .cat-data { border-top: 3px solid #fbbf24; }
+
+        /* Auth - Emerald */
+        .cat-auth .cat-icon { color: #34d399; background-color: rgba(52, 211, 153, 0.1); }
+        .cat-auth .cat-title { color: #34d399; }
+        .cat-auth { border-top: 3px solid #34d399; }
+
+        /* Tenancy - Violet */
+        .cat-tenancy .cat-icon { color: #a78bfa; background-color: rgba(167, 139, 250, 0.1); }
+        .cat-tenancy .cat-title { color: #a78bfa; }
+        .cat-tenancy { border-top: 3px solid #a78bfa; }
+
+        /* Billing - Pink */
+        .cat-billing .cat-icon { color: #f472b6; background-color: rgba(244, 114, 182, 0.1); }
+        .cat-billing .cat-title { color: #f472b6; }
+        .cat-billing { border-top: 3px solid #f472b6; }
+
+        /* AI - Cyan */
+        .cat-ai .cat-icon { color: #22d3ee; background-color: rgba(34, 211, 238, 0.1); }
+        .cat-ai .cat-title { color: #22d3ee; }
+        .cat-ai { border-top: 3px solid #22d3ee; }
+
+        /* Tooling - Slate */
+        .cat-tooling .cat-icon { color: #94a3b8; background-color: rgba(148, 163, 184, 0.1); }
+        .cat-tooling .cat-title { color: #94a3b8; }
+        .cat-tooling { border-top: 3px solid #94a3b8; }
+
+        .tech-icon-small {
+            width: 16px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="bg-pattern"></div>
+<div class="header">
+<h1 class="slide-title">Technology Stack</h1>
+<p class="header-logo">aeos365 Project Proposal</p>
+</div>
+<div class="tech-matrix">
+<!-- 1. Backend -->
+<div class="category-card cat-backend">
+<div class="cat-header">
+<div class="cat-icon"><i class="fas fa-server"></i></div>
+<h2 class="cat-title">Backend</h2>
+</div>
+<div class="tech-list">
+<div class="tech-badge">
+<p class="tech-name"><i class="fab fa-laravel tech-icon-small text-red-500"></i> Laravel</p>
+<span class="tech-ver">11.x</span>
+</div>
+<div class="tech-badge">
+<p class="tech-name"><i class="fab fa-php tech-icon-small text-purple-400"></i> PHP Runtime</p>
+<span class="tech-ver">8.2+</span>
+</div>
+</div>
+</div>
+<!-- 2. Frontend -->
+<div class="category-card cat-frontend">
+<div class="cat-header">
+<div class="cat-icon"><i class="fas fa-desktop"></i></div>
+<h2 class="cat-title">Frontend</h2>
+</div>
+<div class="tech-list">
+<div class="tech-badge">
+<p class="tech-name"><i class="fab fa-react tech-icon-small text-blue-400"></i> React</p>
+<span class="tech-ver">18.x</span>
+</div>
+<div class="tech-badge">
+<p class="tech-name"><i class="fas fa-bolt tech-icon-small text-yellow-300"></i> Inertia.js</p>
+<span class="tech-ver">2.0</span>
+</div>
+<div class="tech-badge">
+<p class="tech-name"><i class="fab fa-css3 tech-icon-small text-blue-300"></i> Tailwind CSS</p>
+<span class="tech-ver">4.0</span>
+</div>
+<div class="tech-badge">
+<p class="tech-name"><i class="fas fa-layer-group tech-icon-small text-indigo-400"></i> HeroUI</p>
+<span class="tech-ver">Latest</span>
+</div>
+</div>
+</div>
+<!-- 3. Data & Infra -->
+<div class="category-card cat-data">
+<div class="cat-header">
+<div class="cat-icon"><i class="fas fa-database"></i></div>
+<h2 class="cat-title">Data &amp; Infra</h2>
+</div>
+<div class="tech-list">
+<div class="tech-badge">
+<p class="tech-name"><i class="fas fa-database tech-icon-small text-yellow-500"></i> MySQL</p>
+<span class="tech-ver">8.0</span>
+</div>
+<div class="tech-badge">
+<p class="tech-name"><i class="fas fa-memory tech-icon-small text-red-400"></i> Redis</p>
+<span class="tech-ver">7.x</span>
+</div>
+<div class="tech-badge">
+<p class="tech-name"><i class="fas fa-broadcast-tower tech-icon-small text-pink-400"></i> Reverb (WS)</p>
+<span class="tech-ver">1.x</span>
+</div>
+<div class="tech-badge">
+<p class="tech-name"><i class="fas fa-hdd tech-icon-small text-gray-400"></i> Filesystem</p>
+<span class="tech-ver">S3/Local</span>
+</div>
+</div>
+</div>
+<!-- 4. Auth & RBAC -->
+<div class="category-card cat-auth">
+<div class="cat-header">
+<div class="cat-icon"><i class="fas fa-shield-alt"></i></div>
+<h2 class="cat-title">Auth &amp; RBAC</h2>
+</div>
+<div class="tech-list">
+<div class="tech-badge">
+<p class="tech-name"><i class="fas fa-key tech-icon-small text-emerald-400"></i> Sanctum</p>
+<span class="tech-ver">API Auth</span>
+</div>
+<div class="tech-badge">
+<p class="tech-name"><i class="fas fa-user-lock tech-icon-small text-emerald-300"></i> Fortify</p>
+<span class="tech-ver">Backend</span>
+</div>
+<div class="tech-badge">
+<p class="tech-name"><i class="fas fa-id-card tech-icon-small text-green-400"></i> Spatie Perms</p>
+<span class="tech-ver">Extended</span>
+</div>
+</div>
+</div>
+<!-- 5. Multi-Tenancy -->
+<div class="category-card cat-tenancy">
+<div class="cat-header">
+<div class="cat-icon"><i class="fas fa-building"></i></div>
+<h2 class="cat-title">Multi-Tenancy</h2>
+</div>
+<div class="tech-list">
+<div class="tech-badge">
+<p class="tech-name"><i class="fas fa-network-wired tech-icon-small text-indigo-400"></i> stancl/tenancy</p>
+<span class="tech-ver">3.x</span>
+</div>
+<div class="tech-badge">
+<p class="tech-name"><i class="fas fa-globe tech-icon-small text-blue-300"></i> Domains</p>
+<span class="tech-ver">Custom</span>
+</div>
+</div>
+</div>
+<!-- 6. Billing -->
+<div class="category-card cat-billing">
+<div class="cat-header">
+<div class="cat-icon"><i class="fas fa-credit-card"></i></div>
+<h2 class="cat-title">Billing</h2>
+</div>
+<div class="tech-list">
+<div class="tech-badge">
+<p class="tech-name"><i class="fab fa-stripe tech-icon-small text-purple-300"></i> Cashier</p>
+<span class="tech-ver">15.x</span>
+</div>
+<div class="tech-badge">
+<p class="tech-name"><i class="fas fa-file-invoice-dollar tech-icon-small text-pink-300"></i> Invoicing</p>
+<span class="tech-ver">PDF</span>
+</div>
+</div>
+</div>
+<!-- 7. Search & AI -->
+<div class="category-card cat-ai">
+<div class="cat-header">
+<div class="cat-icon"><i class="fas fa-brain"></i></div>
+<h2 class="cat-title">Search &amp; AI</h2>
+</div>
+<div class="tech-list">
+<div class="tech-badge">
+<p class="tech-name"><i class="fas fa-search tech-icon-small text-cyan-300"></i> Scout</p>
+<span class="tech-ver">Driver</span>
+</div>
+<div class="tech-badge">
+<p class="tech-name"><i class="fas fa-robot tech-icon-small text-cyan-400"></i> OpenAI API</p>
+<span class="tech-ver">GPT-4o</span>
+</div>
+</div>
+</div>
+<!-- 8. Tooling -->
+<div class="category-card cat-tooling">
+<div class="cat-header">
+<div class="cat-icon"><i class="fas fa-tools"></i></div>
+<h2 class="cat-title">Tooling</h2>
+</div>
+<div class="tech-list">
+<div class="tech-badge">
+<p class="tech-name"><i class="fab fa-github tech-icon-small text-white"></i> GitHub</p>
+<span class="tech-ver">SCM</span>
+</div>
+<div class="tech-badge">
+<p class="tech-name"><i class="fas fa-vial tech-icon-small text-green-400"></i> PHPUnit</p>
+<span class="tech-ver">10.x</span>
+</div>
+<div class="tech-badge">
+<p class="tech-name"><i class="fab fa-docker tech-icon-small text-blue-500"></i> Docker</p>
+<span class="tech-ver">Env</span>
+</div>
+<div class="tech-badge">
+<p class="tech-name"><i class="fab fa-figma tech-icon-small text-pink-500"></i> Figma</p>
+<span class="tech-ver">Design</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
