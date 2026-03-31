@@ -236,6 +236,35 @@
         .bar-p6 { left: 82.73%; width: 10.34%; animation: slideIn 1s ease-out 1.0s forwards; }
         .bar-p7 { left: 93.07%; width: 6.9%; animation: slideIn 1s ease-out 1.2s forwards; }
 
+        @media (prefers-reduced-motion: reduce) {
+            .phase-bar {
+                transition: none;
+            }
+
+            .bar-p1,
+            .bar-p2,
+            .bar-p3,
+            .bar-p4,
+            .bar-p5,
+            .bar-p6,
+            .bar-p7 {
+                animation: none;
+            }
+        }
+
+    @media (max-height: 820px) {
+        body {
+            overflow: auto;
+        }
+
+        .slide-container {
+            height: auto;
+            min-height: 100vh;
+            overflow: visible;
+            padding: 24px 32px;
+        }
+    }
+
     </style>
 </head>
 <body>

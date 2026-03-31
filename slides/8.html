@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light" style="" data-qb-installed="true"><head>
+<html lang="en"><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Dual Deployment Modes</title>
@@ -244,6 +244,19 @@
             font-weight: 600;
         }
 
+    @media (max-height: 820px) {
+            body {
+                overflow: auto;
+            }
+
+            .slide-container {
+                height: auto;
+                min-height: 100vh;
+                overflow: visible;
+                padding: 24px 32px;
+            }
+        }
+
     </style>
 </head>
 <body style="">
@@ -355,7 +368,7 @@
 <div class="row-icon"><i class="fas fa-server"></i></div>
 <div class="row-content">
 <span class="row-label">Infrastructure</span>
-<span class="row-value">Customer-Managed (On-Prem/VPS)</span>
+<span class="row-value">Customer-Managed (On-Premises/VPS)</span>
 </div>
 </div>
 <!-- Updates -->

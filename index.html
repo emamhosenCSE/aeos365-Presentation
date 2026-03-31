@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>aeos365: A Modular Enterprise Platform</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
@@ -75,16 +76,26 @@
             border-radius: 50px; border: 1px solid rgba(255, 255, 255, 0.1); 
             backdrop-filter: blur(15px);
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            main {
+                scroll-behavior: auto;
+            }
+
+            .play-btn {
+                transition: none;
+            }
+        }
     </style>
 </head>
 <body>
 
 <nav>
     <div class="flex flex-col">
-        <span class="text-sm font-bold tracking-tight">aeos365: A Modular Enterprise Platform</span>
+        <h1 class="text-sm font-bold tracking-tight m-0">aeos365: A Modular Enterprise Platform</h1>
         <span class="text-xs text-gray-500">22 Slides Total • Final Year Project</span>
     </div>
-    <button class="play-btn" onclick="startPlay()">
+    <button class="play-btn" type="button" aria-label="Start slideshow" title="Start slideshow" onclick="startPlay()">
         <i class="fas fa-play text-[10px]"></i> Play
     </button>
 </nav>
@@ -93,13 +104,13 @@
 
 <div id="fs-overlay">
     <div class="fs-slide-area">
-        <iframe id="fs-iframe"></iframe>
+        <iframe id="fs-iframe" title="Presentation slide"></iframe>
     </div>
     <div class="fs-controls">
-        <button onclick="nav(-1)"><i class="fas fa-chevron-left"></i></button>
+        <button type="button" aria-label="Previous slide" title="Previous slide" onclick="nav(-1)"><i class="fas fa-chevron-left"></i></button>
         <span id="counter" class="text-sm font-mono text-blue-400">01 / 22</span>
-        <button onclick="nav(1)"><i class="fas fa-chevron-right"></i></button>
-        <button onclick="exit()"><i class="fas fa-times"></i></button>
+        <button type="button" aria-label="Next slide" title="Next slide" onclick="nav(1)"><i class="fas fa-chevron-right"></i></button>
+        <button type="button" aria-label="Exit slideshow" title="Exit slideshow" onclick="exit()"><i class="fas fa-times"></i></button>
     </div>
 </div>
 
@@ -115,7 +126,7 @@
         wrapper.innerHTML = `
             <span class="slide-label">${i} / ${TOTAL}</span>
             <div class="iframe-container">
-                <iframe id="slide-${i}" class="thumb-iframe" src="slides/${i}.html" scrolling="no"></iframe>
+                <iframe id="slide-${i}" class="thumb-iframe" src="slides/${i}.html" scrolling="no" title="Slide ${i} preview"></iframe>
             </div>
         `;
         root.appendChild(wrapper);
@@ -169,12 +180,18 @@
         }
     }
 
+    document.addEventListener('fullscreenchange', () => {
+        if (!document.fullscreenElement) {
+            document.getElementById('fs-overlay').style.display = 'none';
+        }
+    });
+
     // Keyboard navigation
     window.addEventListener('keydown', (e) => {
         if (document.getElementById('fs-overlay').style.display === 'flex') {
-            if (e.key === "ArrowRight") nav(1);
-            if (e.key === "ArrowLeft") nav(-1);
-            if (e.key === "Escape") exit();
+            if (e.key === "ArrowRight") { e.preventDefault(); nav(1); }
+            if (e.key === "ArrowLeft") { e.preventDefault(); nav(-1); }
+            if (e.key === "Escape") { e.preventDefault(); exit(); }
         }
     });
 </script>

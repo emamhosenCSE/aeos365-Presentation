@@ -329,6 +329,19 @@
             display: inline-block;
         }
 
+    @media (max-height: 820px) {
+        body {
+            overflow: auto;
+        }
+
+        .slide-container {
+            height: auto;
+            min-height: 100vh;
+            overflow: visible;
+            padding: 24px 32px;
+        }
+    }
+
     </style>
 </head>
 <body>
@@ -343,7 +356,7 @@
 <div class="geo-accent geo-line-2"></div>
 <div class="content-wrapper">
 <div class="title-section">
-<p class="project-title">aeos365</p>
+<h1 class="project-title">aeos365</h1>
 <div class="subtitle-wrapper">
 <p class="project-subtitle">A Modular Enterprise Platform with SaaS and Standalone Distribution</p>
 <div class="badges-container">

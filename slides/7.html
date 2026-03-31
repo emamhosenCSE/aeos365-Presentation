@@ -232,6 +232,19 @@
         .icon-modules { color: #10b981; }
         .icon-ui { color: #3b82f6; }
 
+    @media (max-height: 820px) {
+        body {
+            overflow: auto;
+        }
+
+        .slide-container {
+            height: auto;
+            min-height: 100vh;
+            overflow: visible;
+            padding: 24px 32px;
+        }
+    }
+
     </style>
 </head>
 <body>
@@ -261,7 +274,7 @@
 </div>
 <div class="tech-card">
 <i class="fab fa-css3-alt tech-icon text-blue-400"></i>
-<p class="tech-name">Tailwind CSS 4</p>
+<p class="tech-name">Tailwind CSS</p>
 </div>
 <div class="tech-card">
 <i class="fas fa-bolt tech-icon text-purple-400"></i>

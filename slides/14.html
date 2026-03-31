@@ -311,6 +311,19 @@
         .line-tb-app { top: 125px; left: 75%; height: 55px; width: 2px; }
         .line-app-dbb { top: 260px; left: 75%; height: 55px; width: 2px; }
 
+    @media (max-height: 820px) {
+        body {
+            overflow: auto;
+        }
+
+        .slide-container {
+            height: auto;
+            min-height: 100vh;
+            overflow: visible;
+            padding: 24px 32px;
+        }
+    }
+
     </style>
 </head>
 <body>
@@ -423,7 +436,7 @@
 <i class="fas fa-server standalone-icon"></i>
 <div class="standalone-text">
 <h4>Standalone Mode Note</h4>
-<p>Self-hosted installations use a single database with no multi-tenancy overhead, simplifying on-premise maintenance.</p>
+<p>Self-hosted installations use a single database with no multi-tenancy overhead, simplifying on-premises maintenance.</p>
 </div>
 </div>
 </div>

@@ -248,6 +248,19 @@
         .sig-social .sig-icon { background-color: rgba(236, 72, 153, 0.2); color: #f472b6; }
         .sig-social .sig-item::before { color: #f472b6; }
 
+    @media (max-height: 820px) {
+        body {
+            overflow: auto;
+        }
+
+        .slide-container {
+            height: auto;
+            min-height: 100vh;
+            overflow: visible;
+            padding: 24px 32px;
+        }
+    }
+
     </style>
 </head>
 <body>
@@ -322,7 +335,7 @@
 <h3 class="sig-title">Industry Significance</h3>
 </div>
 <ul class="sig-list">
-<li class="sig-item">Flexible dual-deployment (SaaS + On-prem) from one codebase</li>
+<li class="sig-item">Flexible dual-deployment (SaaS + On-premises) from one codebase</li>
 <li class="sig-item">SME-friendly pricing structure with modular adoption path</li>
 <li class="sig-item">Adherence to open standards reducing vendor lock-in</li>
 </ul>
