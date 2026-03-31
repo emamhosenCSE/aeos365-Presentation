@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Validation & Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+    <style>
+        body { font-family: 'Inter', sans-serif; margin: 0; background: radial-gradient(circle at top left, #1e293b 0%, #020617 65%); color: #e2e8f0; }
+        .slide-container { width: 1280px; min-height: 720px; padding: 36px 44px; box-sizing: border-box; }
+        .chip { font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; border-radius: 9999px; padding: 4px 10px; }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+    <div class="flex items-center justify-between mb-6">
+        <h1 class="text-4xl font-bold tracking-tight">Validation &amp; Results</h1>
+        <p class="text-sm text-blue-300">aeos365 Project Proposal</p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-6">
+        <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5">
+            <h2 class="text-xl font-semibold text-cyan-300 mb-4"><i class="fas fa-vial mr-2"></i>Validation Scope</h2>
+            <div class="space-y-4 text-sm leading-relaxed">
+                <div>
+                    <span class="chip bg-emerald-900/60 text-emerald-300 border border-emerald-700">Verified Demo Flow</span>
+                    <p class="mt-2">Tenant onboarding with organization setup and initial administrator provisioning.</p>
+                </div>
+                <div>
+                    <span class="chip bg-emerald-900/60 text-emerald-300 border border-emerald-700">Verified Demo Flow</span>
+                    <p class="mt-2">Role-scoped authorization checks across module, submodule, component, and action levels.</p>
+                </div>
+                <div>
+                    <span class="chip bg-emerald-900/60 text-emerald-300 border border-emerald-700">Verified Demo Flow</span>
+                    <p class="mt-2">Tenant data isolation checks to ensure cross-tenant data access is blocked by design.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5">
+            <h2 class="text-xl font-semibold text-violet-300 mb-4"><i class="fas fa-clipboard-list mr-2"></i>Evidence Artifacts</h2>
+            <ul class="space-y-3 text-sm list-disc pl-5 leading-relaxed">
+                <li>Version-controlled repository with module-wise commits and release tags.</li>
+                <li>Automated tests for core authentication, tenancy bootstrap, and RBAC policy checks.</li>
+                <li>API request collections for reproducible endpoint demonstrations.</li>
+                <li>Deployment runbook for SaaS and standalone execution paths.</li>
+                <li>Screen-recorded walkthrough for evaluator replay and scoring consistency.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="mt-6 bg-slate-900/70 border border-slate-700 rounded-xl p-5">
+        <h2 class="text-xl font-semibold text-amber-300 mb-3"><i class="fas fa-bullseye mr-2"></i>Result Statement</h2>
+        <p class="text-sm leading-relaxed">
+            Current outcome: aeos365 is at an <strong>MVP prototype</strong> stage with core architecture, tenant model, and access-control scenarios validated.
+            Remaining modules follow the project roadmap and will be expanded using the same package and testing standards.
+        </p>
+        <p class="text-xs text-slate-400 mt-3">Note: final numeric benchmarks (coverage %, latency, load profile) should be appended after final test cycle.</p>
+    </div>
+</div>
+</body>
+</html>

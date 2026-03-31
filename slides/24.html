@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Risks, Limitations & Future Work</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+    <style>
+        body { font-family: 'Inter', sans-serif; margin: 0; background: linear-gradient(160deg, #020617 0%, #111827 45%, #0f172a 100%); color: #e2e8f0; }
+        .slide-container { width: 1280px; min-height: 720px; padding: 36px 44px; box-sizing: border-box; }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+    <div class="flex items-center justify-between mb-6">
+        <h1 class="text-4xl font-bold tracking-tight">Risks, Limitations &amp; Future Work</h1>
+        <p class="text-sm text-blue-300">aeos365 Project Proposal</p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-6">
+        <div class="bg-slate-900/70 border border-rose-800 rounded-xl p-5">
+            <h2 class="text-xl font-semibold text-rose-300 mb-4"><i class="fas fa-exclamation-triangle mr-2"></i>Current Risks / Limitations</h2>
+            <ul class="space-y-3 text-sm list-disc pl-5 leading-relaxed">
+                <li>Module coverage is not yet full across all planned domains in this academic release.</li>
+                <li>Scalability and stress behavior require broader load testing beyond lab environments.</li>
+                <li>AI assistant quality depends on prompt policy, model response stability, and guardrails.</li>
+                <li>Integration adapters for external systems are currently baseline, not enterprise-complete.</li>
+            </ul>
+        </div>
+
+        <div class="bg-slate-900/70 border border-emerald-800 rounded-xl p-5">
+            <h2 class="text-xl font-semibold text-emerald-300 mb-4"><i class="fas fa-shield-alt mr-2"></i>Mitigation Plan</h2>
+            <ul class="space-y-3 text-sm list-disc pl-5 leading-relaxed">
+                <li>Release modules incrementally with acceptance criteria and demo checkpoints per sprint.</li>
+                <li>Run performance baselines and periodic regression tests before each milestone review.</li>
+                <li>Apply policy filters, audit logging, and human-in-loop controls for AI-assisted actions.</li>
+                <li>Prioritize integration backlog based on partner demand and API contract stability.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="mt-6 bg-slate-900/70 border border-sky-800 rounded-xl p-5">
+        <h2 class="text-xl font-semibold text-sky-300 mb-3"><i class="fas fa-road mr-2"></i>Next Milestones</h2>
+        <div class="grid grid-cols-3 gap-4 text-sm leading-relaxed">
+            <div class="bg-slate-800/60 rounded-lg p-4 border border-slate-700">
+                <p class="font-semibold text-sky-200 mb-2">Phase 1</p>
+                <p>Complete remaining module MVPs and finalize API documentation baseline.</p>
+            </div>
+            <div class="bg-slate-800/60 rounded-lg p-4 border border-slate-700">
+                <p class="font-semibold text-sky-200 mb-2">Phase 2</p>
+                <p>Harden security, improve observability, and validate scale using load profiles.</p>
+            </div>
+            <div class="bg-slate-800/60 rounded-lg p-4 border border-slate-700">
+                <p class="font-semibold text-sky-200 mb-2">Phase 3</p>
+                <p>Pilot with real organizations and iterate based on operational feedback.</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
