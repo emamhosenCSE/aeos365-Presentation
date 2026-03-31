@@ -98,9 +98,54 @@
         .fs-controls { 
             position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); 
             display: flex; align-items: center; gap: 24px; 
-            background: rgba(15, 23, 42, 0.95); padding: 12px 30px; 
+            background: rgba(15, 23, 42, 0.95); padding: 12px 30px 18px; 
             border-radius: 50px; border: 1px solid rgba(255, 255, 255, 0.1); 
             backdrop-filter: blur(15px);
+            overflow: hidden;
+        }
+
+        .fs-controls button {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #e2e8f0;
+            width: 34px;
+            height: 34px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .fs-controls button:hover {
+            background: rgba(59,130,246,0.18);
+            border-color: rgba(59,130,246,0.65);
+            color: #bfdbfe;
+        }
+
+        .fs-controls button.autoplay-on {
+            border-color: rgba(34,197,94,0.7);
+            color: #86efac;
+        }
+
+        .fs-progress-track {
+            position: absolute;
+            left: 18px;
+            right: 18px;
+            bottom: 6px;
+            height: 3px;
+            border-radius: 999px;
+            background: rgba(148, 163, 184, 0.25);
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .fs-progress-fill {
+            width: 0%;
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -115,6 +160,10 @@
             .fs-frame {
                 transition: none;
                 transform: none;
+            }
+
+            .fs-progress-fill {
+                transition: none;
             }
         }
     </style>
@@ -142,15 +191,20 @@
         <button type="button" aria-label="Previous slide" title="Previous slide" onclick="nav(-1)"><i class="fas fa-chevron-left"></i></button>
         <span id="counter" class="text-sm font-mono text-blue-400">01 / 24</span>
         <button type="button" aria-label="Next slide" title="Next slide" onclick="nav(1)"><i class="fas fa-chevron-right"></i></button>
+        <button id="autoplay-toggle" type="button" aria-label="Pause auto-play" title="Pause auto-play" class="autoplay-on" onclick="toggleAutoplay()"><i class="fas fa-pause"></i></button>
         <button type="button" aria-label="Exit slideshow" title="Exit slideshow" onclick="exit()"><i class="fas fa-times"></i></button>
+        <div class="fs-progress-track" aria-hidden="true"><div id="autoplay-progress" class="fs-progress-fill"></div></div>
     </div>
 </div>
 
 <script>
     const TOTAL = 24;
     const TRANSITION_MS = 520;
+    const AUTOPLAY_INTERVAL_MS = 6500;
     const root = document.getElementById('gallery-root');
     const counter = document.getElementById('counter');
+    const autoplayBtn = document.getElementById('autoplay-toggle');
+    const autoplayProgress = document.getElementById('autoplay-progress');
     const fsFrames = [
         document.getElementById('fs-iframe-a'),
         document.getElementById('fs-iframe-b')
@@ -160,6 +214,10 @@
     let current = 1;
     let activeFrameIndex = 0;
     let transitionToken = 0;
+    let autoplayTimer = null;
+    let autoplayEnabled = true;
+    let autoplayProgressFrame = null;
+    let autoplayProgressStart = 0;
 
     // Build the Gallery (Keeping your working logic)
     for(let i=1; i<=TOTAL; i++) {
@@ -196,18 +254,78 @@
         overlay.style.display = 'flex'; // Use flex to center the area
         resetFrames();
         updateFS(1, { immediate: true });
+        setProgress(0);
+        startAutoplay();
         
         if (document.documentElement.requestFullscreen) {
             document.documentElement.requestFullscreen();
         }
     }
 
-    function nav(step) {
+    function nav(step, options = {}) {
         const nextSlide = Math.min(TOTAL, Math.max(1, current + step));
         if (nextSlide === current) return;
+        if (!options.fromAutoplay) {
+            stopAutoplay();
+        }
         const direction = Math.sign(nextSlide - current) || 1;
         current = nextSlide;
         updateFS(direction);
+    }
+
+    function syncAutoplayUI() {
+        const icon = autoplayBtn.querySelector('i');
+        if (autoplayEnabled) {
+            autoplayBtn.classList.add('autoplay-on');
+            autoplayBtn.setAttribute('aria-label', 'Pause auto-play');
+            autoplayBtn.setAttribute('title', 'Pause auto-play');
+            icon.className = 'fas fa-pause';
+        } else {
+            autoplayBtn.classList.remove('autoplay-on');
+            autoplayBtn.setAttribute('aria-label', 'Resume auto-play');
+            autoplayBtn.setAttribute('title', 'Resume auto-play');
+            icon.className = 'fas fa-play';
+        }
+    }
+
+    function scheduleAutoplay() {
+        clearTimeout(autoplayTimer);
+        if (!autoplayEnabled || document.getElementById('fs-overlay').style.display !== 'flex') return;
+
+        startProgressAnimation();
+
+        autoplayTimer = setTimeout(() => {
+            if (!autoplayEnabled) return;
+            if (current >= TOTAL) {
+                setProgress(100);
+                stopAutoplay();
+                return;
+            }
+            nav(1, { fromAutoplay: true });
+            scheduleAutoplay();
+        }, AUTOPLAY_INTERVAL_MS);
+    }
+
+    function startAutoplay() {
+        autoplayEnabled = true;
+        syncAutoplayUI();
+        setProgress(0);
+        scheduleAutoplay();
+    }
+
+    function stopAutoplay() {
+        autoplayEnabled = false;
+        clearTimeout(autoplayTimer);
+        stopProgressAnimation();
+        syncAutoplayUI();
+    }
+
+    function toggleAutoplay() {
+        if (autoplayEnabled) {
+            stopAutoplay();
+        } else {
+            startAutoplay();
+        }
     }
 
     function resetFrames() {
@@ -255,8 +373,43 @@
         }, TRANSITION_MS);
     }
 
+    function setProgress(percent) {
+        const value = Math.max(0, Math.min(100, percent));
+        autoplayProgress.style.width = `${value}%`;
+    }
+
+    function stopProgressAnimation() {
+        if (autoplayProgressFrame !== null) {
+            cancelAnimationFrame(autoplayProgressFrame);
+            autoplayProgressFrame = null;
+        }
+    }
+
+    function startProgressAnimation() {
+        stopProgressAnimation();
+        autoplayProgressStart = performance.now();
+        setProgress(0);
+
+        const tick = (now) => {
+            if (!autoplayEnabled) return;
+            const elapsed = now - autoplayProgressStart;
+            const progress = (elapsed / AUTOPLAY_INTERVAL_MS) * 100;
+            setProgress(progress);
+
+            if (progress < 100) {
+                autoplayProgressFrame = requestAnimationFrame(tick);
+            } else {
+                autoplayProgressFrame = null;
+            }
+        };
+
+        autoplayProgressFrame = requestAnimationFrame(tick);
+    }
+
     function exit() {
         document.getElementById('fs-overlay').style.display = 'none';
+        stopAutoplay();
+        setProgress(0);
         if (document.fullscreenElement) {
             document.exitFullscreen();
         }
@@ -265,6 +418,8 @@
     document.addEventListener('fullscreenchange', () => {
         if (!document.fullscreenElement) {
             document.getElementById('fs-overlay').style.display = 'none';
+            stopAutoplay();
+            setProgress(0);
         }
     });
 
@@ -273,9 +428,12 @@
         if (document.getElementById('fs-overlay').style.display === 'flex') {
             if (e.key === "ArrowRight") { e.preventDefault(); nav(1); }
             if (e.key === "ArrowLeft") { e.preventDefault(); nav(-1); }
+            if (e.key === " " || e.key.toLowerCase() === 'k') { e.preventDefault(); toggleAutoplay(); }
             if (e.key === "Escape") { e.preventDefault(); exit(); }
         }
     });
+
+    syncAutoplayUI();
 </script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"7ae68a70a20c4f81a1fabbef55932999","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>

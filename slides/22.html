@@ -8,8 +8,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
     <style>
-        body { font-family: 'Inter', sans-serif; margin: 0; background: linear-gradient(160deg, #020617 0%, #111827 45%, #0f172a 100%); color: #e2e8f0; }
-        .slide-container { width: 1280px; min-height: 720px; padding: 36px 44px; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; overflow: hidden; background: linear-gradient(160deg, #020617 0%, #111827 45%, #0f172a 100%); color: #e2e8f0; }
+        .slide-container { width: 100vw; height: 90vh; position: relative; display: flex; flex-direction: column; overflow: hidden; padding: 36px 44px; box-sizing: border-box; }
+
+        @media (max-height: 820px) {
+            body {
+                overflow: auto;
+            }
+
+            .slide-container {
+                height: auto;
+                min-height: 100vh;
+                overflow: visible;
+                padding: 24px 32px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -25,7 +38,7 @@
             <ul class="space-y-3 text-sm list-disc pl-5 leading-relaxed">
                 <li>Module coverage is not yet full across all planned domains in this academic release.</li>
                 <li>Scalability and stress behavior require broader load testing beyond lab environments.</li>
-                <li>AI assistant quality depends on prompt policy, model response stability, and guardrails.</li>
+                <li>AI-assistant quality depends on prompt policy, model stability, and applied guardrails.</li>
                 <li>Integration adapters for external systems are currently baseline, not enterprise-complete.</li>
             </ul>
         </div>
