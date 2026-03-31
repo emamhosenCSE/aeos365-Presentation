@@ -1,64 +1,420 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Validation & Results</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
-    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
-    <style>
-        body { font-family: 'Inter', sans-serif; margin: 0; background: radial-gradient(circle at top left, #1e293b 0%, #020617 65%); color: #e2e8f0; }
-        .slide-container { width: 1280px; min-height: 720px; padding: 36px 44px; box-sizing: border-box; }
-        .chip { font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; border-radius: 9999px; padding: 4px 10px; }
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Team Information &amp; Conclusion</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #0f172a; /* Slate 900 */
+        }
+        .slide-container {
+             width: 100vw; 
+    height: 90vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            background-color: #0f172a;
+            color: white;
+            overflow: hidden;
+            padding: 40px 60px;
+            box-sizing: border-box;
+        }
+
+        /* Background Elements */
+        .bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='1' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .bg-glow-right {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background-color: #3b82f6;
+            filter: blur(120px);
+            opacity: 0.06;
+            right: -100px;
+            bottom: -100px;
+            z-index: 0;
+        }
+
+        .bg-glow-left {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background-color: #ec4899;
+            filter: blur(120px);
+            opacity: 0.04;
+            left: -100px;
+            top: -100px;
+            z-index: 0;
+        }
+
+        /* Header */
+        .header {
+            position: relative;
+            z-index: 10;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+            padding-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .slide-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .slide-title::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 36px;
+            background-color: #10b981; /* Emerald 500 */
+            margin-right: 20px;
+            border-radius: 3px;
+        }
+
+        .header-logo {
+            font-size: 18px;
+            font-weight: 600;
+            color: #94a3b8;
+            margin: 0;
+        }
+
+        /* Main Content */
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            gap: 40px;
+            flex: 1;
+            height: 100%;
+        }
+
+        /* Columns */
+        .team-column {
+            flex: 1.1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .conclusion-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Section Headers */
+        .section-header {
+            font-size: 20px;
+            font-weight: 600;
+            color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+
+        .section-header i {
+            color: #94a3b8;
+        }
+
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            flex: 1;
+        }
+
+        /* Team Card */
+        .team-card {
+            background-color: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.2s, background-color 0.2s;
+            backdrop-filter: blur(5px);
+        }
+
+        .team-card:hover {
+            background-color: rgba(30, 41, 59, 0.7);
+            transform: translateY(-5px);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .member-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background-image: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            margin-bottom: 12px;
+            border: 3px solid rgba(30, 41, 59, 0.8);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Different avatar gradients for variety */
+        .avatar-1 { background-image: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+        .avatar-2 { background-image: linear-gradient(135deg, #ec4899, #be185d); }
+        .avatar-3 { background-image: linear-gradient(135deg, #10b981, #047857); }
+        .avatar-4 { background-image: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+
+        .member-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin: 0 0 4px 0;
+            line-height: 1.2;
+        }
+
+        .member-id {
+            background-color: rgba(148, 163, 184, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-family: 'Monaco', 'Consolas', monospace;
+            color: #94a3b8;
+            margin-bottom: 8px;
+        }
+
+        .member-email {
+            font-size: 11px;
+            color: #64748b;
+            word-break: break-all;
+            line-height: 1.3;
+        }
+
+        /* Conclusion Card */
+        .conclusion-card {
+            background-image: linear-gradient(to bottom right, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.6));
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .conclusion-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #10b981);
+        }
+
+        .conclusion-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .conclusion-item {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .conclusion-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .item-content h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin: 0 0 4px 0;
+        }
+
+        .item-content p {
+            font-size: 14px;
+            color: #94a3b8;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Highlight keywords in paragraph */
+        .highlight-text {
+            color: #60a5fa;
+            font-weight: 500;
+        }
+
+        /* Icon Colors */
+        .icon-unified { color: #f472b6; border-color: rgba(244, 114, 182, 0.3); }
+        .icon-deploy { color: #34d399; border-color: rgba(52, 211, 153, 0.3); }
+        .icon-security { color: #fbbf24; border-color: rgba(251, 191, 36, 0.3); }
+        .icon-market { color: #a78bfa; border-color: rgba(167, 139, 250, 0.3); }
+
+    @media (max-height: 820px) {
+        body {
+            overflow: auto;
+        }
+
+        .slide-container {
+            height: auto;
+            min-height: 100vh;
+            overflow: visible;
+            padding: 24px 32px;
+        }
+    }
+
     </style>
 </head>
 <body>
 <div class="slide-container">
-    <div class="flex items-center justify-between mb-6">
-        <h1 class="text-4xl font-bold tracking-tight">Validation &amp; Results</h1>
-        <p class="text-sm text-blue-300">aeos365 Project Proposal</p>
-    </div>
-
-    <div class="grid grid-cols-2 gap-6">
-        <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5">
-            <h2 class="text-xl font-semibold text-cyan-300 mb-4"><i class="fas fa-vial mr-2"></i>Validation Scope</h2>
-            <div class="space-y-4 text-sm leading-relaxed">
-                <div>
-                    <span class="chip bg-emerald-900/60 text-emerald-300 border border-emerald-700">Verified Demo Flow</span>
-                    <p class="mt-2">Tenant onboarding with organization setup and initial administrator provisioning.</p>
-                </div>
-                <div>
-                    <span class="chip bg-emerald-900/60 text-emerald-300 border border-emerald-700">Verified Demo Flow</span>
-                    <p class="mt-2">Role-scoped authorization checks across module, submodule, component, and action levels.</p>
-                </div>
-                <div>
-                    <span class="chip bg-emerald-900/60 text-emerald-300 border border-emerald-700">Verified Demo Flow</span>
-                    <p class="mt-2">Tenant data isolation checks to ensure cross-tenant data access is blocked by design.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5">
-            <h2 class="text-xl font-semibold text-violet-300 mb-4"><i class="fas fa-clipboard-list mr-2"></i>Evidence Artifacts</h2>
-            <ul class="space-y-3 text-sm list-disc pl-5 leading-relaxed">
-                <li>Version-controlled repository with module-wise commits and release tags.</li>
-                <li>Automated tests for core authentication, tenancy bootstrap, and RBAC policy checks.</li>
-                <li>API request collections for reproducible endpoint demonstrations.</li>
-                <li>Deployment runbook for SaaS and standalone execution paths.</li>
-                <li>Screen-recorded walkthrough for evaluator replay and scoring consistency.</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="mt-6 bg-slate-900/70 border border-slate-700 rounded-xl p-5">
-        <h2 class="text-xl font-semibold text-amber-300 mb-3"><i class="fas fa-bullseye mr-2"></i>Result Statement</h2>
-        <p class="text-sm leading-relaxed">
-            Current outcome: aeos365 is at an <strong>MVP prototype</strong> stage with core architecture, tenant model, and access-control scenarios validated.
-            Remaining modules follow the project roadmap and will be expanded using the same package and testing standards.
-        </p>
-        <p class="text-xs text-slate-400 mt-3">Note: final numeric benchmarks (coverage %, latency, load profile) should be appended after final test cycle.</p>
-    </div>
+<div class="bg-pattern"></div>
+<div class="bg-glow-right"></div>
+<div class="bg-glow-left"></div>
+<div class="header">
+<h1 class="slide-title">Team Information &amp; Conclusion</h1>
+<p class="header-logo">aeos365 Project Proposal</p>
+</div>
+<div class="content-wrapper">
+<!-- Left: Team Section -->
+<div class="team-column">
+<div class="section-header">
+<i class="fas fa-users"></i>
+<span>The Team</span>
+</div>
+<div class="team-grid">
+<!-- Member 1 -->
+<div class="team-card">
+<div class="member-avatar avatar-1">
+<i class="fas fa-user"></i>
+</div>
+<h3 class="member-name">Emam Hosen</h3>
+<div class="member-id">ID: 2231091007</div>
+<p class="member-email">2231091007@uttarauniversity.edu.bd</p>
+</div>
+<!-- Member 2 -->
+<div class="team-card">
+<div class="member-avatar avatar-2">
+<i class="fas fa-user"></i>
+</div>
+<h3 class="member-name">Mst. Khurshida Haque Mili</h3>
+<div class="member-id">ID: 2231091012</div>
+<p class="member-email">2231091012@uttarauniversity.edu.bd</p>
+</div>
+<!-- Member 3 -->
+<div class="team-card">
+<div class="member-avatar avatar-3">
+<i class="fas fa-user"></i>
+</div>
+<h3 class="member-name">Anowar Hossain Rahat</h3>
+<div class="member-id">ID: 2231091001</div>
+<p class="member-email">2231091001@uttarauniversity.edu.bd</p>
+</div>
+<!-- Member 4 -->
+<div class="team-card">
+<div class="member-avatar avatar-4">
+<i class="fas fa-user"></i>
+</div>
+<h3 class="member-name">Sultana Parvin</h3>
+<div class="member-id">ID: 2231091016</div>
+<p class="member-email">2231091016@uttarauniversity.edu.bd</p>
+</div>
+</div>
+</div>
+<!-- Right: Conclusion Section -->
+<div class="conclusion-column">
+<div class="section-header">
+<i class="fas fa-flag-checkered"></i>
+<span>Project Summary</span>
+</div>
+<div class="conclusion-card">
+<div class="conclusion-list">
+<!-- Point 1 -->
+<div class="conclusion-item">
+<div class="conclusion-icon icon-unified">
+<i class="fas fa-cubes"></i>
+</div>
+<div class="item-content">
+<h4>Unified Ecosystem</h4>
+<p>aeos365 consolidates key business workflows into one modular platform to reduce tool fragmentation across teams.</p>
+</div>
+</div>
+<!-- Point 2 -->
+<div class="conclusion-item">
+<div class="conclusion-icon icon-deploy">
+<i class="fas fa-server"></i>
+</div>
+<div class="item-content">
+<h4>Dual Deployment Architecture</h4>
+<p>One codebase supports both multi-tenant SaaS and single-tenant standalone deployment models.</p>
+</div>
+</div>
+<!-- Point 3 -->
+<div class="conclusion-item">
+<div class="conclusion-icon icon-security">
+<i class="fas fa-shield-alt"></i>
+</div>
+<div class="item-content">
+<h4>Advanced Security &amp; Usability</h4>
+<p>Four-level RBAC and guided AI-assisted workflows improve access control and user adoption.</p>
+</div>
+</div>
+<!-- Point 4 -->
+<div class="conclusion-item">
+<div class="conclusion-icon icon-market">
+<i class="fas fa-chart-line"></i>
+</div>
+<div class="item-content">
+<h4>Project Status</h4>
+<p>Current status: <span class="highlight-text">MVP Prototype</span> with validated core scenarios and a clear roadmap for broader module rollout.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </body>
 </html>

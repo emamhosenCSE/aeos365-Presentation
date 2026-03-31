@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Team Information &amp; Conclusion</title>
+<title>Comparison with Existing Solutions</title>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
@@ -17,7 +17,7 @@
             background-color: #0f172a; /* Slate 900 */
         }
         .slide-container {
-             width: 100vw; 
+            width: 100vw; 
     height: 90vh;
             position: relative;
             display: flex;
@@ -30,38 +30,15 @@
         }
 
         /* Background Elements */
-        .bg-pattern {
+        .bg-glow {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='1' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
-        }
-
-        .bg-glow-right {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background-color: #3b82f6;
-            filter: blur(120px);
-            opacity: 0.06;
-            right: -100px;
-            bottom: -100px;
-            z-index: 0;
-        }
-
-        .bg-glow-left {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background-color: #ec4899;
-            filter: blur(120px);
-            opacity: 0.04;
-            left: -100px;
-            top: -100px;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background-color: rgba(16, 185, 129, 0.05); /* Emerald tint */
+            filter: blur(100px);
+            right: -200px;
+            bottom: -200px;
             z-index: 0;
         }
 
@@ -69,7 +46,7 @@
         .header {
             position: relative;
             z-index: 10;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             border-bottom: 1px solid rgba(148, 163, 184, 0.2);
             padding-bottom: 15px;
             display: flex;
@@ -79,7 +56,7 @@
         }
 
         .slide-title {
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 700;
             color: #ffffff;
             margin: 0;
@@ -91,207 +68,158 @@
             content: '';
             display: block;
             width: 6px;
-            height: 36px;
-            background-color: #10b981; /* Emerald 500 */
+            height: 32px;
+            background-color: #3b82f6; /* Blue 500 */
             margin-right: 20px;
             border-radius: 3px;
         }
 
         .header-logo {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
             color: #94a3b8;
             margin: 0;
         }
 
-        /* Main Content */
-        .content-wrapper {
+        /* Comparison Grid */
+        .comparison-wrapper {
             position: relative;
             z-index: 10;
             display: flex;
-            gap: 40px;
             flex: 1;
+            gap: 20px;
             height: 100%;
         }
 
-        /* Columns */
-        .team-column {
-            flex: 1.1;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .conclusion-column {
+        .comp-column {
             flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 20px;
-        }
-
-        /* Section Headers */
-        .section-header {
-            font-size: 20px;
-            font-weight: 600;
-            color: #e2e8f0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 5px;
-        }
-
-        .section-header i {
-            color: #94a3b8;
-        }
-
-        /* Team Grid */
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            flex: 1;
-        }
-
-        /* Team Card */
-        .team-card {
-            background-color: rgba(30, 41, 59, 0.4);
-            border: 1px solid rgba(148, 163, 184, 0.1);
             border-radius: 12px;
             padding: 20px;
+            background-color: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .comp-column:not(.highlight):hover {
+            background-color: rgba(30, 41, 59, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* Headers */
+        .col-header {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            text-align: center;
-            transition: transform 0.2s, background-color 0.2s;
-            backdrop-filter: blur(5px);
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .team-card:hover {
-            background-color: rgba(30, 41, 59, 0.7);
-            transform: translateY(-5px);
-            border-color: rgba(59, 130, 246, 0.3);
-        }
-
-        .member-avatar {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            background-image: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        .col-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
-            color: white;
-            margin-bottom: 12px;
-            border: 3px solid rgba(30, 41, 59, 0.8);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            font-size: 20px;
+            background-color: rgba(15, 23, 42, 0.5);
         }
-        
-        /* Different avatar gradients for variety */
-        .avatar-1 { background-image: linear-gradient(135deg, #3b82f6, #1d4ed8); }
-        .avatar-2 { background-image: linear-gradient(135deg, #ec4899, #be185d); }
-        .avatar-3 { background-image: linear-gradient(135deg, #10b981, #047857); }
-        .avatar-4 { background-image: linear-gradient(135deg, #8b5cf6, #6d28d9); }
 
-        .member-name {
-            font-size: 16px;
+        .col-title {
+            font-size: 18px;
             font-weight: 700;
-            color: #f1f5f9;
-            margin: 0 0 4px 0;
-            line-height: 1.2;
+            margin: 0;
+            color: #e2e8f0;
         }
 
-        .member-id {
-            background-color: rgba(148, 163, 184, 0.1);
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-family: 'Monaco', 'Consolas', monospace;
-            color: #94a3b8;
-            margin-bottom: 8px;
+        /* Specific Brand Colors */
+        .odoo-col { border-top: 4px solid #a855f7; }
+        .odoo-col .col-icon { color: #a855f7; background-color: rgba(168, 85, 247, 0.1); }
+
+        .erpnext-col { border-top: 4px solid #3b82f6; }
+        .erpnext-col .col-icon { color: #3b82f6; background-color: rgba(59, 130, 246, 0.1); }
+
+        .saas-col { border-top: 4px solid #0ea5e9; }
+        .saas-col .col-icon { color: #0ea5e9; background-color: rgba(14, 165, 233, 0.1); }
+
+        /* Highlight Column (aeos365) */
+        .highlight {
+            flex: 1.2; /* Slightly wider */
+            background-color: rgba(16, 185, 129, 0.05);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-top: 4px solid #10b981;
+            box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.1);
+        }
+        .highlight .col-icon {
+            color: #10b981;
+            background-color: rgba(16, 185, 129, 0.15);
+            width: 48px;
+            height: 48px;
+            font-size: 24px;
+        }
+        .highlight .col-title {
+            font-size: 22px;
+            color: #ffffff;
+        }
+        .highlight .col-header {
+            border-bottom-color: rgba(16, 185, 129, 0.2);
         }
 
-        .member-email {
-            font-size: 11px;
-            color: #64748b;
-            word-break: break-all;
-            line-height: 1.3;
-        }
-
-        /* Conclusion Card */
-        .conclusion-card {
-            background-image: linear-gradient(to bottom right, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.6));
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 16px;
-            padding: 25px;
+        /* List Items */
+        .feature-list {
             flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-            overflow: hidden;
+            gap: 12px;
         }
 
-        .conclusion-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, #3b82f6, #10b981);
-        }
-
-        .conclusion-list {
+        .list-item {
             display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .conclusion-item {
-            display: flex;
-            gap: 15px;
             align-items: flex-start;
+            gap: 10px;
+            font-size: 13px;
+            line-height: 1.4;
+            color: #cbd5e1;
         }
 
-        .conclusion-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            background-color: rgba(255, 255, 255, 0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .list-item i {
+            margin-top: 3px;
             flex-shrink: 0;
-            font-size: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .item-content h4 {
-            font-size: 16px;
-            font-weight: 600;
-            color: #e2e8f0;
-            margin: 0 0 4px 0;
-        }
-
-        .item-content p {
+        .item-pro i { color: #4ade80; }
+        .item-con i { color: #f87171; }
+        .item-edge i { color: #10b981; font-size: 14px; }
+        
+        .item-edge {
             font-size: 14px;
-            color: #94a3b8;
-            margin: 0;
-            line-height: 1.5;
-        }
-
-        /* Highlight keywords in paragraph */
-        .highlight-text {
-            color: #60a5fa;
             font-weight: 500;
+            color: #e2e8f0;
+            background-color: rgba(16, 185, 129, 0.1);
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
         }
 
-        /* Icon Colors */
-        .icon-unified { color: #f472b6; border-color: rgba(244, 114, 182, 0.3); }
-        .icon-deploy { color: #34d399; border-color: rgba(52, 211, 153, 0.3); }
-        .icon-security { color: #fbbf24; border-color: rgba(251, 191, 36, 0.3); }
-        .icon-market { color: #a78bfa; border-color: rgba(167, 139, 250, 0.3); }
+        /* Section dividers */
+        .divider {
+            height: 1px;
+            background-color: rgba(255,255,255,0.05);
+            margin: 10px 0;
+        }
+        
+        .section-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #64748b;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            display: block;
+        }
 
     @media (max-height: 820px) {
         body {
@@ -310,110 +238,144 @@
 </head>
 <body>
 <div class="slide-container">
-<div class="bg-pattern"></div>
-<div class="bg-glow-right"></div>
-<div class="bg-glow-left"></div>
+<div class="bg-glow"></div>
 <div class="header">
-<h1 class="slide-title">Team Information &amp; Conclusion</h1>
+<h1 class="slide-title">Comparison with Existing Solutions</h1>
 <p class="header-logo">aeos365 Project Proposal</p>
 </div>
-<div class="content-wrapper">
-<!-- Left: Team Section -->
-<div class="team-column">
-<div class="section-header">
-<i class="fas fa-users"></i>
-<span>The Team</span>
+<div class="comparison-wrapper">
+<p style="grid-column: 1 / -1; margin: 0 0 8px 0; font-size: 12px; color: #93c5fd; text-align: center;">
+    Comparison criteria: deployment flexibility, RBAC depth, tenant isolation model, AI assistance approach, and UX consistency.
+</p>
+<!-- Odoo -->
+<div class="comp-column odoo-col">
+<div class="col-header">
+<div class="col-icon">O</div>
+<h3 class="col-title">Odoo</h3>
 </div>
-<div class="team-grid">
-<!-- Member 1 -->
-<div class="team-card">
-<div class="member-avatar avatar-1">
-<i class="fas fa-user"></i>
+<div class="feature-list">
+<span class="section-label">Strengths</span>
+<div class="list-item item-pro">
+<i class="fas fa-check-circle"></i>
+<p>Rich module ecosystem (30+ official)</p>
 </div>
-<h3 class="member-name">Emam Hosen</h3>
-<div class="member-id">ID: 2231091007</div>
-<p class="member-email">2231091007@uttarauniversity.edu.bd</p>
+<div class="list-item item-pro">
+<i class="fas fa-check-circle"></i>
+<p>Strong community support</p>
 </div>
-<!-- Member 2 -->
-<div class="team-card">
-<div class="member-avatar avatar-2">
-<i class="fas fa-user"></i>
+<div class="divider"></div>
+<span class="section-label">Weaknesses</span>
+<div class="list-item item-con">
+<i class="fas fa-times-circle"></i>
+<p>Performance issues at scale</p>
 </div>
-<h3 class="member-name">Mst. Khurshida Haque Mili</h3>
-<div class="member-id">ID: 2231091012</div>
-<p class="member-email">2231091012@uttarauniversity.edu.bd</p>
+<div class="list-item item-con">
+<i class="fas fa-times-circle"></i>
+<p>UI inconsistency across modules</p>
 </div>
-<!-- Member 3 -->
-<div class="team-card">
-<div class="member-avatar avatar-3">
-<i class="fas fa-user"></i>
-</div>
-<h3 class="member-name">Anowar Hossain Rahat</h3>
-<div class="member-id">ID: 2231091001</div>
-<p class="member-email">2231091001@uttarauniversity.edu.bd</p>
-</div>
-<!-- Member 4 -->
-<div class="team-card">
-<div class="member-avatar avatar-4">
-<i class="fas fa-user"></i>
-</div>
-<h3 class="member-name">Sultana Parvin</h3>
-<div class="member-id">ID: 2231091016</div>
-<p class="member-email">2231091016@uttarauniversity.edu.bd</p>
+<div class="list-item item-con">
+<i class="fas fa-times-circle"></i>
+<p>Enterprise features behind paywall</p>
 </div>
 </div>
 </div>
-<!-- Right: Conclusion Section -->
-<div class="conclusion-column">
-<div class="section-header">
-<i class="fas fa-flag-checkered"></i>
-<span>Project Summary</span>
+<!-- ERPNext -->
+<div class="comp-column erpnext-col">
+<div class="col-header">
+<div class="col-icon">E</div>
+<h3 class="col-title">ERPNext</h3>
 </div>
-<div class="conclusion-card">
-<div class="conclusion-list">
-<!-- Point 1 -->
-<div class="conclusion-item">
-<div class="conclusion-icon icon-unified">
-<i class="fas fa-cubes"></i>
+<div class="feature-list">
+<span class="section-label">Strengths</span>
+<div class="list-item item-pro">
+<i class="fas fa-check-circle"></i>
+<p>100% Open Source</p>
 </div>
-<div class="item-content">
-<h4>Unified Ecosystem</h4>
-<p>aeos365 consolidates key business workflows into one modular platform to reduce tool fragmentation across teams.</p>
+<div class="list-item item-pro">
+<i class="fas fa-check-circle"></i>
+<p>Modern API-first architecture</p>
 </div>
+<div class="divider"></div>
+<span class="section-label">Weaknesses</span>
+<div class="list-item item-con">
+<i class="fas fa-times-circle"></i>
+<p>Steep learning curve</p>
 </div>
-<!-- Point 2 -->
-<div class="conclusion-item">
-<div class="conclusion-icon icon-deploy">
-<i class="fas fa-server"></i>
+<div class="list-item item-con">
+<i class="fas fa-times-circle"></i>
+<p>Limited third-party integrations</p>
 </div>
-<div class="item-content">
-<h4>Dual Deployment Architecture</h4>
-<p>One codebase supports both multi-tenant SaaS and single-tenant standalone deployment models.</p>
-</div>
-</div>
-<!-- Point 3 -->
-<div class="conclusion-item">
-<div class="conclusion-icon icon-security">
-<i class="fas fa-shield-alt"></i>
-</div>
-<div class="item-content">
-<h4>Advanced Security &amp; Usability</h4>
-<p>Four-level RBAC and guided AI-assisted workflows improve access control and user adoption.</p>
-</div>
-</div>
-<!-- Point 4 -->
-<div class="conclusion-item">
-<div class="conclusion-icon icon-market">
-<i class="fas fa-chart-line"></i>
-</div>
-<div class="item-content">
-<h4>Project Status</h4>
-<p>Current status: <span class="highlight-text">MVP Prototype</span> with validated core scenarios and a clear roadmap for broader module rollout.</p>
+<div class="list-item item-con">
+<i class="fas fa-times-circle"></i>
+<p>Documentation gaps</p>
 </div>
 </div>
 </div>
+<!-- Commercial SaaS -->
+<div class="comp-column saas-col">
+<div class="col-header">
+<div class="col-icon"><i class="fas fa-cloud"></i></div>
+<h3 class="col-title">SaaS Leaders</h3>
+</div>
+<div class="feature-list">
+<span class="section-label">Strengths</span>
+<div class="list-item item-pro">
+<i class="fas fa-check-circle"></i>
+<p>High polish &amp; reliability</p>
+</div>
+<div class="list-item item-pro">
+<i class="fas fa-check-circle"></i>
+<p>Vast integration ecosystems</p>
+</div>
+<div class="divider"></div>
+<span class="section-label">Weaknesses</span>
+<div class="list-item item-con">
+<i class="fas fa-times-circle"></i>
+<p>Complete vendor lock-in</p>
+</div>
+<div class="list-item item-con">
+<i class="fas fa-times-circle"></i>
+<p>High per-user costs</p>
+</div>
+<div class="list-item item-con">
+<i class="fas fa-times-circle"></i>
+<p>No self-hosting option</p>
 </div>
 </div>
+</div>
+<!-- aeos365 (Highlighted) -->
+<div class="comp-column highlight">
+<div class="col-header">
+<div class="col-icon"><i class="fas fa-rocket"></i></div>
+<h3 class="col-title">aeos365 Edge</h3>
+</div>
+<div class="feature-list">
+<span class="section-label" style="color:#10b981;">Competitive Advantages</span>
+<div class="list-item item-edge">
+<i class="fas fa-exchange-alt"></i>
+<p><strong>Dual-Deployment:</strong> Seamless SaaS ↔ Standalone migration path</p>
+</div>
+<div class="list-item item-edge">
+<i class="fas fa-layer-group"></i>
+<p><strong>Four-Level RBAC:</strong> Superior access granularity &amp; cascading permissions</p>
+</div>
+<div class="list-item item-edge">
+<i class="fas fa-database"></i>
+<p><strong>Database Isolation:</strong> True per-tenant data sovereignty in SaaS mode</p>
+</div>
+<div class="list-item item-edge">
+<i class="fas fa-robot"></i>
+<p><strong>Native AI Assistant:</strong> Built-in guidance, not a bolt-on connector</p>
+</div>
+<div class="list-item item-edge">
+<i class="fas fa-swatchbook"></i>
+<p><strong>Consistent UX:</strong> Unified Design System across all modules</p>
+</div>
+</div>
+</div>
+<p style="margin-top: 12px; font-size: 11px; color: #94a3b8; text-align: right;">
+    Evidence note: finalize with product documentation links and public feature matrices in appendix.
+</p>
 </div>
 </div>
 </body>

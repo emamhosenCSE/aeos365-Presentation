@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Comparison with Existing Solutions</title>
+<title>Expected Outcomes &amp; Significance</title>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
@@ -17,7 +17,7 @@
             background-color: #0f172a; /* Slate 900 */
         }
         .slide-container {
-            width: 100vw; 
+             width: 100vw; 
     height: 90vh;
             position: relative;
             display: flex;
@@ -29,20 +29,19 @@
             box-sizing: border-box;
         }
 
-        /* Background Elements */
-        .bg-glow {
+        /* Background Pattern */
+        .bg-pattern {
             position: absolute;
-            width: 800px;
-            height: 800px;
-            border-radius: 50%;
-            background-color: rgba(16, 185, 129, 0.05); /* Emerald tint */
-            filter: blur(100px);
-            right: -200px;
-            bottom: -200px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: 0;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
         }
 
-        /* Header */
+        /* Header Styles */
         .header {
             position: relative;
             z-index: 10;
@@ -52,11 +51,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-shrink: 0;
         }
 
         .slide-title {
-            font-size: 32px;
+            font-size: 36px;
             font-weight: 700;
             color: #ffffff;
             margin: 0;
@@ -68,158 +66,187 @@
             content: '';
             display: block;
             width: 6px;
-            height: 32px;
+            height: 36px;
             background-color: #3b82f6; /* Blue 500 */
             margin-right: 20px;
             border-radius: 3px;
         }
 
         .header-logo {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 600;
             color: #94a3b8;
             margin: 0;
         }
 
-        /* Comparison Grid */
-        .comparison-wrapper {
+        /* Main Content Layout */
+        .content-wrapper {
             position: relative;
             z-index: 10;
             display: flex;
-            flex: 1;
-            gap: 20px;
+            gap: 40px;
             height: 100%;
+            flex: 1;
         }
 
-        .comp-column {
+        /* Columns */
+        .col-outcomes {
             flex: 1;
             display: flex;
             flex-direction: column;
-            border-radius: 12px;
-            padding: 20px;
+            gap: 20px;
+        }
+
+        .col-significance {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Section Headers */
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-badge {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+        
+        .badge-outcomes { background-color: rgba(16, 185, 129, 0.2); color: #34d399; }
+        .badge-impact { background-color: rgba(99, 102, 241, 0.2); color: #818cf8; }
+
+        /* Outcome Checklist Items */
+        .outcome-card {
             background-color: rgba(30, 41, 59, 0.4);
             border: 1px solid rgba(148, 163, 184, 0.1);
-            transition: transform 0.2s ease;
+            border-radius: 12px;
+            padding: 18px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            transition: transform 0.2s, background-color 0.2s;
         }
 
-        .comp-column:not(.highlight):hover {
-            background-color: rgba(30, 41, 59, 0.6);
-            transform: translateY(-2px);
+        .outcome-card:hover {
+            background-color: rgba(30, 41, 59, 0.7);
+            transform: translateX(5px);
+            border-color: rgba(52, 211, 153, 0.3);
         }
 
-        /* Headers */
-        .col-header {
+        .check-circle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background-color: rgba(16, 185, 129, 0.2);
+            color: #34d399;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .outcome-content h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #f1f5f9;
+            margin: 0 0 4px 0;
+        }
+
+        .outcome-content p {
+            font-size: 14px;
+            color: #94a3b8;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /* Significance Cards */
+        .sig-card {
+            background-color: rgba(30, 41, 59, 0.4);
+            border-radius: 12px;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            border-left: 4px solid transparent;
+            position: relative;
+        }
+
+        .sig-header {
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .col-icon {
+        .sig-icon {
             width: 40px;
             height: 40px;
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
-            background-color: rgba(15, 23, 42, 0.5);
-        }
-
-        .col-title {
             font-size: 18px;
+        }
+
+        .sig-title {
+            font-size: 16px;
             font-weight: 700;
+            color: #f8fafc;
             margin: 0;
-            color: #e2e8f0;
         }
 
-        /* Specific Brand Colors */
-        .odoo-col { border-top: 4px solid #a855f7; }
-        .odoo-col .col-icon { color: #a855f7; background-color: rgba(168, 85, 247, 0.1); }
-
-        .erpnext-col { border-top: 4px solid #3b82f6; }
-        .erpnext-col .col-icon { color: #3b82f6; background-color: rgba(59, 130, 246, 0.1); }
-
-        .saas-col { border-top: 4px solid #0ea5e9; }
-        .saas-col .col-icon { color: #0ea5e9; background-color: rgba(14, 165, 233, 0.1); }
-
-        /* Highlight Column (aeos365) */
-        .highlight {
-            flex: 1.2; /* Slightly wider */
-            background-color: rgba(16, 185, 129, 0.05);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            border-top: 4px solid #10b981;
-            box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.1);
-        }
-        .highlight .col-icon {
-            color: #10b981;
-            background-color: rgba(16, 185, 129, 0.15);
-            width: 48px;
-            height: 48px;
-            font-size: 24px;
-        }
-        .highlight .col-title {
-            font-size: 22px;
-            color: #ffffff;
-        }
-        .highlight .col-header {
-            border-bottom-color: rgba(16, 185, 129, 0.2);
-        }
-
-        /* List Items */
-        .feature-list {
-            flex: 1;
+        .sig-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 8px;
         }
 
-        .list-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            font-size: 13px;
-            line-height: 1.4;
-            color: #cbd5e1;
-        }
-
-        .list-item i {
-            margin-top: 3px;
-            flex-shrink: 0;
-        }
-
-        .item-pro i { color: #4ade80; }
-        .item-con i { color: #f87171; }
-        .item-edge i { color: #10b981; font-size: 14px; }
-        
-        .item-edge {
+        .sig-item {
             font-size: 14px;
-            font-weight: 500;
-            color: #e2e8f0;
-            background-color: rgba(16, 185, 129, 0.1);
-            padding: 8px 12px;
-            border-radius: 6px;
-            border: 1px solid rgba(16, 185, 129, 0.2);
+            color: #cbd5e1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        /* Section dividers */
-        .divider {
-            height: 1px;
-            background-color: rgba(255,255,255,0.05);
-            margin: 10px 0;
+        .sig-item::before {
+            content: '•';
+            font-size: 18px;
+            line-height: 0;
         }
-        
-        .section-label {
-            font-size: 11px;
-            text-transform: uppercase;
-            color: #64748b;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            margin-bottom: 8px;
-            display: block;
-        }
+
+        /* Significance Themes */
+        /* Academic - Blue */
+        .sig-academic { border-left-color: #3b82f6; background-color: rgba(59, 130, 246, 0.05); }
+        .sig-academic .sig-icon { background-color: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+        .sig-academic .sig-item::before { color: #60a5fa; }
+
+        /* Industry - Purple */
+        .sig-industry { border-left-color: #a855f7; background-color: rgba(168, 85, 247, 0.05); }
+        .sig-industry .sig-icon { background-color: rgba(168, 85, 247, 0.2); color: #c084fc; }
+        .sig-industry .sig-item::before { color: #c084fc; }
+
+        /* Social - Pink */
+        .sig-social { border-left-color: #ec4899; background-color: rgba(236, 72, 153, 0.05); }
+        .sig-social .sig-icon { background-color: rgba(236, 72, 153, 0.2); color: #f472b6; }
+        .sig-social .sig-item::before { color: #f472b6; }
 
     @media (max-height: 820px) {
         body {
@@ -238,144 +265,95 @@
 </head>
 <body>
 <div class="slide-container">
-<div class="bg-glow"></div>
+<div class="bg-pattern"></div>
 <div class="header">
-<h1 class="slide-title">Comparison with Existing Solutions</h1>
+<h1 class="slide-title">Expected Outcomes &amp; Significance</h1>
 <p class="header-logo">aeos365 Project Proposal</p>
 </div>
-<div class="comparison-wrapper">
-<p style="grid-column: 1 / -1; margin: 0 0 8px 0; font-size: 12px; color: #93c5fd; text-align: center;">
-    Comparison criteria: deployment flexibility, RBAC depth, tenant isolation model, AI assistance approach, and UX consistency.
-</p>
-<!-- Odoo -->
-<div class="comp-column odoo-col">
-<div class="col-header">
-<div class="col-icon">O</div>
-<h3 class="col-title">Odoo</h3>
-</div>
-<div class="feature-list">
-<span class="section-label">Strengths</span>
-<div class="list-item item-pro">
-<i class="fas fa-check-circle"></i>
-<p>Rich module ecosystem (30+ official)</p>
-</div>
-<div class="list-item item-pro">
-<i class="fas fa-check-circle"></i>
-<p>Strong community support</p>
-</div>
-<div class="divider"></div>
-<span class="section-label">Weaknesses</span>
-<div class="list-item item-con">
-<i class="fas fa-times-circle"></i>
-<p>Performance issues at scale</p>
-</div>
-<div class="list-item item-con">
-<i class="fas fa-times-circle"></i>
-<p>UI inconsistency across modules</p>
-</div>
-<div class="list-item item-con">
-<i class="fas fa-times-circle"></i>
-<p>Enterprise features behind paywall</p>
+<div class="content-wrapper">
+<!-- Left Column: Outcomes -->
+<div class="col-outcomes">
+<div class="section-title">
+<span class="section-badge badge-outcomes">Deliverables</span>
+                    Project Outcomes
+                </div>
+<!-- Item 1 -->
+<div class="outcome-card">
+<div class="check-circle"><i class="fas fa-check"></i></div>
+<div class="outcome-content">
+<h3>Implemented Scope (Current)</h3>
+<p>Prototype demonstrates HRM and CRM core flows with tenant onboarding, RBAC enforcement, and environment-specific deployment paths.</p>
 </div>
 </div>
+<!-- Item 2 -->
+<div class="outcome-card">
+<div class="check-circle"><i class="fas fa-code"></i></div>
+<div class="outcome-content">
+<h3>Technical Deliverables</h3>
+<p>Version-controlled source code, test suites for core modules, API collections, and deployment configuration artifacts for reproducibility.</p>
 </div>
-<!-- ERPNext -->
-<div class="comp-column erpnext-col">
-<div class="col-header">
-<div class="col-icon">E</div>
-<h3 class="col-title">ERPNext</h3>
 </div>
-<div class="feature-list">
-<span class="section-label">Strengths</span>
-<div class="list-item item-pro">
-<i class="fas fa-check-circle"></i>
-<p>100% Open Source</p>
+<!-- Item 3 -->
+<div class="outcome-card">
+<div class="check-circle"><i class="fas fa-book"></i></div>
+<div class="outcome-content">
+<h3>Documentation</h3>
+<p>User guide, developer API notes, and deployment runbook prepared for evaluator review and operational handover.</p>
 </div>
-<div class="list-item item-pro">
-<i class="fas fa-check-circle"></i>
-<p>Modern API-first architecture</p>
 </div>
-<div class="divider"></div>
-<span class="section-label">Weaknesses</span>
-<div class="list-item item-con">
-<i class="fas fa-times-circle"></i>
-<p>Steep learning curve</p>
-</div>
-<div class="list-item item-con">
-<i class="fas fa-times-circle"></i>
-<p>Limited third-party integrations</p>
-</div>
-<div class="list-item item-con">
-<i class="fas fa-times-circle"></i>
-<p>Documentation gaps</p>
+<!-- Item 4 -->
+<div class="outcome-card">
+<div class="check-circle"><i class="fas fa-laptop-code"></i></div>
+<div class="outcome-content">
+<h3>Validation Snapshot</h3>
+<p>Defense demo validates three critical scenarios: tenant provisioning, role-scoped access control, and isolated tenant data access.</p>
 </div>
 </div>
 </div>
-<!-- Commercial SaaS -->
-<div class="comp-column saas-col">
-<div class="col-header">
-<div class="col-icon"><i class="fas fa-cloud"></i></div>
-<h3 class="col-title">SaaS Leaders</h3>
+<!-- Right Column: Significance -->
+<div class="col-significance">
+<div class="section-title">
+<span class="section-badge badge-impact">Impact</span>
+                    Project Significance
+                </div>
+<!-- Academic -->
+<div class="sig-card sig-academic">
+<div class="sig-header">
+<div class="sig-icon"><i class="fas fa-graduation-cap"></i></div>
+<h3 class="sig-title">Academic Significance</h3>
 </div>
-<div class="feature-list">
-<span class="section-label">Strengths</span>
-<div class="list-item item-pro">
-<i class="fas fa-check-circle"></i>
-<p>High polish &amp; reliability</p>
+<ul class="sig-list">
+<li class="sig-item">Implementation of modular package-based architecture</li>
+<li class="sig-item">Innovation in four-level Role-Based Access Control (RBAC)</li>
+<li class="sig-item">Practical application of multi-tenancy database isolation patterns</li>
+</ul>
 </div>
-<div class="list-item item-pro">
-<i class="fas fa-check-circle"></i>
-<p>Vast integration ecosystems</p>
+<!-- Industry -->
+<div class="sig-card sig-industry">
+<div class="sig-header">
+<div class="sig-icon"><i class="fas fa-industry"></i></div>
+<h3 class="sig-title">Industry Significance</h3>
 </div>
-<div class="divider"></div>
-<span class="section-label">Weaknesses</span>
-<div class="list-item item-con">
-<i class="fas fa-times-circle"></i>
-<p>Complete vendor lock-in</p>
+<ul class="sig-list">
+<li class="sig-item">Flexible dual-deployment (SaaS + On-premises) from one codebase</li>
+<li class="sig-item">SME-friendly pricing structure with modular adoption path</li>
+<li class="sig-item">Adherence to open standards reducing vendor lock-in</li>
+</ul>
 </div>
-<div class="list-item item-con">
-<i class="fas fa-times-circle"></i>
-<p>High per-user costs</p>
+<!-- Social -->
+<div class="sig-card sig-social">
+<div class="sig-header">
+<div class="sig-icon"><i class="fas fa-users"></i></div>
+<h3 class="sig-title">Social Significance</h3>
 </div>
-<div class="list-item item-con">
-<i class="fas fa-times-circle"></i>
-<p>No self-hosting option</p>
-</div>
-</div>
-</div>
-<!-- aeos365 (Highlighted) -->
-<div class="comp-column highlight">
-<div class="col-header">
-<div class="col-icon"><i class="fas fa-rocket"></i></div>
-<h3 class="col-title">aeos365 Edge</h3>
-</div>
-<div class="feature-list">
-<span class="section-label" style="color:#10b981;">Competitive Advantages</span>
-<div class="list-item item-edge">
-<i class="fas fa-exchange-alt"></i>
-<p><strong>Dual-Deployment:</strong> Seamless SaaS ↔ Standalone migration path</p>
-</div>
-<div class="list-item item-edge">
-<i class="fas fa-layer-group"></i>
-<p><strong>Four-Level RBAC:</strong> Superior access granularity &amp; cascading permissions</p>
-</div>
-<div class="list-item item-edge">
-<i class="fas fa-database"></i>
-<p><strong>Database Isolation:</strong> True per-tenant data sovereignty in SaaS mode</p>
-</div>
-<div class="list-item item-edge">
-<i class="fas fa-robot"></i>
-<p><strong>Native AI Assistant:</strong> Built-in guidance, not a bolt-on connector</p>
-</div>
-<div class="list-item item-edge">
-<i class="fas fa-swatchbook"></i>
-<p><strong>Consistent UX:</strong> Unified Design System across all modules</p>
+<ul class="sig-list">
+<li class="sig-item">Accelerating digital transformation for local enterprises</li>
+<li class="sig-item">Lowering barriers to entry for advanced business software</li>
+<li class="sig-item">Fostering technical skill development in modern cloud stacks</li>
+</ul>
 </div>
 </div>
 </div>
-<p style="margin-top: 12px; font-size: 11px; color: #94a3b8; text-align: right;">
-    Evidence note: finalize with product documentation links and public feature matrices in appendix.
-</p>
 </div>
 </body>
 </html>

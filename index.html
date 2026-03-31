@@ -53,20 +53,46 @@
         .fs-slide-area {
             width: 100%;
             height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: relative;
             overflow: hidden;
         }
 
-        #fs-iframe {
+        .fs-frame {
+            position: absolute;
+            inset: 0;
             width: 100vw;
             height: 100vh;
             border: none;
             display: block;
-            /* object-fit equivalent for iframes: ensure it scales within bounds */
             max-width: 100%;
             max-height: 100%;
+            background: #000;
+            opacity: 0;
+            transform: translateX(28px) scale(1.004);
+            transition: opacity 420ms ease, transform 520ms cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+
+        .fs-frame.is-active {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+
+        .fs-frame.enter-from-right {
+            transform: translateX(36px) scale(1.01);
+        }
+
+        .fs-frame.enter-from-left {
+            transform: translateX(-36px) scale(1.01);
+        }
+
+        .fs-frame.exit-to-left {
+            opacity: 0;
+            transform: translateX(-30px) scale(0.996);
+        }
+
+        .fs-frame.exit-to-right {
+            opacity: 0;
+            transform: translateX(30px) scale(0.996);
         }
 
         .fs-controls { 
@@ -85,6 +111,11 @@
             .play-btn {
                 transition: none;
             }
+
+            .fs-frame {
+                transition: none;
+                transform: none;
+            }
         }
     </style>
 </head>
@@ -93,7 +124,7 @@
 <nav>
     <div class="flex flex-col">
         <h1 class="text-sm font-bold tracking-tight m-0">aeos365: A Modular Enterprise Platform</h1>
-        <span class="text-xs text-gray-500">24 Slides Total • Final Year Project</span>
+        <span class="text-xs text-gray-500">22 Slides Total • Final Year Project</span>
     </div>
     <button class="play-btn" type="button" aria-label="Start slideshow" title="Start slideshow" onclick="startPlay()">
         <i class="fas fa-play text-[10px]"></i> Play
@@ -104,20 +135,31 @@
 
 <div id="fs-overlay">
     <div class="fs-slide-area">
-        <iframe id="fs-iframe" title="Presentation slide"></iframe>
+        <iframe id="fs-iframe-a" class="fs-frame is-active" title="Presentation slide"></iframe>
+        <iframe id="fs-iframe-b" class="fs-frame" title="Presentation slide"></iframe>
     </div>
     <div class="fs-controls">
         <button type="button" aria-label="Previous slide" title="Previous slide" onclick="nav(-1)"><i class="fas fa-chevron-left"></i></button>
-        <span id="counter" class="text-sm font-mono text-blue-400">01 / 24</span>
+        <span id="counter" class="text-sm font-mono text-blue-400">01 / 22</span>
         <button type="button" aria-label="Next slide" title="Next slide" onclick="nav(1)"><i class="fas fa-chevron-right"></i></button>
         <button type="button" aria-label="Exit slideshow" title="Exit slideshow" onclick="exit()"><i class="fas fa-times"></i></button>
     </div>
 </div>
 
 <script>
-    const TOTAL = 24;
+    const TOTAL = 22;
+    const TRANSITION_MS = 520;
     const root = document.getElementById('gallery-root');
+    const counter = document.getElementById('counter');
+    const fsFrames = [
+        document.getElementById('fs-iframe-a'),
+        document.getElementById('fs-iframe-b')
+    ];
+    const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
     let current = 1;
+    let activeFrameIndex = 0;
+    let transitionToken = 0;
 
     // Build the Gallery (Keeping your working logic)
     for(let i=1; i<=TOTAL; i++) {
@@ -152,7 +194,8 @@
         current = 1;
         const overlay = document.getElementById('fs-overlay');
         overlay.style.display = 'flex'; // Use flex to center the area
-        updateFS();
+        resetFrames();
+        updateFS(1, { immediate: true });
         
         if (document.documentElement.requestFullscreen) {
             document.documentElement.requestFullscreen();
@@ -160,17 +203,56 @@
     }
 
     function nav(step) {
-        current += step;
-        if(current < 1) current = 1;
-        if (current > TOTAL) current = TOTAL;
-        updateFS();
+        const nextSlide = Math.min(TOTAL, Math.max(1, current + step));
+        if (nextSlide === current) return;
+        const direction = Math.sign(nextSlide - current) || 1;
+        current = nextSlide;
+        updateFS(direction);
     }
 
-    function updateFS() {
-        const fsIframe = document.getElementById('fs-iframe');
-        // Simple source update - browser handles sizing via CSS
-        fsIframe.src = `slides/${current}.html`;
-        document.getElementById('counter').innerText = `${String(current).padStart(2,'0')} / ${TOTAL}`;
+    function resetFrames() {
+        transitionToken++;
+        activeFrameIndex = 0;
+        fsFrames.forEach((frame, index) => {
+            frame.className = `fs-frame${index === 0 ? ' is-active' : ''}`;
+            frame.removeAttribute('src');
+        });
+    }
+
+    function updateFS(direction = 1, options = {}) {
+        const immediate = options.immediate === true || reducedMotionQuery.matches;
+        const nextSrc = `slides/${current}.html`;
+        counter.innerText = `${String(current).padStart(2,'0')} / ${TOTAL}`;
+
+        if (immediate) {
+            const activeFrame = fsFrames[activeFrameIndex];
+            activeFrame.className = 'fs-frame is-active';
+            activeFrame.src = nextSrc;
+            return;
+        }
+
+        const token = ++transitionToken;
+        const outgoingIndex = activeFrameIndex;
+        const incomingIndex = outgoingIndex === 0 ? 1 : 0;
+        const outgoingFrame = fsFrames[outgoingIndex];
+        const incomingFrame = fsFrames[incomingIndex];
+
+        incomingFrame.className = `fs-frame ${direction > 0 ? 'enter-from-right' : 'enter-from-left'}`;
+        incomingFrame.src = nextSrc;
+
+        requestAnimationFrame(() => {
+            if (token !== transitionToken) return;
+
+            outgoingFrame.className = `fs-frame ${direction > 0 ? 'exit-to-left' : 'exit-to-right'}`;
+            incomingFrame.classList.add('is-active');
+            incomingFrame.classList.remove('enter-from-right', 'enter-from-left');
+            activeFrameIndex = incomingIndex;
+        });
+
+        setTimeout(() => {
+            if (token !== transitionToken) return;
+            outgoingFrame.className = 'fs-frame';
+        }, TRANSITION_MS);
     }
 
     function exit() {
