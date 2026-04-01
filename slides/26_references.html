@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>References</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #ffffff;
+        }
+        .slide-container {
+            width: 100vw; 
+            height: 90vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+            color: #0f172a;
+            overflow: auto;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        /* Background Orbs */
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: 0;
+            opacity: 0.1;
+        }
+        .bg-orb-1 {
+            width: 500px;
+            height: 500px;
+            background-color: #3b82f6;
+            top: -150px;
+            right: -100px;
+        }
+        .bg-orb-2 {
+            width: 400px;
+            height: 400px;
+            background-color: #8b5cf6;
+            bottom: -100px;
+            left: -100px;
+        }
+
+        .content {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .title {
+            font-size: 56px;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0 0 12px 0;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .accent-line {
+            width: 120px;
+            height: 4px;
+            background-color: #3b82f6;
+            border-radius: 2px;
+            margin: 0 0 32px 0;
+        }
+
+        .references-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .reference-item {
+            background-color: rgba(243, 244, 246, 0.4);
+            border-left: 4px solid #3b82f6;
+            border-radius: 8px;
+            padding: 16px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #1f2937;
+        }
+
+        .reference-item strong {
+            color: #0f172a;
+            font-weight: 600;
+        }
+
+        .reference-category {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 24px 0 12px 0;
+            padding-top: 12px;
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .footer {
+            margin-top: 32px;
+            font-size: 12px;
+            color: #9ca3af;
+            text-align: center;
+        }
+
+    @media (max-height: 820px) {
+        .slide-container {
+            overflow: auto;
+            min-height: 100vh;
+        }
+        .title {
+            font-size: 44px;
+        }
+        .reference-item {
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Background Orbs -->
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+
+<div class="content">
+<h1 class="title">References</h1>
+<div class="accent-line"></div>
+
+<div class="references-list">
+    <div class="reference-category">Architecture & Multi-Tenancy</div>
+    <div class="reference-item">
+        <strong>Bezemer, C. P., & Zaidman, A. (2010).</strong> Multi-tenant SaaS applications: maintenance dream or nightmare? In Proceedings of the Joint ERCIM Workshop on Software Evolution and Evolvability and Workshop on Maintenance Performance Measurement. Multi-tenant architectures reduce operational costs by 40%.
+    </div>
+    
+    <div class="reference-category">Security & Role-Based Access Control</div>
+    <div class="reference-item">
+        <strong>Ferraiolo, D. F., & Kuhn, D. R. (1992).</strong> Role-based access control. In Proceedings of the 15th NIST-NCSC National Computer Security Conference. Foundational RBAC principles extended with hierarchical module-based granularity.
+    </div>
+    
+    <div class="reference-category">Enterprise Software Integration</div>
+    <div class="reference-item">
+        <strong>Panorama Consulting Solutions (2024).</strong> ERP Integration Benchmark Report. Finding: 87% of enterprises struggle with ERP integration challenges across disconnected systems.
+    </div>
+
+    <div class="reference-category">Technology Stack</div>
+    <div class="reference-item">
+        <strong>React (Facebook, 2024):</strong> A JavaScript library for building user interfaces with component-based architecture and virtual DOM for optimal performance.
+    </div>
+    <div class="reference-item">
+        <strong>Laravel (Taylor Otwell, 2024):</strong> A modern PHP web application framework following the MVC pattern with built-in security and extensibility.
+    </div>
+    <div class="reference-item">
+        <strong>PostgreSQL (2024):</strong> A powerful, open-source object-relational database system known for reliability, data integrity, and advanced features.
+    </div>
+</div>
+
+<p class="footer">© 2026 aeos365 Project Team • Department of Computer Science and Engineering</p>
+</div>
+</div>
+</body>
+</html>
