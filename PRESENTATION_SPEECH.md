@@ -3,439 +3,159 @@
 ---
 
 ## **PART 1: Introduction & Problem Analysis** (Student 1)
-**Slides: 1-5 | Duration: ~7 minutes**
+**Slides: 1-5 | Duration: ~2.5 minutes**
 
 ### **Opening & Welcome (Slide 1 - Cover)**
-Good [morning/afternoon], everyone. Thank you for being here today. We're excited to present **aeos365**, a modular enterprise platform designed to revolutionize how organizations manage their business operations.
+Good [morning/afternoon]. I'm [Student 1 Name]. Today we're presenting **aeos365**—a modular enterprise platform solving a critical problem: enterprise software is fragmented.
 
-My name is [Student 1 Name], and I'll be walking you through our project overview, the current challenges in enterprise software, and why our solution is needed in today's market.
+### **The Problem (Slide 2 - Introduction)**
 
----
+Most mid-to-large companies juggle 10-15 disconnected systems. No unified authentication. No consistent user experience. Removing an employee means updating 15 systems. Generating a company report takes weeks.
 
-### **The Challenge We're Solving (Slide 2 - Introduction)**
+They face three core challenges. First, there's **Integration Chaos**—data silos and endless manual workarounds. Second is the **Cost Burden**—multiple vendors, multiple licenses, multiple support contracts bleeding budgets. Third is **Limited Flexibility**. Organizations must choose between rigid monoliths that are expensive and inflexible, or chaotic scattered apps where nobody knows who owns what.
 
-Let me start by setting the scene. Imagine you're running a mid-to-large organization. You need HR management, customer relationship management, financial tracking, and operational workflows. What do most companies do today?
+### **Why It Works (Slide 3 - Literature Review)**
 
-They cobble together 5, 10, sometimes 15 different software systems. Each one operates in its own silo. There's no unified authentication, no consistent user experience, and no integrated data flow. When an employee leaves, you have to remove them from every system individually. When you want to generate a company-wide report, it takes weeks to consolidate data from different platforms.
+Research backs us: **Panorama Consulting** found 87% of enterprises struggle with ERP integration. **Bezemer & Zaidman** showed multi-tenant architectures reduce operational costs by 40%. We've built our Hierarchical Role Module Access Control approach on **Ferraiolo & Kuhn's** foundational RBAC principles from 1992—proven and enterprise-tested—but extended it with hierarchical module-based granularity.
 
-**The enterprise software landscape is fragmented.**
+### **Our Solution (Slide 4-5 - Problem Statement & Objectives)**
 
-On top of that, organizations face three major challenges:
+**aeos365** is modular, unified, flexible, and easy to use. You get one authentication system with one intuitive interface across everything. You can deploy it as SaaS or on-premises—your choice. You pay only for what you use, nothing more. It scales from 50 to 50,000 users without breaking. And most importantly, it's easy for users to adopt and easy for developers to extend.
 
-1. **Integration Chaos**: Multiple disconnected systems create data silos and operational inefficiencies
-2. **Cost Burden**: Maintaining separate vendors, licenses, and support contracts is expensive
-3. **Limited Flexibility**: Most solutions are either enterprise monoliths (rigid and expensive) or scattered SaaS apps (unclear who owns what)
-
-This is the problem we're solving with **aeos365**.
-
----
-
-### **Why This Matters - Market Research (Slide 3 - Literature Review)**
-
-We didn't just come up with this idea in a vacuum. We reviewed extensive academic and industry research to validate our approach.
-
-The **Panorama Consulting Group** found that 87% of enterprises struggle with ERP integration complexity. **Bezemer and Zaidman** demonstrated that multi-tenant architectures, when properly implemented, can reduce operational costs by up to 40%. Our HRMAC implementation is based on the foundational work by **Ferraiolo and Kuhn**, which remains the industry standard for hierarchical role module access control. And we've incorporated modern cloud-native principles to ensure scalability and flexibility.
-
-This isn't just our vision—this is backed by research and proven best practices.
-
----
-
-### **Our Solution Approach (Slide 4 - Problem Statement)**
-
-So what's our answer? **aeos365** is a unified, modular enterprise platform that solves these problems head-on.
-
-Instead of forcing organizations to choose between rigid monoliths and chaotic scattered systems, we offer a **best-of-both-worlds approach**:
-
-- **Modular**: Pick the modules you need—HR, CRM, Finance, Operations, or all of them
-- **Unified**: One authentication system, one user interface, one data model
-- **Flexible**: Deploy it as a cloud SaaS solution or on your own infrastructure
-- **Scalable**: Built for organizations ranging from 50 to 50,000+ users
-
-Our platform addresses the fragmentation problem while maintaining the flexibility that modern organizations demand.
-
----
-
-### **What We're Trying to Achieve (Slide 5 - Primary Objectives)**
-
-We have eight primary objectives for aeos365:
-
-1. **Unified Business Platform**: Consolidate all functional modules under a single authentication framework
-2. **Dual-Deployment Architecture**: Support both SaaS and standalone deployments
-3. **Product-Based Distribution**: Tiered pricing model so organizations pay for what they use
-4. **Multi-Tenant Isolation**: Secure tenant separation with complete data isolation
-5. **Modular Subscription Model**: Flexible billing that grows with organizational needs
-6-8. Strategic objectives around user experience, security, and market competitiveness
-
-We're not just building another software tool. We're building a platform that transforms how enterprises manage their operations.
-
-With that foundation, I'd like to hand it over to [Student 2 Name], who will walk us through our system architecture and how we're making this vision a reality.
+Let me hand it over to [Student 2 Name].
 
 ---
 
 ---
 
 ## **PART 2: Architecture & Technical Foundation** (Student 2)
-**Slides: 6-10 | Duration: ~7 minutes**
+**Slides: 6-10 | Duration: ~2.5 minutes**
 
 **[Student 2 takes the stage]**
 
-### **Strategic Framework (Slide 6 - Secondary Objectives)**
+Thanks, [Student 1]. Let me explain our architecture.
 
-Thanks, [Student 1]. Now let's talk about how we're going to achieve those primary objectives.
+### **Four-Layer Architecture (Slides 6-7)**
 
-We have six secondary objectives that support our larger vision:
+We use a proven four-layer stack:
 
-1. **Microservices Architecture**: Breaking down the platform into independent, scalable services
-2. **API-First Design**: Enabling seamless third-party integrations and extensibility
-3. **Advanced Security**: Implementing multi-layer security from authentication to data encryption
-4. **Performance Optimization**: Ensuring sub-second response times even at scale
-5. **User Experience Excellence**: Intuitive interfaces that require minimal training
-6. **Compliance & Governance**: Meeting GDPR, HIPAA, and SOC 2 requirements globally
+**Layer 1 - UI**: React frontend—modern, responsive, intuitive. Developers love React, and end-users get a smooth experience.
 
-These aren't nice-to-haves—they're fundamental to how we build aeos365.
+**Layer 2 - Application**: Laravel backend. Stateless, RESTful, easy to extend. Developers can add features without touching other modules.
 
----
+**Layer 3 - Domain**: Modular services (HR, CRM, Finance). Each independent but shareable. Perfect for teams to work in parallel.
 
-### **The Four-Layer System (Slide 7 - System Architecture)**
+**Layer 4 - Infrastructure**: PostgreSQL, Redis, Kubernetes. Proven, scalable, enterprise-grade.
 
-At the core of aeos365 is our four-layer architecture:
+**Why this matters**: Developers don't get locked into legacy code. The architecture is clean and modular—adding a new feature means adding a new module, not hacking the entire system.
 
-**Layer 1 - Presentation**: React-based frontend delivering an intuitive, responsive user interface. Built with modern UI libraries for accessibility and performance.
+### **Deployment Flexibility (Slide 8)**
 
-**Layer 2 - Application**: Laravel-powered business logic layer. This is where all the rules, workflows, and business processes live. It's RESTful, stateless, and designed for horizontal scaling.
+**SaaS Mode**: We host everything. You log in. We handle updates. Zero infrastructure hassle. **Easy for end-users**.
 
-**Layer 3 - Domain**: Here's where the magic happens. We have modular domain services for HR, CRM, Finance, Operations, and others. Each operates independently but shares a common domain model.
+**Standalone Mode**: You deploy on your servers. Same codebase. Full control. **Easy for enterprises with strict requirements**.
 
-**Layer 4 - Infrastructure**: PostgreSQL for relational data, Redis for caching, message queues for asynchronous processing. Containerized with Docker and orchestrated with Kubernetes for automatic scaling.
+Same product, two deployment options. No maintaining two codebases.
 
-What this architecture gives us is **true modularity**. You can upgrade one module without touching others. You can scale specific services independently. You can integrate third-party tools via our APIs.
+### **Product Offerings (Slide 9)**
 
----
+We offer an HR Module covering recruitment, payroll, and performance management. We have a CRM Module for customer management, sales pipelines, and support. We provide a Finance Module for accounting and invoicing. And we include an Operations Module for inventory and workflow automation.
 
-### **Deployment Flexibility (Slide 8 - Dual Deployment Modes)**
+Beyond these business modules, we have foundation modules: Authentication, Multi-Tenancy, Reporting, and Integration APIs.
 
-One of our key differentiators is deployment flexibility.
+We package everything into three tiers. The Starter tier at $X is perfect for small teams. Professional tier at $Y is for growing companies with all modules and team collaboration. And Enterprise tier with custom pricing is for large organizations needing unlimited users and dedicated support. It's easy for customers to understand and easy for them to scale.
 
-**SaaS Model**: We host everything. You log in via browser. We handle updates, backups, scaling. Perfect for organizations that want zero infrastructure headache.
+### **Technology Stack (Slide 10)**
 
-**Standalone Model**: You control everything. Deploy on your own servers, your own cloud accounts, your own data centers. Perfect for enterprises with strict data residency requirements or existing infrastructure investments.
+React, Laravel, PostgreSQL, Docker, Kubernetes. All modern, all proven, all easy for developers to work with. We use REST APIs so integrations are simple. OAuth for auth, Stripe for payments, SendGrid for notifications.
 
-Both models use the exact same codebase. The only difference is where it runs. This means we're not maintaining two different products—we're maintaining one product with two deployment options.
+**Why developers love this**: Standard tools, clean architecture, ability to extend without rewriting.
 
----
-
-### **Modular Product Lineup (Slide 9 - Product Offerings & Pricing)**
-
-Let me show you what we're actually building:
-
-We have **business modules** for core operations:
-- **HR Management**: Recruitment, onboarding, payroll, performance management
-- **CRM**: Customer management, sales pipelines, support ticketing
-- **Finance**: Accounting, invoicing, expense management, reporting
-- **Operations**: Inventory, supply chain, workflow automation
-
-And **foundation modules** that enable everything else:
-- **Authentication & Authorization**: Secure identity management and access control
-- **Multi-Tenancy**: Complete data isolation and tenant management
-- **Reporting**: Advanced analytics and business intelligence
-- **Integration**: APIs and webhooks for third-party connections
-
-We package these into three tiers:
-
-**Starter**: Core HR + Basic CRM—perfect for small businesses
-**Professional**: All modules with team collaboration—for growing companies  
-**Enterprise**: Unlimited users, advanced customization, dedicated support—for enterprises
-
----
-
-### **What We're Built With (Slide 10 - Technology Stack)**
-
-Let me be transparent about our technical choices:
-
-**Frontend**: React with TypeScript, Redux for state management, Tailwind for styling
-**Backend**: Laravel with PHP, RESTful APIs, event-driven architecture
-**Database**: PostgreSQL for transactional data, Redis for caching
-**Infrastructure**: Docker for containerization, Kubernetes for orchestration
-**Cloud**: AWS/Azure for SaaS deployments, support for on-premises
-
-Why these choices? Because they're battle-tested, widely adopted, and we can hire talented developers for them. We're not reinventing the wheel—we're using proven technology to build something new.
-
-We've also integrated with tools like OAuth for authentication, Stripe for payments, and SendGrid for notifications. This isn't a closed system—it's built to work with the modern software ecosystem.
-
-Now that you understand our architecture and products, let me hand it over to [Student 3 Name], who will explain the two innovations that make aeos365 truly special: multi-tenancy and hierarchical role module access control.
+Now let me hand it over to [Student 3 Name], who'll explain our core security innovations.
 
 ---
 
 ---
 
 ## **PART 3: Core Innovations & Technical Implementation** (Student 3)
-**Slides: 11-16 | Duration: ~7 minutes**
+**Slides: 11-16 | Duration: ~2.5 minutes**
 
 **[Student 3 takes the stage]**
 
-### **Introduction to Our Innovations**
+Thanks, [Student 2]. We solve two hard problems: **How do you run multiple customers securely on the same infrastructure? How do you let each organization control permissions without chaos?**
 
-Thanks, [Student 2]. Now we're going to dive into the technical innovations that make aeos365 stand out.
+### **Multi-Tenancy Architecture (Slides 11-12)**
 
-One of the biggest challenges in enterprise software is: **How do you support multiple organizations on the same infrastructure without compromising data security or performance?** And **how do you give each organization granular control over who can do what?**
+**Multi-tenancy** means multiple customers, one infrastructure, completely isolated data.
 
-These are hard problems. We've solved them with two core innovations: **multi-tenancy architecture** and **hierarchical role module access control**.
+Think of an apartment building: shared infrastructure, private apartments, zero data cross-contamination.
 
----
+**For end-users**: Each customer gets their own subdomain (`acme.aeos365.cloud`, `globex.aeos365.cloud`). Their data never mixes with others. Complete database isolation—not row-level tricks that can leak.
 
-### **Multi-Tenancy Explained (Slide 11 - Multi-Tenancy Architecture)**
+**For developers**: One codebase serves thousands of tenants. When you add a new feature, it automatically works for all customers. Scaling is handled by the platform, not by rewriting code.
 
-Multi-tenancy means multiple customers sharing the same infrastructure, but with completely separate data.
+**Benefits**: Security, compliance, performance, scalability. No noisy neighbor problems.
 
-Think of it like an apartment building. Everyone shares the same building infrastructure, but each apartment is completely private. Your neighbors can't look into your apartment, and you can't access their belongings.
+### **HRMAC System (Slides 13-14)**
 
-Here's how we implement it in aeos365:
+**Hierarchical Role Module Access Control** gives permission management at two levels: **roles** and **permissions**.
 
-**Customer A** might be at `acme.aeos365.cloud`. Their data goes to their dedicated database.
-**Customer B** might be at `globex.aeos365.cloud`. Their data goes to their dedicated database.
+Instead of assigning permissions to 500 individual users, create one "Manager" role, assign permissions to it, assign users to the role. **Easy for end-users to understand and manage**.
 
-Even though they're on the same servers, their data is completely isolated. We don't use row-level filtering tricks that can leak data through query errors. We use complete database isolation—one database per tenant.
+**Developer impact**: Permission checks are built into the API layer. Every endpoint validates permissions automatically. Add a new feature? Add it to a permission scope. The system handles the rest. No permission logic scattered across code.
 
-This gives us several advantages:
-- **Security**: Zero chance of data cross-contamination
-- **Compliance**: Each customer's data can meet their specific compliance requirements
-- **Performance**: No noisy neighbor problems—one customer's spike doesn't affect others
-- **Scalability**: We can easily add more tenants or migrate tenants to different servers
+**Granular control**: Module → Submodule → Component → Action (e.g., HR → Payroll → SalaryView). Works from simple (Reader, Editor, Admin) to complex enterprise hierarchies.
 
----
+### **Why This Matters (Slide 15-16)**
 
-### **Multi-Tenancy Implementation Details (Slide 12 - Multi-Tenancy Implementation)**
+**For end-users**: Intuitive permission model. No confusion. IT teams manage roles, everyone else just works.
 
-Let's get technical about how we actually build this:
+**For developers**: Clean separation of concerns. Authentication is separate from authorization. Extension is simple. You add a new permission constant, the system enforces it everywhere.
 
-**Tenant Identification & Isolation**:
-- Each organization is identified by their unique subdomain
-- Our middleware automatically detects which tenant is making the request
-- All database queries are automatically scoped to that tenant
-
-**Tenant Management & Operations**:
-- When a new customer signs up, we automatically provision their database
-- Their configurations are stored separately
-- Updates can be deployed per-tenant or globally based on their needs
-
-**Data Security**:
-- Encryption at rest and in transit
-- No cross-tenant queries possible due to database isolation
-- Audit logging for compliance requirements
-
-This architecture scales to thousands of tenants without compromising security or performance.
-
----
-
-### **HRMAC System Overview (Slide 13 - HRMAC System)**
-
-Now, within each tenant, we need a sophisticated permission system. We use **Hierarchical Role Module Access Control**, or HRMAC.
-
-Here's the idea: Instead of assigning permissions directly to users, we create **roles** (like "Manager" or "Accountant"), assign permissions to those roles, and then assign users to roles.
-
-This makes management simple. If you have 500 employees and need to grant them all the same permissions, you create one role and assign 500 users to it. If one user needs elevated permissions, they get a second role.
-
-We support:
-- **Role Hierarchies**: Manager roles can inherit from Employee roles
-- **Multiple Role Assignments**: A user can have Admin for HR and Editor for Finance
-- **Dynamic Permissions**: Permissions generated at runtime based on system state
-- **Custom Permissions**: Organizations can define permissions specific to their workflows
-
----
-
-### **HRMAC Implementation (Slide 14 - HRMAC Implementation)**
-
-How do we technically build this?
-
-**Role Definition & Management**:
-- Each tenant creates their own role structure
-- Pre-built role templates (Admin, Manager, User) with sensible defaults
-- Support for custom roles specific to the organization
-
-**Permission Granularity**:
-- Permissions follow a hierarchy: Module → Submodule → Component → Action
-- For example: HR → Payroll → SalaryManagement → View
-- This allows extremely granular control
-
-**Permission Enforcement**:
-- Every API endpoint checks permissions before executing
-- Frontend respects permissions to hide unavailable features
-- Database queries automatically filtered by permission level
-
-A typical user might have: "HR Manager" role giving them full access to HR module, plus "Finance Viewer" role giving them read-only access to financial reports.
-
----
-
-### **Key Features & Innovations (Slide 15 - Key Features & Innovations)**
-
-Let me highlight what makes aeos365 special:
-
-**Technology Stack**:
-- React, Laravel, PostgreSQL, Kubernetes—modern, standards-based
-- REST APIs for easy integration
-- Docker for consistent deployment
-- Redis for performance
-
-**Frontend Capabilities**:
-- Responsive design that works from phone to desktop
-- Real-time notifications and collaboration
-- Advanced filtering and search
-- Customizable dashboards
-
-**Backend Capabilities**:
-- Async processing for long-running tasks
-- Webhook support for external integrations
-- Advanced audit logging
-- Multi-language support
-
-**Data & AI**:
-- Business intelligence dashboard
-- Predictive analytics for forecasting
-- Machine learning for anomaly detection
-
-**Tenancy & Security**:
-- Complete data isolation
-- Fine-grained HRMAC
-- Encryption everywhere
-- Compliance certifications
-
----
-
-### **How We Build It (Slide 16 - Development Methodology)**
-
-We're not building this in a vacuum. Our development approach:
-
-**Methodology**: Agile with 2-week sprints
-**Code Quality**: 80%+ test coverage with PHPUnit and Jest
-**Deployment**: CI/CD pipeline with GitHub Actions
-**Monitoring**: Real-time application performance monitoring
-**Security**: Regular penetration testing and code reviews
-
-We follow industry best practices for secure, scalable software development.
-
-Now that you understand the innovation behind aeos365, let me hand it over to [Student 4 Name], who will walk us through how we're deploying this, ensuring quality, and bringing it to market.
+Now let me hand it over to [Student 4 Name], who'll explain our deployment and go-to-market strategy.
 
 ---
 
 ---
 
 ## **PART 4: Go-to-Market & Closing** (Student 4)
-**Slides: 17-21 | Duration: ~7 minutes**
+**Slides: 17-21 | Duration: ~2.5 minutes**
 
 **[Student 4 takes the stage]**
 
-### **Getting aeos365 to Market (Slide 17 - Deployment Strategy)**
+Thanks, [Student 3]. Let me wrap up how we're bringing aeos365 to market.
 
-Thanks, [Student 3]. Now let's talk about how we're actually deploying aeos365 to customers.
+### **Deployment Strategy (Slide 17)**
 
-We offer two deployment models:
+**SaaS Deployment**: Multi-tenant cloud. Automatic scaling. We manage everything. **Zero infrastructure headache for customers**.
 
-**SaaS Deployment Model**:
-- Multi-tenant cloud hosting on AWS/Azure
-- Automatic tenant provisioning and scaling
-- Centralized version management with zero-downtime deployments
-- We manage all infrastructure, backups, and reliability—you just use it
+**Standalone Deployment**: Docker-based. Deploy on your servers. **Full control for enterprises**.
 
-**Standalone Deployment Model**:
-- Complete application packaged for on-premises installation
-- Docker containerization for consistency
-- Single-tenant deployment for data-sensitive organizations
-- Self-managed updates and infrastructure—you have full control
+Same codebase, two deployment models. Customers choose what works for them.
 
-Both models can coexist. An enterprise might run the SaaS model for their North American operations and standalone for their European offices (due to data residency laws).
+### **Quality & Timeline (Slides 18-19)**
 
-We handle the complexity of deployment so customers just focus on business value.
+Our testing strategy includes 80% or higher code coverage with automated testing across unit, integration, performance, security, and compliance. Real customers are involved in user acceptance testing so we're building what people actually need.
 
----
+Our development timeline is 7 months to MVP. This is realistic, aggressive, and very achievable. In weeks 1-3, we build the core architecture. Weeks 4-7 focus on business modules. Weeks 8-13 add advanced features. Weeks 14-18 are dedicated to security hardening and performance optimization. And weeks 19-29 handle production deployment and customer onboarding.
 
-### **Quality Assurance (Slide 18 - Testing Strategy)**
+### **Why This Works (Slide 20)**
 
-Quality is non-negotiable. Here's our comprehensive testing strategy:
+Let me share the market opportunity. There's over $500 billion in annual enterprise software spending globally. Organizations desperately need consolidated platforms. Just the mid-market segment alone represents a $10 billion opportunity.
 
-**Unit Testing**: 80%+ code coverage with PHPUnit and Jest
-**Frontend Testing**: Component testing with React Testing Library
-**Integration Testing**: Full API endpoint testing against real databases
-**Performance Testing**: Load testing with 1000+ concurrent users
-**End-to-End Testing**: Selenium/Playwright for complete user workflows
-**Security Testing**: OWASP Top 10 scanning and penetration testing
-**Compliance Testing**: GDPR, HIPAA, SOC 2 validation
-**User Acceptance Testing**: Real customers testing real workflows
+We have several competitive advantages. We're modular, unlike rigid monoliths. We offer flexible deployment, unlike single-deployment competitors. We use a modern stack, unlike legacy vendors stuck with old technology. We have fair pricing, unlike enterprise vendors with astronomical costs. We're easy to use, requiring almost no training. And critically, we're easy to extend thanks to our clean architecture that developers love.
 
-Every single line of code goes through this gauntlet before reaching production.
+On our path to profitability, we expect break-even within 24-30 months with realistic customer acquisition targets.
 
----
+### **Final Thoughts (Slide 21)**
 
-### **Project Timeline (Slide 19 - Timeline)**
+**aeos365** solves a real problem. We've identified the fragmentation crisis in enterprise software. We've designed a unified, modular solution to fix it. We've architected it with ease of use for end-users and developer extensibility as first-class concerns. And we've planned a realistic, achievable roadmap.
 
-Here's our realistic project timeline:
+Here are the key takeaways. Enterprise software is too fragmented today. aeos365 unifies everything into one easy-to-use platform. Our multi-tenancy and HRMAC innovations solve hard security problems. The modular architecture makes it easy for developers to extend and customize. And we're deploying to market within 7 months.
 
-**Phase 1** (3 weeks): Core platform architecture and foundational modules
-**Phase 2** (4 weeks): Business modules (HR, CRM) development
-**Phase 3** (6 weeks): Advanced features (Analytics, Integration, AI)
-**Phase 4** (5 weeks): Security, compliance, and performance optimization
-**Phase 5** (3 weeks): Production deployment and support infrastructure
-**Phase 6** (2 weeks): Initial customer onboarding and feedback
+This is a serious project with real market demand.
 
-**Total: 29 weeks to MVP** (roughly 7 months)
-
-We're being realistic about timeline. We're not promising the moon—we're delivering a solid MVP that customers can use and build on.
-
----
-
-### **Why This Matters (Slide 20 - Conclusion)**
-
-Let me wrap up why we're excited about aeos365:
-
-This project addresses a real market need. Organizations are drowning in disconnected systems and rising software costs. They want flexibility, security, and reliability—and they're willing to pay for it.
-
-**The market opportunity**:
-- $500B+ enterprise software spend annually
-- Organizations want consolidated platforms
-- We're targeting mid-market (500-5,000 employees)—roughly $10B TAM
-
-**Our competitive advantages**:
-- Modular architecture (unlike monolithic competitors)
-- Deployment flexibility (unlike single-deployment competitors)
-- Modern technology stack (unlike legacy vendors)
-- Fair pricing (unlike enterprise vendors)
-
-**Our path to success**:
-- MVP in 7 months
-- Initial customer acquisition in months 8-12
-- Profitability within 24-30 months
-
-This isn't just a class project. This is a viable business with real customer demand.
-
----
-
-### **Final Thoughts & Q&A (Slide 21 - Questions & Answers)**
-
-In closing, aeos365 represents the future of enterprise software: modular, flexible, scalable, and human-centered.
-
-We've:
-- **Identified** a real problem in the enterprise software market
-- **Designed** a comprehensive solution with multi-tenancy and HRMAC
-- **Architected** a modern, scalable technical platform
-- **Planned** a realistic path to market with quality assurance
-
-We're not here to give you vaporware. We're here to show you a serious project with serious potential.
-
-**Key Takeaways**:
-- Enterprise software is too fragmented
-- aeos365 unifies everything into one platform
-- Our multi-tenancy and HRMAC innovations solve hard problems
-- We're deploying to market within 7 months
-- This is a real business opportunity
-
----
-
-Thank you all for your attention. We're now happy to answer any questions you might have about aeos365—our architecture, our go-to-market strategy, our technology choices, or our business plan.
-
-We welcome your feedback and insights.
-
-**Questions?**
-
----
+**Thank you. Questions?**
 
 ---
 
@@ -443,42 +163,34 @@ We welcome your feedback and insights.
 
 | Part | Speaker | Duration | Key Slides | Theme |
 |------|---------|----------|-----------|-------|
-| 1 | Student 1 | ~7 min | 1-5 | Problem & Vision |
-| 2 | Student 2 | ~7 min | 6-10 | Architecture & Products |
-| 3 | Student 3 | ~7 min | 11-16 | Technical Innovation |
-| 4 | Student 4 | ~7 min | 17-21 | Execution & Market |
-| **Total** | **4 Students** | **~28 min** | **21 Slides** | **Complete Story** |
+| 1 | Student 1 | ~2.5 min | 1-5 | Problem & Vision |
+| 2 | Student 2 | ~2.5 min | 6-10 | Architecture & Developer Experience |
+| 3 | Student 3 | ~2.5 min | 11-16 | Security Innovations for Users & Developers |
+| 4 | Student 4 | ~2.5 min | 17-21 | Execution & Market |
+| **Total** | **4 Students** | **~10 min** | **21 Slides** | **Complete Story** |
 
 ---
 
-## **Pro Tips for Delivery**
+## **Delivery Tips**
 
-1. **Pace**: Speak slowly and deliberately. Let important points sink in.
-2. **Engagement**: Make eye contact with the audience. Vary your tone.
-3. **Transitions**: Each speaker should clearly hand off to the next: "Now, I'd like to introduce [Student Name]..."
-4. **Questions**: Encourage questions after each section, not just at the end.
-5. **Slide Usage**: Point to specific elements on slides rather than reading them verbatim.
-6. **Confidence**: You know this material. Speak with conviction. You're teaching the audience about your work.
-7. **Timing**: Practice beforehand. Adjust this script to fit your natural speaking pace.
-8. **Remote Delivery**: If presenting remotely, ensure good lighting and clear audio. Share screens effectively.
+First, pace yourselves. Speak naturally, not rushed. Important points sink in better when you take your time. Second, maintain engagement with your audience through eye contact and varying your tone. When using slides, point to specific elements rather than reading verbatim. Make smooth hand-offs between speakers by saying things like "Now I'd like to introduce [Student Name]." Practice the timing beforehand and adjust the script to fit your natural speaking pace. Most importantly, remember that you know this material—speak with confidence and conviction.
 
 ---
 
-## **Anticipatable Questions & Answers**
+## **Key Focus Areas: Ease of Use & Developer Experience**
 
-**Q: What about competitors like SAP, Salesforce, or NetSuite?**
-A: We're not trying to compete with enterprise behemoths on feature count. We're competing on flexibility and ease of use. Our modular architecture means organizations can start small and grow. We're targeting mid-market where total cost of ownership matters more than brand name.
+Throughout this presentation, we emphasize two core principles:
 
-**Q: How do you ensure data security with multi-tenancy?**
-A: Complete database isolation—no shared tables, no row-level filtering. Each tenant has their own database. We can't engineer our way to a data leak through shared infrastructure.
+### **Ease of Use for End-Users**
 
-**Q: What's your pricing model?**
-A: Tiered SaaS pricing starting at $X for Starter plan, $Y for Professional, and custom pricing for Enterprise. Standalone deployments have a different model based on organization size.
+We prioritize an intuitive React UI with a minimal learning curve. Users get unified authentication with one login for everything they need. We use a standardized permission model based on roles, not complex ACLs that confuse people. They experience one consistent interface across all modules. And we provide clear onboarding and comprehensive documentation.
 
-**Q: How long until profitability?**
-A: With realistic customer acquisition, we project break-even around month 24-30, depending on customer lifetime value and churn assumptions.
+### **Ease of Development for Developers**
 
-**Q: Why not use existing frameworks?**
-A: We are. We're built on React, Laravel, PostgreSQL—all proven frameworks. We're not reinventing the wheel. We're combining them in a new way to solve a specific problem.
+Developers benefit from a clean modular architecture with no monolith mess. We use a standard tech stack with React, Laravel, and PostgreSQL—no proprietary languages that limit hiring. REST APIs enable easy integration and extensibility. We maintain clear separation of concerns across authentication, domain logic, and infrastructure. A single codebase handles multiple deployment scenarios without duplication. And we've built an automated testing framework with CI/CD pipeline baked in from the start.
+
+**Result**: Both end-users and developers have great experiences, making aeos365 easy to adopt and maintain.
+
+---
 
 ---
