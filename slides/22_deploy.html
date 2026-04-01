@@ -1,0 +1,266 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Deployment Strategy</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #ffffff; /* Slate 900 */
+        }
+        .slide-container {
+            width: 100vw; 
+            height: 90vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+            color: #0f172a;
+            overflow: hidden;
+            padding: 40px 60px;
+            box-sizing: border-box;
+        }
+
+        .header {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .slide-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .slide-title::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 36px;
+            background-color: #0d9488;
+            margin-right: 20px;
+            border-radius: 3px;
+        }
+
+        .header-logo {
+            font-size: 18px;
+            font-weight: 600;
+            color: #6b7280;
+            margin: 0;
+        }
+
+        .content-wrapper {
+            flex: 1;
+            overflow-y: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .deploy-card {
+            background-color: rgba(243, 244, 246, 0.3);
+            border: 1px solid rgba(13, 148, 136, 0.2);
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .deploy-heading {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0d9488;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .deploy-icon {
+            font-size: 20px;
+            opacity: 0.9;
+        }
+
+        .deploy-items {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .deploy-item {
+            font-size: 14px;
+            color: #4b5563;
+            line-height: 1.6;
+            padding-left: 24px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .deploy-item::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #0d9488;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .deploy-label {
+            font-weight: 700;
+            color: #0d9488;
+        }
+
+        .deploy-desc {
+            font-size: 12px;
+            color: #4b5563;
+            opacity: 0.9;
+        }
+
+    @media (max-height: 820px) {
+        body {overflow: auto; }
+        .slide-container {
+            height: auto;
+            min-height: 100vh;
+            overflow: visible;
+            padding: 24px 32px;
+        }
+    }
+</style>
+</head>
+<body>
+<div class="slide-container">
+<div class="header">
+<h1 class="slide-title">Deployment Strategy</h1>
+<p class="header-logo">aeos365 Project Proposal</p>
+</div>
+<div class="content-wrapper">
+<!-- SaaS Deployment -->
+<div class="deploy-card">
+<h2 class="deploy-heading">
+<i class="fas fa-cloud deploy-icon"></i> SaaS Deployment Model
+</h2>
+<ul class="deploy-items">
+<li class="deploy-item">
+<span class="deploy-label">Multi-Tenant Cloud Hosting</span>
+<span class="deploy-desc">Centralized infrastructure on AWS/Azure with automatic tenant provisioning</span>
+</li>
+<li class="deploy-item">
+<span class="deploy-label">Subdomain Management</span>
+<span class="deploy-desc">Each tenant assigned unique subdomain (e.g., acme.aeos365.cloud)</span>
+</li>
+<li class="deploy-item">
+<span class="deploy-label">Auto-Scaling Infrastructure</span>
+<span class="deploy-desc">Kubernetes-based scaling for handling variable tenant loads</span>
+</li>
+<li class="deploy-item">
+<span class="deploy-label">Managed Updates</span>
+<span class="deploy-desc">Centralized version management with blue-green deployment strategies</span>
+</li>
+</ul>
+</div>
+
+<!-- Standalone Deployment -->
+<div class="deploy-card">
+<h2 class="deploy-heading">
+<i class="fas fa-server deploy-icon"></i> Standalone Deployment Model
+</h2>
+<ul class="deploy-items">
+<li class="deploy-item">
+<span class="deploy-label">On-Premises Installation</span>
+<span class="deploy-desc">Complete application packaged for private datacenter deployment</span>
+</li>
+<li class="deploy-item">
+<span class="deploy-label">Docker Containerization</span>
+<span class="deploy-desc">Containerized deployment for consistent environment across systems</span>
+</li>
+<li class="deploy-item">
+<span class="deploy-label">Single-Tenant Database</span>
+<span class="deploy-desc">Dedicated database instance for standalone organizations</span>
+</li>
+<li class="deploy-item">
+<span class="deploy-label">Self-Managed Updates</span>
+<span class="deploy-desc">Organizations control update schedules and procedures</span>
+</li>
+</ul>
+</div>
+
+<!-- Infrastructure & DevOps -->
+<div class="deploy-card">
+<h2 class="deploy-heading">
+<i class="fas fa-wrench deploy-icon"></i> Infrastructure & DevOps
+</h2>
+<ul class="deploy-items">
+<li class="deploy-item">
+<span class="deploy-label">CI/CD Pipeline</span>
+<span class="deploy-desc">Automated testing, building, and deployment workflows</span>
+</li>
+<li class="deploy-item">
+<span class="deploy-label">Monitoring & Logging</span>
+<span class="deploy-desc">ELK Stack for centralized logging and real-time monitoring</span>
+</li>
+<li class="deploy-item">
+<span class="deploy-label">Database Migration</span>
+<span class="deploy-desc">Automated schema versioning and migration strategies</span>
+</li>
+<li class="deploy-item">
+<span class="deploy-label">Backup & Disaster Recovery</span>
+<span class="deploy-desc">Regular automated backups with point-in-time recovery capability</span>
+</li>
+</ul>
+</div>
+
+<!-- Performance & Optimization -->
+<div class="deploy-card">
+<h2 class="deploy-heading">
+<i class="fas fa-bolt deploy-icon"></i> Performance & Optimization
+</h2>
+<ul class="deploy-items">
+<li class="deploy-item">
+<span class="deploy-label">CDN Configuration</span>
+<span class="deploy-desc">Global content delivery network for asset distribution</span>
+</li>
+<li class="deploy-item">
+<span class="deploy-label">Caching Strategy</span>
+<span class="deploy-desc">Redis caching, HTTP caching, and browser caching optimization</span>
+</li>
+<li class="deploy-item">
+<span class="deploy-label">Database Optimization</span>
+<span class="deploy-desc">Query optimization, indexing strategies, and connection pooling</span>
+</li>
+<li class="deploy-item">
+<span class="deploy-label">Load Balancing</span>
+<span class="deploy-desc">Intelligent request distribution across multiple instances</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,266 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RBAC Implementation</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #ffffff; /* Slate 900 */
+        }
+        .slide-container {
+            width: 100vw; 
+            height: 90vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+            color: #0f172a;
+            overflow: hidden;
+            padding: 40px 60px;
+            box-sizing: border-box;
+        }
+
+        .header {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .slide-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .slide-title::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 36px;
+            background-color: #f97316;
+            margin-right: 20px;
+            border-radius: 3px;
+        }
+
+        .header-logo {
+            font-size: 18px;
+            font-weight: 600;
+            color: #6b7280;
+            margin: 0;
+        }
+
+        .content-wrapper {
+            flex: 1;
+            overflow-y: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .impl-card {
+            background-color: rgba(243, 244, 246, 0.3);
+            border: 1px solid rgba(249, 115, 22, 0.2);
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .impl-heading {
+            font-size: 18px;
+            font-weight: 700;
+            color: #b45309;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .impl-icon {
+            font-size: 20px;
+            opacity: 0.9;
+        }
+
+        .impl-items {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .impl-item {
+            font-size: 14px;
+            color: #4b5563;
+            line-height: 1.6;
+            padding-left: 24px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .impl-item::before {
+            content: '•';
+            position: absolute;
+            left: 8px;
+            color: #f97316;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .impl-label {
+            font-weight: 700;
+            color: #dc2626;
+        }
+
+        .impl-desc {
+            font-size: 12px;
+            color: #4b5563;
+            opacity: 0.9;
+        }
+
+    @media (max-height: 820px) {
+        body { overflow: auto; }
+        .slide-container {
+            height: auto;
+            min-height: 100vh;
+            overflow: visible;
+            padding: 24px 32px;
+        }
+    }
+</style>
+</head>
+<body>
+<div class="slide-container">
+<div class="header">
+<h1 class="slide-title">RBAC Implementation</h1>
+<p class="header-logo">aeos365 Project Proposal</p>
+</div>
+<div class="content-wrapper">
+<!-- Role Definition & Management -->
+<div class="impl-card">
+<h2 class="impl-heading">
+<i class="fas fa-sitemap impl-icon"></i> Role Definition & Management
+</h2>
+<ul class="impl-items">
+<li class="impl-item">
+<span class="impl-label">Role Creation</span>
+<span class="impl-desc">Tenants create custom roles with specific permission combinations</span>
+</li>
+<li class="impl-item">
+<span class="impl-label">Pre-built Role Templates</span>
+<span class="impl-desc">Common roles (Admin, Manager, User) with sensible defaults</span>
+</li>
+<li class="impl-item">
+<span class="impl-label">Role Hierarchies</span>
+<span class="impl-desc">Support for role inheritance and delegation patterns</span>
+</li>
+<li class="impl-item">
+<span class="impl-label">Dynamic Role Assignment</span>
+<span class="impl-desc">Users can be assigned multiple roles with context-based activation</span>
+</li>
+</ul>
+</div>
+
+<!-- Permission Granularity -->
+<div class="impl-card">
+<h2 class="impl-heading">
+<i class="fas fa-lock impl-icon"></i> Permission Granularity
+</h2>
+<ul class="impl-items">
+<li class="impl-item">
+<span class="impl-label">Permission Hierarchy</span>
+<span class="impl-desc">Permissions defined at Module → Submodule → Component → Action levels</span>
+</li>
+<li class="impl-item">
+<span class="impl-label">Dynamic Permissions</span>
+<span class="impl-desc">Permissions generated and cached at runtime for performance</span>
+</li>
+<li class="impl-item">
+<span class="impl-label">Custom Permissions</span>
+<span class="impl-desc">Organizations can define custom permissions for specific workflows</span>
+</li>
+<li class="impl-item">
+<span class="impl-label">Permission Audit</span>
+<span class="impl-desc">Complete visibility into permission assignments and changes</span>
+</li>
+</ul>
+</div>
+
+<!-- Enforcement & Middleware -->
+<div class="impl-card">
+<h2 class="impl-heading">
+<i class="fas fa-shield-alt impl-icon"></i> Enforcement & Middleware
+</h2>
+<ul class="impl-items">
+<li class="impl-item">
+<span class="impl-label">Route-Level Authorization</span>
+<span class="impl-desc">Middleware intercepts requests and validates user permissions</span>
+</li>
+<li class="impl-item">
+<span class="impl-label">Object-Level Access Control</span>
+<span class="impl-desc">Fine-grained control over specific resource instances</span>
+</li>
+<li class="impl-item">
+<span class="impl-label">Frontend Permission Hints</span>
+<span class="impl-desc">UI elements hidden/disabled based on user permissions</span>
+</li>
+<li class="impl-item">
+<span class="impl-label">Access Denial Handling</span>
+<span class="impl-desc">Graceful error handling and audit logging for denied actions</span>
+</li>
+</ul>
+</div>
+
+<!-- Monitoring & Compliance -->
+<div class="impl-card">
+<h2 class="impl-heading">
+<i class="fas fa-chart-bar impl-icon"></i> Monitoring & Compliance
+</h2>
+<ul class="impl-items">
+<li class="impl-item">
+<span class="impl-label">Permission Usage Metrics</span>
+<span class="impl-desc">Analytics on which roles and permissions are actively used</span>
+</li>
+<li class="impl-item">
+<span class="impl-label">Unused Role Detection</span>
+<span class="impl-desc">Identify and clean up orphaned or unnecessary roles</span>
+</li>
+<li class="impl-item">
+<span class="impl-label">Active Directory Integration</span>
+<span class="impl-desc">Integration with enterprise directory services (LDAP, SAML)</span>
+</li>
+<li class="impl-item">
+<span class="impl-label">Compliance Reports</span>
+<span class="impl-desc">Generate reports for SOC 2, ISO 27001, and other standards</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+
+
+
+
+

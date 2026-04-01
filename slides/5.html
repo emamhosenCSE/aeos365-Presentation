@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Primary Objectives</title>
+<title>Objectives</title>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
@@ -14,7 +14,7 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-color: #0f172a; /* Slate 900 */
+            background-color: #ffffff; /* Slate 900 */
         }
         .slide-container {
              width: 100vw; 
@@ -22,8 +22,8 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            background-color: #0f172a;
-            color: white;
+            background-color: #ffffff;
+            color: #0f172a;
             overflow: hidden;
             padding: 40px 60px;
             box-sizing: border-box;
@@ -57,7 +57,7 @@
             position: relative;
             z-index: 10;
             margin-bottom: 30px;
-            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+            border-bottom: 1px solid #e2e8f0;
             padding-bottom: 15px;
             display: flex;
             justify-content: space-between;
@@ -67,7 +67,7 @@
         .slide-title {
             font-size: 36px;
             font-weight: 700;
-            color: #ffffff;
+            color: #0f172a;
             margin: 0;
             display: flex;
             align-items: center;
@@ -86,7 +86,7 @@
         .header-logo {
             font-size: 18px;
             font-weight: 600;
-            color: #94a3b8;
+            color: #6b7280;
             margin: 0;
         }
 
@@ -108,8 +108,8 @@
 
         /* Objective Card Styles */
         .obj-card {
-            background-color: rgba(30, 41, 59, 0.4); /* Slate 800 */
-            border: 1px solid rgba(148, 163, 184, 0.1);
+            background-color: rgba(243, 244, 246, 0.4); /* Slate 800 */
+            border: 1px solid rgba(229, 231, 235, 0.1);
             border-radius: 12px;
             padding: 16px 20px;
             display: flex;
@@ -133,41 +133,41 @@
 
         /* Alternating accent colors for variety */
         .col-left .obj-card:nth-child(1)::before { background-color: #34d399; } /* Emerald */
-        .col-left .obj-card:nth-child(2)::before { background-color: #2dd4bf; } /* Teal */
-        .col-left .obj-card:nth-child(3)::before { background-color: #38bdf8; } /* Sky */
-        .col-left .obj-card:nth-child(4)::before { background-color: #60a5fa; } /* Blue */
+        .col-left .obj-card:nth-child(2)::before { background-color: #0d9488; } /* Teal */
+        .col-left .obj-card:nth-child(3)::before { background-color: #0369a1; } /* Sky */
+        .col-left .obj-card:nth-child(4)::before { background-color: #1e40af; } /* Blue */
 
-        .col-right .obj-card:nth-child(1)::before { background-color: #818cf8; } /* Indigo */
-        .col-right .obj-card:nth-child(2)::before { background-color: #a78bfa; } /* Violet */
-        .col-right .obj-card:nth-child(3)::before { background-color: #c084fc; } /* Purple */
+        .col-right .obj-card:nth-child(1)::before { background-color: #4f46e5; } /* Indigo */
+        .col-right .obj-card:nth-child(2)::before { background-color: #7c3aed; } /* Violet */
+        .col-right .obj-card:nth-child(3)::before { background-color: #9333ea; } /* Purple */
         .col-right .obj-card:nth-child(4)::before { background-color: #f472b6; } /* Pink */
 
         .icon-box {
             width: 48px;
             height: 48px;
             border-radius: 10px;
-            background-color: rgba(15, 23, 42, 0.5);
+            background-color: rgba(59, 130, 246, 0.08);
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid #f8fafc;
         }
 
         .obj-icon {
             font-size: 20px;
-            color: #e2e8f0;
+            color: #0f172a;
         }
 
         /* Icon colors matching accents */
         .col-left .obj-card:nth-child(1) .obj-icon { color: #34d399; }
-        .col-left .obj-card:nth-child(2) .obj-icon { color: #2dd4bf; }
-        .col-left .obj-card:nth-child(3) .obj-icon { color: #38bdf8; }
-        .col-left .obj-card:nth-child(4) .obj-icon { color: #60a5fa; }
+        .col-left .obj-card:nth-child(2) .obj-icon { color: #0d9488; }
+        .col-left .obj-card:nth-child(3) .obj-icon { color: #0369a1; }
+        .col-left .obj-card:nth-child(4) .obj-icon { color: #1e40af; }
 
-        .col-right .obj-card:nth-child(1) .obj-icon { color: #818cf8; }
-        .col-right .obj-card:nth-child(2) .obj-icon { color: #a78bfa; }
-        .col-right .obj-card:nth-child(3) .obj-icon { color: #c084fc; }
+        .col-right .obj-card:nth-child(1) .obj-icon { color: #4f46e5; }
+        .col-right .obj-card:nth-child(2) .obj-icon { color: #7c3aed; }
+        .col-right .obj-card:nth-child(3) .obj-icon { color: #9333ea; }
         .col-right .obj-card:nth-child(4) .obj-icon { color: #f472b6; }
 
         .text-content {
@@ -184,7 +184,7 @@
         .obj-title {
             font-size: 17px;
             font-weight: 700;
-            color: #ffffff;
+            color: #0f172a;
             margin: 0;
         }
 
@@ -197,7 +197,7 @@
 
         .obj-desc {
             font-size: 14px;
-            color: #cbd5e1;
+            color: #4b5563;
             margin: 0;
             line-height: 1.4;
         }
@@ -223,7 +223,7 @@
 <div class="bg-orb bg-orb-1"></div>
 <div class="bg-orb bg-orb-2"></div>
 <div class="header">
-<h1 class="slide-title">Primary Objectives</h1>
+<h1 class="slide-title">Objectives</h1>
 <p class="header-logo">aeos365 Project Proposal</p>
 </div>
 <div class="content-wrapper">
@@ -341,3 +341,9 @@
 </div>
 </body>
 </html>
+
+
+
+
+
+

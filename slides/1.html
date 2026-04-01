@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>aeos365 Cover Slide</title>
+<title>Introduction</title>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
@@ -14,7 +14,7 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-color: #0f172a; /* Slate 900 */
+            background-color: #ffffff;
         }
         .slide-container {
             width: 100vw; 
@@ -22,8 +22,8 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            background-color: #0f172a;
-            color: white;
+            background-color: #ffffff;
+            color: #0f172a;
             overflow: hidden;
         }
         
@@ -39,8 +39,8 @@
             right: -150px;
             width: 800px;
             height: 800px;
-            background-color: #1e293b; /* Slate 800 */
-            opacity: 0.5;
+            background-color: #e0e7ff; /* Light blue */
+            opacity: 0.4;
         }
         
         .shape-2 {
@@ -48,7 +48,7 @@
             left: -150px;
             width: 600px;
             height: 600px;
-            background-color: #1e293b; /* Slate 800 */
+            background-color: #fce7f3; /* Light pink */
             opacity: 0.3;
         }
         
@@ -58,7 +58,7 @@
             width: 400px;
             height: 400px;
             background-color: #3b82f6; /* Blue 500 */
-            opacity: 0.05;
+            opacity: 0.06;
             filter: blur(80px);
         }
 
@@ -68,14 +68,14 @@
             width: 250px;
             height: 250px;
             background-color: #ec4899; /* Pink 500 */
-            opacity: 0.03;
+            opacity: 0.04;
             filter: blur(60px);
         }
 
         /* Geometric Accents */
         .geo-accent {
             position: absolute;
-            background-color: rgba(255, 255, 255, 0.03);
+            background-color: transparent;
             z-index: 1;
         }
         
@@ -123,29 +123,51 @@
         }
 
         .project-title {
-            font-size: 100px;
+            font-size: 56px;
             font-weight: 800;
-            line-height: 1;
-            letter-spacing: -3px;
-            color: #ffffff;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            color: #0f172a;
+            margin-bottom: 30px;
+            text-shadow: none;
+        }
+
+        .content-section {
+            margin-bottom: 30px;
+        }
+
+        .section-heading {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0369a1;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .challenge-item {
+            background-color: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #1f2937;
+            line-height: 1.5;
+        }
+
+        .solution-intro {
+            font-size: 18px;
+            font-weight: 600;
+            color: #10b981;
+            margin-bottom: 15px;
+        }
+
+        .solution-text {
+            font-size: 14px;
+            color: #4b5563;
+            line-height: 1.6;
             margin-bottom: 20px;
-            /* Glowing text effect using shadows instead of gradients */
-            text-shadow: 0 0 30px rgba(59, 130, 246, 0.5), 0 4px 6px rgba(0,0,0,0.3);
-        }
-
-        .subtitle-wrapper {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .project-subtitle {
-            font-size: 26px;
-            font-weight: 300;
-            color: #cbd5e1; /* Slate 300 */
-            line-height: 1.4;
-            max-width: 650px;
         }
 
         .badges-container {
@@ -170,106 +192,44 @@
         .badge-saas {
             background-color: rgba(59, 130, 246, 0.15);
             border-color: rgba(59, 130, 246, 0.4);
-            color: #60a5fa; /* Blue 400 */
+            color: #1e40af;
             box-shadow: 0 0 10px rgba(59, 130, 246, 0.1);
         }
 
         .badge-standalone {
             background-color: rgba(16, 185, 129, 0.15);
             border-color: rgba(16, 185, 129, 0.4);
-            color: #34d399; /* Emerald 400 */
+            color: #34d399;
             box-shadow: 0 0 10px rgba(16, 185, 129, 0.1);
         }
 
-        .team-grid {
+        .two-row {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-            margin-bottom: 40px;
-        }
-
-        .team-member {
-            background-color: rgba(30, 41, 59, 0.4);
-            border: 1px solid rgba(148, 163, 184, 0.1);
-            padding: 16px 20px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* Unique Colors for Team Members */
-        .member-blue {
-            border-left: 4px solid #3b82f6;
-        }
-        .member-blue .member-icon {
-            background-color: rgba(59, 130, 246, 0.15);
-            color: #60a5fa;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-        }
-
-        .member-pink {
-            border-left: 4px solid #ec4899;
-        }
-        .member-pink .member-icon {
-            background-color: rgba(236, 72, 153, 0.15);
-            color: #f472b6;
-            border: 1px solid rgba(236, 72, 153, 0.2);
-        }
-
-        .member-emerald {
-            border-left: 4px solid #10b981;
-        }
-        .member-emerald .member-icon {
-            background-color: rgba(16, 185, 129, 0.15);
-            color: #34d399;
-            border: 1px solid rgba(16, 185, 129, 0.2);
-        }
-
-        .member-purple {
-            border-left: 4px solid #a855f7;
-        }
-        .member-purple .member-icon {
-            background-color: rgba(168, 85, 247, 0.15);
-            color: #c084fc;
-            border: 1px solid rgba(168, 85, 247, 0.2);
-        }
-        
-        .member-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 18px;
-            font-size: 22px;
-            flex-shrink: 0;
-        }
-
-        .member-info {
+            grid-template-rows: 1fr 1fr;
+            gap: 30px;
             flex: 1;
-            overflow: hidden;
         }
 
-        .member-name {
-            font-size: 18px;
-            font-weight: 700;
-            color: #f1f5f9;
+        .challenge-item {
+            background-color: #f3f4f6;
+            border-left: 4px solid #ef4444;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #0f172a;
             margin: 0 0 4px 0;
             white-space: nowrap;
         }
 
         .member-id {
             font-size: 13px;
-            color: #94a3b8;
+            color: #64748b;
             margin: 0;
             font-family: 'Inter', monospace;
             letter-spacing: 0.5px;
             display: inline-block;
-            background-color: rgba(15, 23, 42, 0.5);
+            background-color: rgba(59, 130, 246, 0.08);
             padding: 2px 6px;
             border-radius: 4px;
             margin-bottom: 2px;
@@ -283,50 +243,11 @@
         }
 
         .footer-info {
-            border-top: 1px solid rgba(148, 163, 184, 0.2);
+            border-top: 1px solid #e2e8f0;
             padding-top: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            color: #cbd5e1;
-            position: relative;
-        }
-        
-        .footer-left p, .footer-right p {
-            margin: 0;
-        }
-
-        .uni-name {
-            font-weight: 700;
-            font-size: 18px;
-            color: #e2e8f0;
-            margin-bottom: 4px;
-        }
-        
-        .uni-details {
-            font-size: 13px;
-            color: #94a3b8;
-        }
-
-        .date-text {
-            font-weight: 700;
-            font-size: 18px;
-            color: #e2e8f0;
-            text-align: right;
-            margin-bottom: 4px;
-        }
-        
-        .project-type {
             font-size: 12px;
-            color: #3b82f6; /* Blue 500 */
-            text-align: right;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 700;
-            background-color: rgba(59, 130, 246, 0.1);
-            padding: 4px 8px;
-            border-radius: 4px;
-            display: inline-block;
+            color: #64748b;
+            position: relative;
         }
 
     @media (max-height: 820px) {
@@ -355,69 +276,38 @@
 <div class="geo-accent geo-line-1"></div>
 <div class="geo-accent geo-line-2"></div>
 <div class="content-wrapper">
-<div class="title-section">
-<h1 class="project-title">aeos365</h1>
-<div class="subtitle-wrapper">
-<p class="project-subtitle">A Modular Enterprise Platform with SaaS and Standalone Distribution</p>
-<div class="badges-container">
-<div class="badge badge-saas">
-<i class="fas fa-cloud"></i> SaaS
-                </div>
-<div class="badge badge-standalone">
-<i class="fas fa-server"></i> Standalone
-                </div>
+<h1 class="project-title">Introduction</h1>
+<div class="two-row">
+<div>
+<div class="content-section">
+<div class="section-heading">Sector Challenges</div>
+<div class="challenge-item"><strong>Challenge 1:</strong> Enterprise systems often suffer from rigid, monolithic architectures that cannot adapt to changing business requirements and diverse deployment scenarios.</div>
+<div class="challenge-item"><strong>Challenge 2:</strong> Limited access control and multi-tenant capabilities force organizations to maintain separate infrastructure for different clients, increasing operational complexity and costs.</div>
+<div class="challenge-item"><strong>Challenge 3:</strong> Poor user experience due to complex interfaces and lack of customizable, modular components that meet specific organizational needs.</div>
 </div>
 </div>
+<div>
+<div class="content-section">
+<div class="solution-intro">Proposed Solution</div>
+<p class="solution-text"><strong>aeos365</strong> is a modular enterprise platform designed to address these challenges through:</p>
+<div class="challenge-item" style="border-left-color: #10b981; background-color: rgba(16, 185, 129, 0.1);">
+<strong>✓ Modular Architecture:</strong> Flexible, service-oriented design enabling deployment in both SaaS and standalone modes
 </div>
-<div class="team-grid">
-<!-- Member 1: Blue -->
-<div class="team-member member-blue">
-<div class="member-icon"><i class="fas fa-user-graduate"></i></div>
-<div class="member-info">
-<p class="member-name">Emam Hosen</p>
-<p class="member-id">ID: 2231091007</p>
-<p class="member-email">2231091007@uttarauniversity.edu.bd</p>
+<div class="challenge-item" style="border-left-color: #10b981; background-color: rgba(16, 185, 129, 0.1);">
+<strong>✓ Advanced Security:</strong> Multi-tenancy architecture with RBAC system providing enterprise-grade access control
 </div>
-</div>
-<!-- Member 2: Pink -->
-<div class="team-member member-pink">
-<div class="member-icon"><i class="fas fa-user-graduate"></i></div>
-<div class="member-info">
-<p class="member-name">Mst. Khurshida Haque Mili</p>
-<p class="member-id">ID: 2231091012</p>
-<p class="member-email">2231091012@uttarauniversity.edu.bd</p>
+<div class="challenge-item" style="border-left-color: #10b981; background-color: rgba(16, 185, 129, 0.1);">
+<strong>✓ Enhanced UX:</strong> Intuitive, customizable interface with comprehensive feature set across multiple modules
 </div>
 </div>
-<!-- Member 3: Emerald -->
-<div class="team-member member-emerald">
-<div class="member-icon"><i class="fas fa-user-graduate"></i></div>
-<div class="member-info">
-<p class="member-name">Anowar Hossain Rahat</p>
-<p class="member-id">ID: 2231091001</p>
-<p class="member-email">2231091001@uttarauniversity.edu.bd</p>
-</div>
-</div>
-<!-- Member 4: Purple -->
-<div class="team-member member-purple">
-<div class="member-icon"><i class="fas fa-user-graduate"></i></div>
-<div class="member-info">
-<p class="member-name">Sultana Parvin</p>
-<p class="member-id">ID: 2231091016</p>
-<p class="member-email">2231091016@uttarauniversity.edu.bd</p>
-</div>
-</div>
-</div>
-<div class="footer-info">
-<div class="footer-left">
-<p class="uni-name">Department of Computer Science and Engineering</p>
-<p class="uni-details">Uttara University • Uttara, Dhaka 1230, Bangladesh</p>
-</div>
-<div class="footer-right">
-<p class="date-text">January 2026</p>
-<p class="project-type">Final Year Project Proposal</p>
 </div>
 </div>
 </div>
 </div>
 </body>
 </html>
+
+
+
+
+

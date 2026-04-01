@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Abstract &amp; Overview</title>
+<title>Motivation</title>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
@@ -14,7 +14,7 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-color: #0f172a; /* Slate 900 */
+            background-color: #ffffff;
         }
         .slide-container {
              width: 100vw; 
@@ -22,8 +22,8 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            background-color: #0f172a;
-            color: white;
+            background-color: #ffffff;
+            color: #0f172a;
             overflow: hidden;
             padding: 40px 60px;
             box-sizing: border-box;
@@ -32,7 +32,7 @@
         /* Header Styles */
         .header {
             margin-bottom: 30px;
-            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+            border-bottom: 1px solid #e2e8f0;
             padding-bottom: 15px;
             display: flex;
             justify-content: space-between;
@@ -42,7 +42,7 @@
         .slide-title {
             font-size: 36px;
             font-weight: 700;
-            color: #ffffff;
+            color: #0f172a;
             margin: 0;
             display: flex;
             align-items: center;
@@ -61,7 +61,7 @@
         .header-logo {
             font-size: 18px;
             font-weight: 600;
-            color: #94a3b8;
+            color: #6b7280;
             margin: 0;
         }
 
@@ -82,7 +82,7 @@
         }
 
         .problem-card {
-            background-color: rgba(30, 41, 59, 0.4); /* Slate 800 */
+            background-color: #f3f4f6; /* Slate 800 */
             border: 1px solid rgba(239, 68, 68, 0.2); /* Red tint border */
             border-left: 4px solid #ef4444; /* Red 500 */
             border-radius: 12px;
@@ -95,7 +95,7 @@
         .section-header-problem {
             font-size: 22px;
             font-weight: 700;
-            color: #fca5a5; /* Red 300 */
+            color: #dc2626;
             margin: 0 0 20px 0;
             display: flex;
             align-items: center;
@@ -127,13 +127,13 @@
         .problem-text {
             margin: 0;
             font-size: 16px;
-            color: #cbd5e1; /* Slate 300 */
+            color: #374151; /* Slate 300 */
             line-height: 1.5;
         }
 
         .problem-highlight {
             font-weight: 600;
-            color: #ffffff;
+            color: #0f172a;
         }
 
         /* Right Column: Solution Context */
@@ -145,7 +145,7 @@
         }
 
         .solution-card {
-            background-color: rgba(30, 41, 59, 0.4); /* Slate 800 */
+            background-color: #f3f4f6; /* Slate 800 */
             border: 1px solid rgba(59, 130, 246, 0.2); /* Blue tint border */
             border-left: 4px solid #3b82f6; /* Blue 500 */
             border-radius: 12px;
@@ -158,7 +158,7 @@
         .section-header-solution {
             font-size: 22px;
             font-weight: 700;
-            color: #93c5fd; /* Blue 300 */
+            color: #0369a1;
             margin: 0 0 20px 0;
             display: flex;
             align-items: center;
@@ -173,24 +173,24 @@
         }
 
         .info-box {
-            background-color: rgba(15, 23, 42, 0.5); /* Slate 900 */
+            background-color: #f3f4f6;
             padding: 16px;
             border-radius: 8px;
-            border: 1px solid rgba(148, 163, 184, 0.1);
+            border: 1px solid #e5e7eb;
         }
 
         .info-title {
             font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #60a5fa; /* Blue 400 */
+            color: #0369a1;
             margin: 0 0 8px 0;
             font-weight: 600;
         }
 
         .info-content {
             font-size: 15px;
-            color: #e2e8f0; /* Slate 200 */
+            color: #1f2937;
             margin: 0;
             line-height: 1.5;
         }
@@ -202,8 +202,8 @@
         }
 
         .tag {
-            background-color: rgba(59, 130, 246, 0.2);
-            color: #bfdbfe;
+            background-color: #dbeafe;
+            color: #0369a1;
             padding: 4px 10px;
             border-radius: 4px;
             font-size: 12px;
@@ -251,7 +251,7 @@
 <body>
 <div class="slide-container">
 <div class="header">
-<h1 class="slide-title">Abstract &amp; Overview</h1>
+<h1 class="slide-title">Motivation</h1>
 <p class="header-logo">aeos365 Project Proposal</p>
 </div>
 <div class="content-grid">
@@ -259,68 +259,56 @@
 <div class="col-left">
 <div class="problem-card">
 <h2 class="section-header-problem">
-<i class="fas fa-exclamation-triangle"></i> The Challenge
+<i class="fas fa-exclamation-triangle"></i> Problem Identification
 </h2>
 <ul class="problem-list">
 <li class="problem-item">
 <i class="fas fa-times-circle problem-icon"></i>
-<p class="problem-text"><span class="problem-highlight">Fragmented Tools:</span> Enterprises struggle with multiple disjointed vendors.</p>
+<p class="problem-text"><span class="problem-highlight">Deployment Challenges:</span> Organizations need flexibility in deployment models (cloud vs. on-premises)</p>
 </li>
 <li class="problem-item">
 <i class="fas fa-times-circle problem-icon"></i>
-<p class="problem-text"><span class="problem-highlight">Data Silos:</span> Lack of integration creates substantial operational overhead.</p>
+<p class="problem-text"><span class="problem-highlight">Product Development:</span> Rapid feature development requires modular architecture and scalable design</p>
 </li>
 <li class="problem-item">
 <i class="fas fa-times-circle problem-icon"></i>
-<p class="problem-text"><span class="problem-highlight">High Costs:</span> Traditional ERPs are too expensive for most SMEs.</p>
+<p class="problem-text"><span class="problem-highlight">Operational Complexity:</span> Managing multiple systems and integrations leads to high operational overhead</p>
 </li>
 <li class="problem-item">
 <i class="fas fa-times-circle problem-icon"></i>
-<p class="problem-text"><span class="problem-highlight">Rigid Deployment:</span> Forced choice between SaaS or On-Premises with no flexibility.</p>
+<p class="problem-text"><span class="problem-highlight">User Experience:</span> Legacy systems provide poor UX and lack of modern, intuitive interfaces</p>
 </li>
 </ul>
 </div>
 </div>
-<!-- Right Column: The Solution -->
+<!-- Right Column: The Why -->
 <div class="col-right">
 <div class="solution-card">
 <h2 class="section-header-solution">
-<i class="fas fa-rocket"></i> The Solution: aeos365
+<i class="fas fa-lightbulb"></i> The Why: Project Motivation
 </h2>
-<p style="margin: 0 0 20px 0; color: #cbd5e1; font-size: 18px; line-height: 1.5;">
-                        An innovative <span style="color: white; font-weight: 600;">modular enterprise platform</span> featuring a unique dual-deployment architecture.
-                    </p>
+<p style="margin: 0 0 20px 0; color: #374151; font-size: 16px; line-height: 1.6;">
+This project is motivated by <span style="color: #0f172a; font-weight: 600;">high demand and critical necessity</span> to address the identified challenges in the enterprise software landscape.
+</p>
 <div class="grid-info">
 <div class="info-box">
-<p class="info-title">Core Innovation</p>
-<p class="info-content">Dual-deployment supporting both <strong>Multi-Tenant SaaS</strong> and <strong>Standalone</strong> distribution from a single codebase.</p>
+<p class="info-title">Industry Demand</p>
+<p class="info-content">Organizations worldwide seek unified platforms capable of supporting both cloud and on-premises deployments without code duplication.</p>
 </div>
 <div class="info-box">
-<p class="info-title">Architecture</p>
-<p class="info-content">Monorepo with independent packages, 4-Level RBAC, and complete database isolation per tenant.</p>
+<p class="info-title">Business Impact</p>
+<p class="info-content">Reducing operational costs, improving time-to-market, and enhancing user satisfaction through integrated solutions.</p>
 </div>
 </div>
 <div class="info-box" style="margin-bottom: 20px;">
-<p class="info-title">Functional Scope</p>
-<div class="scope-tags">
-<span class="tag">HRM</span>
-<span class="tag">CRM</span>
-<span class="tag">ERP</span>
-<span class="tag">Finance</span>
-<span class="tag">Inventory</span>
-<span class="tag">POS</span>
-<span class="tag">Project Management</span>
-<span class="tag">Document Management</span>
-<span class="tag">Quality</span>
-<span class="tag">Compliance</span>
-<span class="tag">AI Assistant</span>
-</div>
+<p class="info-title">Strategic Importance</p>
+<p class="info-content">Developing a modern, modular platform provides competitive advantage through flexibility, scalability, and comprehensive feature support across HRM, CRM, ERP, Finance, Inventory, POS, and more.</p>
 </div>
 <div class="goal-section">
 <p class="goal-text">
 <i class="fas fa-flag-checkered goal-icon"></i>
-                            Goal: Deliver a unified, cloud-native ecosystem with flexible distribution and consistent UX.
-                        </p>
+Motivation: To bridge the gap between enterprise requirements and practical software solutions through innovative architecture.
+</p>
 </div>
 </div>
 </div>
@@ -328,3 +316,8 @@
 </div>
 </body>
 </html>
+
+
+
+
+

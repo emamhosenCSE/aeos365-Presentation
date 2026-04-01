@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Functional Modules Overview</title>
+<title>Product Modules</title>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
@@ -14,7 +14,7 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-color: #0f172a; /* Slate 900 */
+            background-color: #ffffff; /* Slate 900 */
         }
         .slide-container {
              width: 100vw; 
@@ -22,8 +22,8 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            background-color: #0f172a;
-            color: white;
+            background-color: #ffffff;
+            color: #0f172a;
             overflow: hidden;
             padding: 40px 60px;
             box-sizing: border-box;
@@ -37,7 +37,7 @@
             width: 100%;
             height: 100%;
             background-size: 40px 40px;
-            background-image: radial-gradient(circle, rgba(148, 163, 184, 0.1) 1px, transparent 1px);
+            background-image: radial-gradient(circle, #e2e8f0 1px, transparent 1px);
             z-index: 0;
             opacity: 0.5;
         }
@@ -47,7 +47,7 @@
             position: relative;
             z-index: 10;
             margin-bottom: 20px;
-            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+            border-bottom: 1px solid #e2e8f0;
             padding-bottom: 15px;
             display: flex;
             justify-content: space-between;
@@ -57,7 +57,7 @@
         .slide-title {
             font-size: 32px;
             font-weight: 700;
-            color: #ffffff;
+            color: #0f172a;
             margin: 0;
             display: flex;
             align-items: center;
@@ -68,7 +68,7 @@
             display: block;
             width: 6px;
             height: 32px;
-            background-color: #60a5fa; /* Blue 400 */
+            background-color: #1e40af; /* Blue 400 */
             margin-right: 20px;
             border-radius: 3px;
         }
@@ -76,7 +76,7 @@
         .header-logo {
             font-size: 16px;
             font-weight: 600;
-            color: #94a3b8;
+            color: #6b7280;
             margin: 0;
         }
 
@@ -101,7 +101,7 @@
             align-items: center;
             gap: 10px;
             margin-bottom: 8px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid #f8fafc;
             padding-bottom: 8px;
         }
 
@@ -117,8 +117,8 @@
             font-size: 11px;
             padding: 2px 8px;
             border-radius: 10px;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: #94a3b8;
+            background-color: #f8fafc;
+            color: #6b7280;
             font-weight: 500;
         }
 
@@ -139,8 +139,8 @@
         }
 
         .module-card {
-            background-color: rgba(30, 41, 59, 0.4); /* Slate 800 glass */
-            border: 1px solid rgba(148, 163, 184, 0.1);
+            background-color: rgba(243, 244, 246, 0.4); /* Slate 800 glass */
+            border: 1px solid rgba(229, 231, 235, 0.1);
             border-radius: 10px;
             padding: 14px;
             display: flex;
@@ -151,8 +151,8 @@
         }
 
         .module-card:hover {
-            background-color: rgba(30, 41, 59, 0.7);
-            border-color: rgba(96, 165, 250, 0.3);
+            background-color: rgba(243, 244, 246, 0.7);
+            border-color: rgba(30, 64, 175, 0.3);
             transform: translateY(-2px);
         }
 
@@ -165,16 +165,16 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            background-color: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background-color: #e2e8f0;
+            border: 1px solid #f8fafc;
         }
 
         .module-card.business .icon-wrapper {
-            color: #60a5fa; /* Blue */
+            color: #1e40af; /* Blue */
         }
 
         .module-card.foundation {
-            background-color: rgba(30, 41, 59, 0.6);
+            background-color: rgba(243, 244, 246, 0.6);
             border: 1px solid rgba(167, 139, 250, 0.2); /* Violet tint */
         }
         
@@ -196,7 +196,7 @@
         .module-name {
             font-size: 15px;
             font-weight: 600;
-            color: #e2e8f0;
+            color: #0f172a;
             margin: 0 0 2px 0;
             white-space: nowrap;
             overflow: hidden;
@@ -205,9 +205,9 @@
 
         .package-code {
             font-size: 11px;
-            color: #64748b;
+            color: #9ca3af;
             font-family: 'Inter', monospace;
-            background-color: rgba(0, 0, 0, 0.2);
+            background-color: rgba(59, 130, 246, 0.05);
             padding: 2px 6px;
             border-radius: 4px;
             display: inline-block;
@@ -239,7 +239,7 @@
 <div class="slide-container">
 <div class="bg-grid"></div>
 <div class="header">
-<h1 class="slide-title">Functional Modules Overview</h1>
+<h1 class="slide-title">Product Modules</h1>
 <p class="header-logo">aeos365 Project Proposal</p>
 </div>
 <div class="content-wrapper">
@@ -368,3 +368,9 @@
 </div>
 </body>
 </html>
+
+
+
+
+
+

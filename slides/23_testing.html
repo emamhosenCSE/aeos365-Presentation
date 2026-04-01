@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Testing Strategy</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #ffffff; /* Slate 900 */
+        }
+        .slide-container {
+            width: 100vw; 
+            height: 90vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+            color: #0f172a;
+            overflow: hidden;
+            padding: 40px 60px;
+            box-sizing: border-box;
+        }
+
+        .header {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .slide-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .slide-title::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 36px;
+            background-color: #06b6d4;
+            margin-right: 20px;
+            border-radius: 3px;
+        }
+
+        .header-logo {
+            font-size: 18px;
+            font-weight: 600;
+            color: #6b7280;
+            margin: 0;
+        }
+
+        .content-wrapper {
+            flex: 1;
+            overflow-y: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .test-card {
+            background-color: rgba(243, 244, 246, 0.3);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .test-heading {
+            font-size: 18px;
+            font-weight: 700;
+            color: #155e75;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .test-icon {
+            font-size: 20px;
+            opacity: 0.9;
+        }
+
+        .test-items {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .test-item {
+            font-size: 14px;
+            color: #4b5563;
+            line-height: 1.6;
+            padding-left: 24px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .test-item::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #06b6d4;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .test-label {
+            font-weight: 700;
+            color: #155e75;
+        }
+
+        .test-desc {
+            font-size: 12px;
+            color: #4b5563;
+            opacity: 0.9;
+        }
+
+    @media (max-height: 820px) {
+        body { overflow: auto; }
+        .slide-container {
+            height: auto;
+            min-height: 100vh;
+            overflow: visible;
+            padding: 24px 32px;
+        }
+    }
+</style>
+</head>
+<body>
+<div class="slide-container">
+<div class="header">
+<h1 class="slide-title">Testing Strategy</h1>
+<p class="header-logo">aeos365 Project Proposal</p>
+</div>
+<div class="content-wrapper">
+<!-- Unit Testing -->
+<div class="test-card">
+<h2 class="test-heading">
+<i class="fas fa-puzzle-piece test-icon"></i> Unit Testing
+</h2>
+<ul class="test-items">
+<li class="test-item">
+<span class="test-label">Backend Unit Tests</span>
+<span class="test-desc">PHPUnit for Laravel controller and service logic validation</span>
+</li>
+<li class="test-item">
+<span class="test-label">Frontend Unit Tests</span>
+<span class="test-desc">Jest/Vitest for React component and utility function testing</span>
+</li>
+<li class="test-item">
+<span class="test-item">
+<span class="test-label">Test Coverage Target</span>
+<span class="test-desc">Minimum 80% code coverage for critical modules</span>
+</li>
+<li class="test-item">
+<span class="test-label">Mutation Testing</span>
+<span class="test-desc">Validate test effectiveness against code mutations</span>
+</li>
+</ul>
+</div>
+
+<!-- Integration & Performance Testing -->
+<div class="test-card">
+<h2 class="test-heading">
+<i class="fas fa-link test-icon"></i> Integration & Performance
+</h2>
+<ul class="test-items">
+<li class="test-item">
+<span class="test-label">API Integration Tests</span>
+<span class="test-desc">Test API endpoints against database and external services</span>
+</li>
+<li class="test-item">
+<span class="test-label">Database Tests</span>
+<span class="test-desc">Data integrity validation with multiple database scenarios</span>
+</li>
+<li class="test-item">
+<span class="test-item">
+<span class="test-label">Performance Testing</span>
+<span class="test-desc">Load testing with Apache JMeter targeting 1000+ concurrent users</span>
+</li>
+<li class="test-item">
+<span class="test-label">Multi-Tenancy Testing</span>
+<span class="test-desc">Verify data isolation and cross-tenant security</span>
+</li>
+</ul>
+</div>
+
+<!-- End-to-End & Security Testing -->
+<div class="test-card">
+<h2 class="test-heading">
+<i class="fas fa-shield-alt test-icon"></i> E2E & Security Testing
+</h2>
+<ul class="test-items">
+<li class="test-item">
+<span class="test-label">End-to-End Tests</span>
+<span class="test-desc">Selenium/Playwright for complete user workflow testing</span>
+</li>
+<li class="test-item">
+<span class="test-label">Security Testing</span>
+<span class="test-desc">OWASP Top 10 vulnerability scanning and penetration testing</span>
+</li>
+<li class="test-item">
+<span class="test-item">
+<span class="test-label">RBAC Testing</span>
+<span class="test-desc">Permission enforcement validation across all modules</span>
+</li>
+<li class="test-item">
+<span class="test-label">Compliance Testing</span>
+<span class="test-desc">Verify GDPR, HIPAA, and SOC 2 compliance requirements</span>
+</li>
+</ul>
+</div>
+
+<!-- UAT & Deployment Validation -->
+<div class="test-card">
+<h2 class="test-heading">
+<i class="fas fa-clipboard-check test-icon"></i> UAT & Validation
+</h2>
+<ul class="test-items">
+<li class="test-item">
+<span class="test-label">User Acceptance Testing</span>
+<span class="test-desc">Stakeholder review and business process validation</span>
+</li>
+<li class="test-item">
+<span class="test-label">Smoke Testing</span>
+<span class="test-desc">Critical path validation after each deployment</span>
+</li>
+<li class="test-item">
+<span class="test-item">
+<span class="test-label">Regression Testing</span>
+<span class="test-desc">Automated test suite ensuring no functionality breakage</span>
+</li>
+<li class="test-item">
+<span class="test-label">Accessibility Testing</span>
+<span class="test-desc">WCAG 2.1 compliance for inclusive user experience</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+
+
+
+
+

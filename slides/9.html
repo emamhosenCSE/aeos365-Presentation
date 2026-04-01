@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -14,7 +14,7 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-color: #0f172a; /* Slate 900 */
+            background-color: #ffffff; /* Slate 900 */
         }
         .slide-container {
              width: 100vw; 
@@ -22,8 +22,8 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            background-color: #0f172a;
-            color: white;
+            background-color: #ffffff;
+            color: #0f172a;
             overflow: hidden;
             padding: 40px 60px;
             box-sizing: border-box;
@@ -32,7 +32,7 @@
         /* Header Styles */
         .header {
             margin-bottom: 25px;
-            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+            border-bottom: 1px solid #e2e8f0;
             padding-bottom: 15px;
             display: flex;
             justify-content: space-between;
@@ -43,7 +43,7 @@
         .slide-title {
             font-size: 32px;
             font-weight: 700;
-            color: #ffffff;
+            color: #0f172a;
             margin: 0;
             display: flex;
             align-items: center;
@@ -62,7 +62,7 @@
         .header-logo {
             font-size: 18px;
             font-weight: 600;
-            color: #94a3b8;
+            color: #6b7280;
             margin: 0;
         }
 
@@ -80,7 +80,7 @@
             text-transform: uppercase;
             letter-spacing: 1.5px;
             font-weight: 700;
-            color: #94a3b8;
+            color: #6b7280;
             margin-bottom: 12px;
             display: flex;
             align-items: center;
@@ -100,8 +100,8 @@
         }
 
         .price-card {
-            background-color: rgba(30, 41, 59, 0.4); /* Slate 800 */
-            border: 1px solid rgba(148, 163, 184, 0.1);
+            background-color: rgba(243, 244, 246, 0.4); /* Slate 800 */
+            border: 1px solid rgba(229, 231, 235, 0.1);
             border-radius: 12px;
             padding: 20px;
             display: flex;
@@ -111,28 +111,28 @@
         }
 
         .price-card.featured {
-            background-color: rgba(30, 41, 59, 0.6);
+            background-color: rgba(243, 244, 246, 0.6);
             border-color: rgba(139, 92, 246, 0.4);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.05);
         }
 
         .card-header {
             margin-bottom: 15px;
             padding-bottom: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid #f8fafc;
         }
 
         .plan-name {
             font-size: 16px;
             font-weight: 600;
-            color: #e2e8f0;
+            color: #0f172a;
             margin: 0 0 4px 0;
         }
 
         .plan-price {
             font-size: 28px;
             font-weight: 800;
-            color: #ffffff;
+            color: #0f172a;
             margin: 0;
             display: flex;
             align-items: baseline;
@@ -141,14 +141,14 @@
 
         .plan-period {
             font-size: 13px;
-            color: #94a3b8;
+            color: #6b7280;
             font-weight: 400;
         }
 
         .user-limit {
             font-size: 12px;
-            color: #cbd5e1;
-            background-color: rgba(255, 255, 255, 0.1);
+            color: #4b5563;
+            background-color: #f8fafc;
             padding: 4px 8px;
             border-radius: 4px;
             display: inline-block;
@@ -167,7 +167,7 @@
             align-items: flex-start;
             gap: 8px;
             font-size: 13px;
-            color: #cbd5e1;
+            color: #4b5563;
             margin-bottom: 8px;
             line-height: 1.4;
         }
@@ -188,8 +188,8 @@
 
         .addons-container {
             width: 25%;
-            background-color: rgba(15, 23, 42, 0.5);
-            border: 1px solid rgba(148, 163, 184, 0.1);
+            background-color: rgba(59, 130, 246, 0.08);
+            border: 1px solid rgba(229, 231, 235, 0.1);
             border-radius: 12px;
             padding: 20px;
             display: flex;
@@ -202,7 +202,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid #f8fafc;
         }
 
         .addon-item:last-child {
@@ -211,7 +211,7 @@
 
         .addon-name {
             font-size: 14px;
-            color: #e2e8f0;
+            color: #0f172a;
             font-weight: 500;
         }
 
@@ -229,7 +229,7 @@
         }
 
         .saas-card {
-            background: linear-gradient(145deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.8) 100%);
+            background: linear-gradient(145deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
             border: 1px solid rgba(59, 130, 246, 0.2);
             border-radius: 12px;
             padding: 20px;
@@ -239,7 +239,7 @@
 
         .saas-card.premium {
             border: 1px solid rgba(236, 72, 153, 0.3); /* Pink border */
-            background: linear-gradient(145deg, rgba(88, 28, 135, 0.2) 0%, rgba(15, 23, 42, 0.9) 100%);
+            background: linear-gradient(145deg, rgba(88, 28, 135, 0.2) 0%, rgba(59, 130, 246, 0.15) 100%);
         }
 
         .saas-card.premium::before {
@@ -248,7 +248,7 @@
             top: 12px;
             right: 12px;
             background-color: #ec4899;
-            color: white;
+            color: #0f172a;
             font-size: 10px;
             font-weight: 700;
             padding: 2px 8px;
@@ -405,9 +405,15 @@
 </div>
 </div>
 </div>
-<p style="margin-top: 14px; font-size: 11px; color: #94a3b8; text-align: right;">
+<p style="margin-top: 14px; font-size: 11px; color: #6b7280; text-align: right;">
     Assumptions: indicative pricing for proposal stage; excludes taxes and regional hosting variance; support scope defined in SLA.
 </p>
 </div>
 </body>
 </html>
+
+
+
+
+
+

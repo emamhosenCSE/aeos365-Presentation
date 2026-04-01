@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -14,16 +14,16 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-color: #0f172a; /* Slate 900 */
+            background-color: #ffffff; /* Slate 900 */
         }
         .slide-container {
-            width: 100vw; 
+             width: 100vw; 
     height: 90vh;
             position: relative;
             display: flex;
             flex-direction: column;
-            background-color: #0f172a;
-            color: white;
+            background-color: #ffffff;
+            color: #0f172a;
             overflow: hidden;
             padding: 40px 60px;
             box-sizing: border-box;
@@ -46,7 +46,7 @@
             position: relative;
             z-index: 10;
             margin-bottom: 30px;
-            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+            border-bottom: 1px solid #e2e8f0;
             padding-bottom: 15px;
             display: flex;
             justify-content: space-between;
@@ -56,7 +56,7 @@
         .slide-title {
             font-size: 36px;
             font-weight: 700;
-            color: #ffffff;
+            color: #0f172a;
             margin: 0;
             display: flex;
             align-items: center;
@@ -75,7 +75,7 @@
         .header-logo {
             font-size: 18px;
             font-weight: 600;
-            color: #94a3b8;
+            color: #6b7280;
             margin: 0;
         }
 
@@ -92,8 +92,8 @@
 
         /* Category Card */
         .category-card {
-            background-color: rgba(30, 41, 59, 0.4); /* Slate 800 */
-            border: 1px solid rgba(148, 163, 184, 0.1);
+            background-color: rgba(243, 244, 246, 0.4); /* Slate 800 */
+            border: 1px solid rgba(229, 231, 235, 0.1);
             border-radius: 12px;
             padding: 16px;
             display: flex;
@@ -103,10 +103,10 @@
         }
         
         .category-card:hover {
-            background-color: rgba(30, 41, 59, 0.6);
-            border-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(243, 244, 246, 0.6);
+            border-color: #f8fafc;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.05);
         }
 
         /* Category Header */
@@ -116,7 +116,7 @@
             gap: 10px;
             margin-bottom: 4px;
             padding-bottom: 8px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid #f8fafc;
         }
 
         .cat-icon {
@@ -127,7 +127,7 @@
             align-items: center;
             justify-content: center;
             border-radius: 6px;
-            background-color: rgba(15, 23, 42, 0.5);
+            background-color: rgba(59, 130, 246, 0.08);
         }
 
         .cat-title {
@@ -149,22 +149,22 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background-color: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background-color: #e2e8f0;
+            border: 1px solid #f8fafc;
             padding: 8px 12px;
             border-radius: 6px;
             transition: background-color 0.2s;
         }
         
         .tech-badge:hover {
-            background-color: rgba(15, 23, 42, 0.9);
-            border-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(59, 130, 246, 0.15);
+            border-color: #f8fafc;
         }
 
         .tech-name {
             font-size: 14px;
             font-weight: 500;
-            color: #e2e8f0;
+            color: #0f172a;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -174,27 +174,27 @@
         .tech-ver {
             font-size: 11px;
             font-family: 'Inter', monospace;
-            color: #94a3b8;
-            background-color: rgba(255, 255, 255, 0.05);
+            color: #6b7280;
+            background-color: #f8fafc;
             padding: 2px 6px;
             border-radius: 4px;
         }
 
         /* Specific Colors for Categories */
         /* Backend - Red */
-        .cat-backend .cat-icon { color: #f87171; background-color: rgba(248, 113, 113, 0.1); }
-        .cat-backend .cat-title { color: #f87171; }
-        .cat-backend { border-top: 3px solid #f87171; }
+        .cat-backend .cat-icon { color: #dc2626; background-color: rgba(220, 38, 38, 0.1); }
+        .cat-backend .cat-title { color: #dc2626; }
+        .cat-backend { border-top: 3px solid #dc2626; }
 
         /* Frontend - Blue */
-        .cat-frontend .cat-icon { color: #60a5fa; background-color: rgba(96, 165, 250, 0.1); }
-        .cat-frontend .cat-title { color: #60a5fa; }
-        .cat-frontend { border-top: 3px solid #60a5fa; }
+        .cat-frontend .cat-icon { color: #1e40af; background-color: rgba(30, 64, 175, 0.1); }
+        .cat-frontend .cat-title { color: #1e40af; }
+        .cat-frontend { border-top: 3px solid #1e40af; }
 
         /* Data - Amber */
-        .cat-data .cat-icon { color: #fbbf24; background-color: rgba(251, 191, 36, 0.1); }
-        .cat-data .cat-title { color: #fbbf24; }
-        .cat-data { border-top: 3px solid #fbbf24; }
+        .cat-data .cat-icon { color: #b45309; background-color: rgba(180, 83, 9, 0.1); }
+        .cat-data .cat-title { color: #b45309; }
+        .cat-data { border-top: 3px solid #b45309; }
 
         /* Auth - Emerald */
         .cat-auth .cat-icon { color: #34d399; background-color: rgba(52, 211, 153, 0.1); }
@@ -217,8 +217,8 @@
         .cat-ai { border-top: 3px solid #22d3ee; }
 
         /* Tooling - Slate */
-        .cat-tooling .cat-icon { color: #94a3b8; background-color: rgba(148, 163, 184, 0.1); }
-        .cat-tooling .cat-title { color: #94a3b8; }
+        .cat-tooling .cat-icon { color: #6b7280; background-color: #ffffff; }
+        .cat-tooling .cat-title { color: #6b7280; }
         .cat-tooling { border-top: 3px solid #94a3b8; }
 
         .tech-icon-small {
@@ -417,3 +417,10 @@
 </div>
 </body>
 </html>
+
+
+
+
+
+
+
